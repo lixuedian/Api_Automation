@@ -93,7 +93,7 @@ class Request:
                 response = requests.post(url=url, headers=header)
             else:
                 response = requests.post(url=url, headers=header, data=data)
-                print(response.json())
+                # print(response.json())
         except requests.RequestException as e:
             print('%s%s' % ('RequestException url: ', url))
             print(e)

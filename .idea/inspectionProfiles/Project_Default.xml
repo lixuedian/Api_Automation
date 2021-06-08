@@ -42,6 +42,7 @@
           <option value="http://jakarta.apache.org/" />
           <option value="http://cxf.apache.org/schemas/" />
           <option value="http://test-user.ekeguan.com" />
+          <option value="http://" />
         </list>
       </option>
     </inspection_tool>

@@ -23,13 +23,13 @@ class TestExpress(object):
     @pytest.mark.parametrize('case', case_data)
     def test_express_01(self, case):
         TestExpress.test_express_01.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
     data = GetExpressTracesOne()
@@ -39,13 +39,13 @@ class TestExpress(object):
     @pytest.mark.parametrize('case', case_data)
     def test_express_02(self, case):
         TestExpress.test_express_02.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
     data = SetExpressOne()
@@ -55,11 +55,11 @@ class TestExpress(object):
     @pytest.mark.parametrize('case', case_data)
     def test_express_03(self, case):
         TestExpress.test_express_03.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')

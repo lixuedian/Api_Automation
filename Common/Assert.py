@@ -64,6 +64,7 @@ class Assertions:
             text = json.dumps(body, ensure_ascii=False)
             # print(text)
             assert expected_msg in text
+            self.log.info("PASS ==>> 预期结果：{}， 实际结果：{}".format(body, expected_msg))
             return True
 
         except:
@@ -82,11 +83,12 @@ class Assertions:
         """
         try:
             assert body == expected_msg
+            self.log.info("PASS ==>> 预期结果：{}， 实际结果：{}".format(body, expected_msg))
             return True
 
         except:
-            self.log.error("%s Response body != expected_msg, 预期结果 is %s, 实际结果 is %s" % (test_name,
-                                                                                         expected_msg, body))
+            self.log.error("%s,Fail ==>> 预期结果: %s, 实际结果: %s" % (test_name, expected_msg, body))
+            self.log.info("*************** 结束执行用例 ***************")
             Consts.RESULT_LIST.append('fail')
 
             raise

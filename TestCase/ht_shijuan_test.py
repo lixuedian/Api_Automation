@@ -47,7 +47,7 @@ class TestShiJuan(object):
         receive.add_operation_recruit_exam_one()
 
         """获取线上运营列表"""
-        recruitExamOperationId = receive.get_operation_recruit_exam_list()
+        receive.get_operation_recruit_exam_list()
 
         """线上运营启用，禁用，删除接口"""
         receive.set_operation_recruit_exam_one(2)

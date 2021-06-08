@@ -23,13 +23,13 @@ class TestBanner(object):
     @pytest.mark.parametrize('case', case_data)
     def test_01_banner(self, case):
         TestBanner.test_01_banner.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -41,13 +41,13 @@ class TestRegion(object):
     @pytest.mark.parametrize('case', case_data)
     def test_02_region(self, case):
         TestRegion.test_02_region.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -59,13 +59,13 @@ class TestRegionCity(object):
     @pytest.mark.parametrize('case', case_data)
     def test_03_region_city(self, case):
         TestRegionCity.test_03_region_city.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -77,13 +77,13 @@ class TestRegionCityRegion(object):
     @pytest.mark.parametrize('case', case_data)
     def test_04_region_city_region(self, case):
         TestRegionCityRegion.test_04_region_city_region.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -95,13 +95,13 @@ class TestPositionList(object):
     @pytest.mark.parametrize('case', case_data)
     def test_05_position_list(self, case):
         TestPositionList.test_05_position_list.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -113,13 +113,13 @@ class TestCollect(object):
     @pytest.mark.parametrize('case', case_data)
     def test_06_collect(self, case):
         TestCollect.test_06_collect.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -131,13 +131,13 @@ class TestCancel(object):
     @pytest.mark.parametrize('case', case_data)
     def test_07_cancel(self, case):
         TestCancel.test_07_cancel.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -149,13 +149,13 @@ class TestCollectList(object):
     @pytest.mark.parametrize('case', case_data)
     def test_08_collect_list(self, case):
         TestCollectList.test_08_collect_list.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -167,13 +167,13 @@ class TestPositionDetail(object):
     @pytest.mark.parametrize('case', case_data)
     def test_09_position_detail(self, case):
         TestPositionDetail.test_09_position_detail.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -185,13 +185,13 @@ class TestPositionFind(object):
     @pytest.mark.parametrize('case', case_data)
     def test_10_position_find(self, case):
         TestPositionFind.test_10_position_find.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -203,13 +203,13 @@ class TestPositionDataList(object):
     @pytest.mark.parametrize('case', case_data)
     def test_11_position_find(self, case):
         TestPositionDataList.test_11_position_find.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -221,13 +221,13 @@ class TestPositionYearList(object):
     @pytest.mark.parametrize('case', case_data)
     def test_12_position_year_list(self, case):
         TestPositionYearList.test_12_position_year_list.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
 
 
@@ -239,11 +239,11 @@ class TestPositionQueryList(object):
     @pytest.mark.parametrize('case', case_data)
     def test_13_position_query_list(self, case):
         TestPositionQueryList.test_13_position_query_list.__doc__ = case['test_name']
-        log.info('test_name={}, url={}, data={}, header={}'.
-                 format(case['test_name'], url+case['url'], case['data'], case['header']))
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
         result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
-        print(case['mode'], case['url'], case['data'], case['header'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        log.info("*************** 结束执行用例 ***************")
         Consts.RESULT_LIST.append('True')
