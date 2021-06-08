@@ -45,11 +45,11 @@ class Request:
             url = url
         else:
             url = '%s%s' % ('http://', url)
-            print('url={}'.format(url))
+            # print('url={}'.format(url))
         try:
             if data is None:
                 response = requests.get(url=url, headers=header)
-                print(response.json())
+                # print(response.json())
             else:
                 response = requests.get(url=url, params=data, headers=header)
                 # print(response.json())
@@ -57,8 +57,8 @@ class Request:
                 # code = res['code'],
                 # msg = res['msg']
                 # print(code, msg)
-                request_headers = response.request.headers
-            print('Get.response  request_headers={} '.format(request_headers))
+                # request_headers = response.request.headers
+            # print('Get.response  request_headers={} '.format(request_headers))
         except requests.RequestException as e:
             print('%s%s' % ('RequestException url: ', url))
             print(e)
@@ -83,7 +83,7 @@ class Request:
             url = url
         else:
             url = '%s%s' % ('https://', url)
-            print('url={}'.format(url))
+            # print('url={}'.format(url))
         if f_type == "data":
             data = data
         elif f_type == "json":
