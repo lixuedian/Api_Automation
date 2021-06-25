@@ -15,7 +15,7 @@ def pytest_configure(config):
     config._metadata.clear()
     # 添加接口地址与项目名称
     config._metadata['接口地址'] = ""
-    config._metadata['项目名称'] = ""
+    config._metadata['项目名称'] = "测试环境"
 
 
 @pytest.mark.optionalhook

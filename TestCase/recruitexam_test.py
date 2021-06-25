@@ -26,7 +26,7 @@ class TestGetRecruitExamList(object):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
-        result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
+        result = notify.notify_result(case['mode'], url + case['url'], case['data'], case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
         log.info("*************** 结束执行用例 ***************")
@@ -42,7 +42,7 @@ class TestGetRecruitExamList(object):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
-        result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
+        result = notify.notify_result(case['mode'], url + case['url'], case['data'], case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
         log.info("*************** 结束执行用例 ***************")
@@ -58,7 +58,7 @@ class TestGetRecruitExamList(object):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
-        result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
+        result = notify.notify_result(case['mode'], url + case['url'], case['data'], case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
         log.info("*************** 结束执行用例 ***************")
@@ -74,7 +74,7 @@ class TestGetRecruitExamList(object):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
-        result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
+        result = notify.notify_result(case['mode'], url + case['url'], case['data'], case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
         log.info("*************** 结束执行用例 ***************")
@@ -90,7 +90,7 @@ class TestGetRecruitExamList(object):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
-        result = notify.notify_result(case['mode'], url+case['url'], case['data'], case['header'], case['type'])
+        result = notify.notify_result(case['mode'], url + case['url'], case['data'], case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
         log.info("*************** 结束执行用例 ***************")

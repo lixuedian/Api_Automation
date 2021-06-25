@@ -134,7 +134,6 @@ class Request:
         :param header:
         :param file_parm:
         :param file:
-        :param type:
         :return:
         """
         if not url.startswith('https://'):
@@ -191,9 +190,6 @@ class Request:
         :param url:
         :param data:
         :param header:
-        :param file_parm:
-        :param file:
-        :param type:
         :return:
         """
         if not url.startswith('http://'):
@@ -269,4 +265,3 @@ class Request:
 #     print(a)
 #     print(lsa)
 #     print(lsa[0])
-

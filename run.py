@@ -36,11 +36,11 @@ if __name__ == '__main__':
     except Exception:
         log.error('执行用例失败，请检查环境配置')
         raise
-    try:
-        report_file = get_report_file(report_path)
-        mail = Email.SendMail()
-        mail.send_mail(report_file)
-    except Exception as e:
-        log.error('发送邮件失败，请检查邮件配置')
-        raise
+    # try:
+    #     report_file = get_report_file(report_path)
+    #     mail = Email.SendMail()
+    #     mail.send_mail(report_file)
+    # except Exception as e:
+    #     log.error('发送邮件失败，请检查邮件配置')
+    #     raise
 

@@ -51,7 +51,6 @@ class ReceiveApi(object):
         for list in lists:
             ReceiveApi.recruitExamId = list['recruitExamId']
 
-
     def add_recruit_exam_one(self, name, num):
         """添加招考单条信息"""
         api = '/admin-recruitexam/addRecruitExamOne'
