@@ -2,15 +2,146 @@ role_list:
   dec: "主流程"
   parameters:
     -
-      test_name: '获取招考列表-事业单位'
+      test_name: '根据部门获取已绑定相关角色-主流程'
       mode: 0
       type:
       methods: get
       url: /oauth/department/role/list
       data: {
         'departmentId': 1,
-        'roleName': 22
+        'roleName': ''
       }
-      #header: {'token': &token}
-      parser:  &parser {'code' :"['body']['code']", 'msg': '["body"]["msg"]' }
-      expected: &expected { 'code': 1, 'msg': '成功' }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+
+getUsableRole:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取部门下可添加的角色-主流程'
+      mode: 0
+      type:
+      methods: get
+      url: /oauth/department/role/getUsableRole
+      data: {
+        'departmentId': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+
+department_add:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '给部门添加角色-主流程'
+      mode: 1
+      type: json
+      methods: POST
+      url: /oauth/department/role/add
+      data: {
+        'departmentId': 1,
+        'roleId': 18
+      }
+      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+department_delRole:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '从部门下删除角色-主流程'
+      mode: 1
+      type: json
+      methods: POST
+      url: /oauth/department/role/delRole
+      data: {
+        'departmentId': 1,
+        'roleId': 18
+      }
+      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+role_add:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '添加角色-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /oauth/role/add
+      data: {
+        "roleId": "17",
+        "roleName": "测试角色",
+        "note": "note"
+      }
+      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+oauth_list:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取角色信息-主流程'
+      mode: 0
+      type:
+      methods: get
+      url: /oauth/role/list
+      data: {
+        "roleName": "测试角色",
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+
+get_oauth:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '根据id获取角色信息-主流程'
+      mode: 0
+      type:
+      methods: get
+      url: /oauth/role/get
+      data: {
+        "roleId": 18,
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+edit_oauth:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '根据id编辑角色信息-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /oauth/role/add
+      data: {
+        "roleId": "18",
+        "roleName": "测试角色",
+        "note": "note"
+      }
+      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+
+delete_oauth:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '根据id删除角色信息-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /oauth/role/add
+      data: {
+        "roleId": "18",
+        "roleName": "测试角色",
+        "note": "note"
+      }
+      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      expected:  { 'code': 1000, 'msg': '操作成功' }

@@ -33,4 +33,5 @@ def parser(response_data,  test_name, parser_data, expected_data):
     a = ''.join(retrieve_name(response_data))
     for x, y in dict(parser_data).items():
         result = test.assert_text(eval(a + parser_data[x]), expected_data[x], test_name)
+    log.info("*************** 结束执行用例 ***************")
     return result

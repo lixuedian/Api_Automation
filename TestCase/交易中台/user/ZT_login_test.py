@@ -1,5 +1,8 @@
 import allure
 import pytest
+
+import TestCase
+from Common import Log
 from Config.Config import Config
 from Common import Request
 from Common import Consts
@@ -10,10 +13,11 @@ from Common.Parser import parser
 from Common.Methodes import notify
 import requests
 
-BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+BASE_PATH = TestCase.BASE_PATH
 request = Request.Request()
 test = Assert.Assertions()
 config = Config()
+log = Log.MyLog()
 url = config.test_shijian_url
 url = '%s%s' % ('http://', url)
 

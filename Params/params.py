@@ -40,7 +40,7 @@ class Process:
 class ShiJuan:
     # log.info('解析yaml, Path:' + path_dir + '/Params/Param/Shijuan.yaml')
     params = get_parameter('ShiJuan')
-    case_data=[]
+    case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
         # print(params)

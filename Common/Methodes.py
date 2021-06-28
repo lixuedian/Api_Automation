@@ -38,7 +38,7 @@ class notify(object):
             if method:
                 res = method(url, data, header, f_type)
             return res
-        elif mode in (0, 1, 2, 3, 4):
+        elif mode in (0, 2, 3, 4):
             if method:
                 res = method(url, data, header)
             return res

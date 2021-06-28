@@ -52,7 +52,7 @@ class Request:
                 # print(response.json())
             else:
                 response = requests.get(url=url, params=data, headers=header)
-                # print(response.json())
+                print(response.json())
                 # res = response.json()
                 # code = res['code'],
                 # msg = res['msg']

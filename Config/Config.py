@@ -32,6 +32,7 @@ class Config:
     # token
     VALUE_TEST_Token = 'token'
     VALUE_test_mp_url = 'test_mp_url'
+    VALUE_test_userid = 'userid'
 
 
     # values:
@@ -98,6 +99,7 @@ class Config:
         # 交易中台用户token
         self.token_zt = self.get_conf(Config.TITLE_TOKEN_ZT, Config.VALUE_TEST_Token)
         self.test_mp_url = self.get_conf(Config.TITLE_TOKEN_ZT, Config.VALUE_test_mp_url)
+        self.userid_zt = self.get_conf(Config.TITLE_TOKEN_ZT, Config.VALUE_test_userid)
 
     def get_conf(self, title, value):
         """
