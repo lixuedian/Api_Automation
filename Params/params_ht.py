@@ -95,3 +95,131 @@ class DelRoleDepartment:
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
+
+
+class PermissionDisplay:
+    """资源列表展示状态调整入口"""
+    params = get_parameter('permission_display')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class PermissionDelete:
+    """资源信息删除"""
+    params = get_parameter('permission_delete')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class PermissionGet:
+    """获取资源信息byId"""
+    params = get_parameter('permission_get')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class PermissionEdit:
+    """根据id修改资源信息"""
+    params = get_parameter('permission_edit')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MenuAdd:
+    """添加菜单权限"""
+    params = get_parameter('menu_add')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MenuList:
+    """菜单列表"""
+    params = get_parameter('menu_list')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class FuncAdd:
+    """添加功能权限"""
+    params = get_parameter('func_add')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class FuncList:
+    """功能列表"""
+    params = get_parameter('func_list')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class GetPermissionsByLevel:
+    """指定获取几级菜单"""
+    params = get_parameter('getPermissionsByLevel')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class UserRoleAdd:
+    """给用户添加自定义角色"""
+    params = get_parameter('user_role_add')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class UserRoleDelete:
+    """删除用户自定义角色"""
+    params = get_parameter('user_role_delete')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class UserRoleList:
+    """获取用户角色列表"""
+    params = get_parameter('user_role_list')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class UserGetUsableRole:
+    """获取用户可用角色列表"""
+    params = get_parameter('user_getUsableRole')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class Status:
+    """禁用、启用用户角色"""
+    params = get_parameter('status')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class GetPermissionByRole:
+    """根据角色获取对应的权限信息"""
+    params = get_parameter('getPermissionByRole')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class PrDelePermissionByRole:
+    """根据角色修改对应的权限信息"""
+    params = get_parameter('DelePermissionByRole')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])

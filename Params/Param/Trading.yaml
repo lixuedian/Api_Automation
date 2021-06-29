@@ -42,7 +42,7 @@ department_add:
       url: /oauth/department/role/add
       data: {
         'departmentId': 1,
-        'roleId': 18
+        'roleId': 48
       }
       parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
       expected:  { 'code': 1000, 'msg': '操作成功' }
@@ -58,7 +58,7 @@ department_delRole:
       url: /oauth/department/role/delRole
       data: {
         'departmentId': 1,
-        'roleId': 18
+        'roleId': 48
       }
       parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
       expected:  { 'code': 1000, 'msg': '操作成功' }

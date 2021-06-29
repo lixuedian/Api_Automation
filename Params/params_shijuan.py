@@ -253,7 +253,7 @@ class ReceiveApi(object):
         log.info('响应结果：%s' % res)
         test.assert_text(res['code'], 1, '添加绑定素材)')
         test.assert_text(res['msg'], '成功', '添加绑定素材)')
-        ReceiveApi.recruitExamMaterialId =  res['data']['recruitExamMaterialId']
+        ReceiveApi.recruitExamMaterialId = res['data']['recruitExamMaterialId']
 
     def set_material_one(self):
         """编辑绑定素材"""
