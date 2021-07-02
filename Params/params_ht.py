@@ -25,6 +25,14 @@ class Sso:
         case_data.append(params[i])
 
 
+class GetVerifyCode:
+    """sso接口，判断用户是否已登陆"""
+    params = get_parameter('getVerifyCode')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
 class RoleLIst:
     """根据部门获取已绑定相关角色"""
     params = get_parameter('role_list')

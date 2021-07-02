@@ -76,16 +76,14 @@ ZT_login:
     -
       test_name: '用户密码登录'
       mode: 0
-      method: post_request_urlencoded
+      method: get
+      type:
       url: /ucenter/account/login
       data: {
-        "phoneId": "1000",
-        "password": "1100",
-        "randomText": "iphone10"
+        "phoneId": 18600531753,
+        "password": 123456,
+        "randomText": qlpw
       }
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-      params : {
-      'randomText': 'randomText'
-      }
+      header: {'Content-Type': 'application/json' }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1000, 'msg': 'Success' }

@@ -140,7 +140,7 @@ collect:
                 'platform':'web',
                 'deviceType':'web'
       }
-      parser: {'code' :"['body']['code']", 'msg': "['body']['msg']"}
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected: { 'code': 1, 'msg': '操作成功' }
 
 cancel:
@@ -168,7 +168,7 @@ cancel:
                'platform':'web',
                'deviceType':'web'
       }
-      parser: {'code' :"['body']['code']", 'msg': "['body']['msg']"}
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected: { 'code': 1, 'msg': '操作成功' }
 
 
@@ -197,7 +197,7 @@ CollectList:
                'platform':'web',
                'deviceType':'web'
       }
-      parser: {'code' :"['body']['code']", 'msg': "['body']['msg']"}
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected: { 'code': 1, 'msg': '操作成功' }
 
 position_detail:
@@ -235,7 +235,7 @@ position_detail:
                'platform':'web',
                'deviceType':'web'
       }
-      parser: {'code' :"['body']['code']", 'msg': "['body']['msg']"}
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected: { 'code': 1, 'msg': '操作成功' }
 
 position_find:
@@ -268,7 +268,7 @@ position_find:
                'platform':'web',
                'deviceType':'web'
       }
-      parser: {'code' :"['body']['code']", 'msg': "['body']['msg']"}
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected: { 'code': 1, 'msg': '操作成功' }
 
 position_dataList:

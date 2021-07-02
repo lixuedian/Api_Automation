@@ -8,7 +8,7 @@ role_list:
       methods: get
       url: /oauth/department/role/list
       data: {
-        'departmentId': 1,
+        'departmentId': 334,
         'roleName': ''
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
@@ -25,7 +25,7 @@ getUsableRole:
       methods: get
       url: /oauth/department/role/getUsableRole
       data: {
-        'departmentId': 1
+        'departmentId': 334
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
@@ -41,10 +41,10 @@ department_add:
       methods: POST
       url: /oauth/department/role/add
       data: {
-        'departmentId': 1,
+        'departmentId': 334,
         'roleId': 48
       }
-      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
 
 department_delRole:
@@ -57,10 +57,10 @@ department_delRole:
       methods: POST
       url: /oauth/department/role/delRole
       data: {
-        'departmentId': 1,
+        'departmentId': 334,
         'roleId': 48
       }
-      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
 
 role_add:
@@ -73,11 +73,10 @@ role_add:
       methods: post
       url: /oauth/role/add
       data: {
-        "roleId": "17",
-        "roleName": "测试角色",
+        "roleName": "xuejian角色",
         "note": "note"
       }
-      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
 
 oauth_list:
@@ -90,11 +89,10 @@ oauth_list:
       methods: get
       url: /oauth/role/list
       data: {
-        "roleName": "测试角色",
+        "roleName": "xuejian角色",
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
-
 
 get_oauth:
   dec: "主流程"
@@ -106,7 +104,7 @@ get_oauth:
       methods: get
       url: /oauth/role/get
       data: {
-        "roleId": 18,
+        "roleId": 48,
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
@@ -119,13 +117,13 @@ edit_oauth:
       mode: 1
       type: json
       methods: post
-      url: /oauth/role/add
+      url: /oauth/role/edit
       data: {
         "roleId": "18",
         "roleName": "测试角色",
         "note": "note"
       }
-      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
 
 
@@ -137,11 +135,9 @@ delete_oauth:
       mode: 1
       type: json
       methods: post
-      url: /oauth/role/add
+      url: /oauth/role/delete
       data: {
-        "roleId": "18",
-        "roleName": "测试角色",
-        "note": "note"
+        "roleId": "18"
       }
-      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }

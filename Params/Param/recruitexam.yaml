@@ -29,7 +29,7 @@ getRecruitExamList:
         'uuid': '186250',
       }
       #header: {'token': &token}
-      parser:  &parser {'code' :"['body']['code']", 'msg': '["body"]["msg"]' }
+      parser:  &parser {'code' :"['code']", 'msg': '["msg"]' }
       expected: &expected { 'code': 1, 'msg': '成功' }
     -
       test_name: '获取招考列表-教师招聘'

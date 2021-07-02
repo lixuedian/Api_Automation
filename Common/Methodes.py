@@ -23,7 +23,7 @@ class notify(object):
         return token
 
     def notify_result(self, mode, url, data, header, f_type):
-        self.request_log(url, mode, data, header)
+        self.request_log(url, mode, data, headers=header)
         # 请求方式
         numbers = {
             0: self.get_request,
@@ -96,7 +96,7 @@ class notify(object):
         log.info("接口请求地址 ==>> {}".format(url))
         log.info("接口请求方式 ==>> {}".format(method))
         # Python3中，json在做dumps操作时，会将中文转换成unicode编码，因此设置 ensure_ascii=False
-        # log.info("接口请求头 ==>> {}".format(complexions.dumps(headers, indent=4, ensure_ascii=False)))
+        log.info("接口请求头 ==>> {}".format(complexions.dumps(headers, indent=4, ensure_ascii=False)))
         # log.info("接口请求 params 参数 ==>> {}".format(complexions.dumps(params, indent=4, ensure_ascii=False)))
         log.info("接口参数 ==>> {}".format(complexions.dumps(data, indent=4, ensure_ascii=False)))
         # log.info("接口请求体 json 参数 ==>> {}".format(complexions.dumps(json, indent=4, ensure_ascii=False)))

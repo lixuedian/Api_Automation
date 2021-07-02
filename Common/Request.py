@@ -108,16 +108,17 @@ class Request:
         Common.Consts.STRESS_LIST.append(time_consuming)
 
         response_dicts = dict()
-        response_dicts['code'] = response.status_code
-        try:
-            response_dicts['body'] = response.json()
-        except Exception as e:
-            print(e)
-            response_dicts['body'] = ''
-
-        response_dicts['text'] = response.text
+        response_dicts = response.json()
+        # response_dicts['code'] = response.status_code
+        # try:
+        #     response_dicts['body'] = response.json()
+        # except Exception as e:
+        #     print(e)
+        #     response_dicts['body'] = ''
+        #
+        # response_dicts['text'] = response.text
         response_dicts['time_consuming'] = time_consuming
-        response_dicts['time_total'] = time_total
+        # response_dicts['time_total'] = time_total
 
         return response_dicts
 
@@ -191,6 +192,13 @@ class Request:
         if not url.startswith('http://'):
             url = '%s%s' % ('http://', self.config.test_user_url+url)
             print('url={}'.format(url))
+
+        # if url.startswith('https://') or url.startswith('http://'):
+        #     # url = '%s%s' % ('http://', self.config.test04_unified_url+url)
+        #     url = url
+        # else:
+        #     url = '%s%s' % ('http://', url)
+        #     # print('url={}'.format(url))
         try:
             data = json_to_get(data)
             url = url+'?'+data

@@ -11,7 +11,7 @@ permission_display:
         "permissionId": "18",
         "display": "1"
       }
-      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
 
 
@@ -23,11 +23,11 @@ permission_delete:
       mode: 1
       type: json
       methods: post
-      url: /oauth/permission/display
+      url: /oauth/permission/delete
       data: {
         "permissionId": "18"
       }
-      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
 
 
@@ -50,22 +50,33 @@ permission_edit:
   dec: "主流程"
   parameters:
     -
-      test_name: '资源信息删除-主流程'
+      test_name: '根据id修改资源信息-主流程'
       mode: 1
       type: json
       methods: post
       url: /oauth/permission/edit
       data: {
-        'id': "18",
-        'name': '权限名称',
-        'rootId': '上层菜单id',
-        'path': '路径',
-        'display': '是否显示',
-        'code': '',
-        'permissionPath': '功能权限菜单路径',
-        'rootIds': '',
+        "id": 65,
+        "createTime": "2021-07-02T02:26:24.000+00:00",
+        "updateTime": "2021-07-02T02:26:24.000+00:00",
+        "createBy": 1120,
+        "updateBy": 1120,
+        "isDeleted": 0,
+        "projectId": 110,
+        "name": "getPermissionsByLevel",
+        "path": "/getPermissionsByLevel",
+        "permissionLevel": 3,
+        "display": 1,
+        "rootId": 42,
+        "rootIds": "41,42",
+        "permissionType": 2,
+        "permissionPath": "后台管理-\u003e权限系统",
+        "rootIdList": [
+            41,
+            42
+        ]
       }
-      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
 
 
@@ -79,23 +90,20 @@ menu_add:
       methods: post
       url: /oauth/permission/menu/add
       data: {
-        'id': "18",
-        'name': '权限名称',
-        'rootId': '上层菜单id',
-        'path': '路径',
-        'display': '是否显示',
-        'code': '',
-        'permissionPath': '功能权限菜单路径',
-        'rootIds': '',
+        "name": "测试菜单权限",
+        "rootId": "0",
+        "rootIds": "",
+        "path": "http://test-trade.ekeguan.com/#/system/menuManage",
+        "display": 1
       }
-      parser:   {'code' :"['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
 
 menu_list:
   dec: "主流程"
   parameters:
     -
-      test_name: '添加菜单权限-主流程'
+      test_name: '菜单列表-主流程'
       mode: 0
       type:
       methods: get
@@ -114,16 +122,13 @@ func_add:
       mode: 1
       type: json
       methods: post
-      url: /oauth/permission/menu/add
+      url: /oauth/permission/func/add
       data: {
-        'id': '',
-        'name': '权限名称',
-        'rootId': '42',
-        'path': '/user001',
-        'display': '0',
-        'code': '',
-        'permissionPath': 'ceshi',
-        'rootIds': '0',
+        "name": "getPermissionsByLevel",
+        "rootId": 42,
+        "rootIds": "41,42",
+        "path": "/getPermissionsByLevel",
+        "display": 1
       }
       parser: { 'code': "['code']" }
       expected: { 'code': 1000}
@@ -140,14 +145,46 @@ func_list:
       data: {
         'pageNum': "1",
         'pageSize': '10',
-        'reverse': '排序规则',
         'searchParam': {
           'funcName':'',
           'menuId': ''
         }
       }
-      parser: { 'code': "['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected: { 'code': 1000, 'msg': '操作成功' }
+    -
+      test_name: '功能列表-功能名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /oauth/permission/func/list
+      data: {
+        'pageNum': "1",
+        'pageSize': '10',
+        'searchParam': {
+          'funcName': 'getPermissionsByLevel',
+          'menuId': ''
+        }
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1000, 'msg': '操作成功' }
+    -
+      test_name: '功能列表-上级菜单id查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /oauth/permission/func/list
+      data: {
+        'pageNum': "1",
+        'pageSize': '10',
+        'searchParam': {
+          'funcName': '',
+          'menuId': 0
+        }
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1000, 'msg': '操作成功' }
+
 
 getPermissionsByLevel:
   dec: "主流程"
@@ -174,10 +211,10 @@ user_role_add:
       methods: post
       url: /oauth/user/role/add
       data: {
-        'userId': 1148,
-        'roleId': 53
+        'userId': 1120,
+        'roleId': 9
       }
-      parser: { 'code': "['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected: { 'code': 1000, 'msg': '操作成功' }
 
 
@@ -191,11 +228,24 @@ user_role_delete:
       methods: post
       url: /oauth/user/role/delete
       data: {
-        'userId': 1148,
-        'roleId': 53
+        'userId': 1120,
+        'roleId': 9
       }
-      parser: { 'code': "['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected: { 'code': 1000, 'msg': '操作成功' }
+    -
+      test_name: '删除用户自定义角色-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /oauth/user/role/delete
+      data: {
+        'userId': 1120,
+        'roleId': 79
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 10000, 'msg': '您尚未添加相关权限' }
+
 
 
 user_role_list:
@@ -208,13 +258,49 @@ user_role_list:
       methods: get
       url: /oauth/permission/getPermissionsByLevel
       data: {
-        'userId': 1148,
+        'userId': 1120,
         'roleName': ,
         'roleType': ,
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
 
+    -
+      test_name: '获取用户角色列表-自定义角色查询'
+      mode: 0
+      type:
+      methods: get
+      url: /oauth/permission/getPermissionsByLevel
+      data: {
+        'userId': 1120,
+        'roleType': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+    -
+      test_name: '获取用户角色列表-继承类角色查询'
+      mode: 0
+      type:
+      methods: get
+      url: /oauth/permission/getPermissionsByLevel
+      data: {
+        'userId': 1120,
+        'roleType': 2
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+    -
+      test_name: '获取用户角色列表-继承类角色查询'
+      mode: 0
+      type:
+      methods: get
+      url: /oauth/permission/getPermissionsByLevel
+      data: {
+        'userId': 1120,
+        'roleName': '开发使用不能删除'
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
 
 user_getUsableRole:
   dec: "主流程"
@@ -226,7 +312,7 @@ user_getUsableRole:
       methods: get
       url: /oauth/user/role/getUsableRole
       data: {
-        'userId': 1148
+        'userId': 1120
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
@@ -241,9 +327,9 @@ status:
       methods: post
       url: /oauth/user/role/status
       data: {
-        "userId": 1148,
-        "roleId": 53,
-        "departmentId": 1,
+        "userId": 1120,
+        "roleId": 125,
+        "departmentId": 334,
         "status": 0
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
@@ -255,9 +341,9 @@ status:
       methods: post
       url: /oauth/user/role/status
       data: {
-        "userId": 1148,
-        "roleId": 18,
-        "departmentId": 1,
+        "userId": 1120,
+        "roleId": 125,
+        "departmentId": 334,
         "status": 1
       }
       parser: { 'code': "['code']", 'msg': '["msg"]' }
@@ -273,7 +359,7 @@ getPermissionByRole:
       methods: get
       url: /oauth/role/permission/getPermissionByRole
       data: {
-        'roleId': 53
+        'roleId': 9
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
@@ -289,8 +375,8 @@ DelePermissionByRole:
       methods: post
       url: /oauth/role/permission/edit
       data: {
-        'roleId': 53,
+        'roleId': 9,
         'permissionIds': 41
       }
-      parser: { 'code': "['body']['code']", 'msg': "['body']['msg']" }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }

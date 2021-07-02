@@ -28,7 +28,7 @@ getExpressList:
         'uuid': '186250',
       }
       #header: {'token': &token}
-      parser:  &parser {'code' :"['body']['code']", 'msg': '["body"]["msg"]' }
+      parser: &parser { 'code': "['code']", 'msg': '["msg"]' }
       expected: &expected { 'code': 1, 'msg': '成功' }
 
 getExpressTracesOne:
@@ -48,7 +48,7 @@ getExpressTracesOne:
       }
       header: *header
       parser: *parser
-      expected: { 'code': 1, 'msg': '请求成功' }
+      expected: *expected
 
 setExpressOne:
   dec: "主流程"
@@ -71,4 +71,4 @@ setExpressOne:
       }
       header: *header
       parser: *parser
-      expected: { 'code': 1, 'msg': '请求成功' }
+      expected: *expected

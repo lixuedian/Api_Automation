@@ -32,7 +32,8 @@ class Config:
     # token
     VALUE_TEST_Token = 'token'
     VALUE_test_mp_url = 'test_mp_url'
-    VALUE_test_userid = 'userid'
+    VALUE_test_userid = 'uuid'
+    VALUE_test_url = 'url'
 
 
     # values:
@@ -100,6 +101,7 @@ class Config:
         self.token_zt = self.get_conf(Config.TITLE_TOKEN_ZT, Config.VALUE_TEST_Token)
         self.test_mp_url = self.get_conf(Config.TITLE_TOKEN_ZT, Config.VALUE_test_mp_url)
         self.userid_zt = self.get_conf(Config.TITLE_TOKEN_ZT, Config.VALUE_test_userid)
+        self.test_url = self.get_conf(Config.TITLE_TOKEN_ZT, Config.VALUE_test_url)
 
     def get_conf(self, title, value):
         """
@@ -139,11 +141,15 @@ class Config:
         with open(self.conf_path, "w+") as f:
             return self.config.write(f)
 
-    def write_configuration(self, parameter, token):
+    def write_configuration(self, parameter, token, uuid):
         # 写入配置文件
         self.set_conf(parameter, 'token', token)
-        print('tokoen写入配置文件成功')
+        self.set_conf(parameter, 'uuid', uuid)
+        print('token写入配置文件成功')
         Log.MyLog().info('写入配置文件成功，token ={}'.format(self.get_conf(parameter, 'token')))
+        Log.MyLog().info('写入配置文件成功，uuid ={}'.format(self.get_conf(parameter, 'uuid')))
+
+
 
 
 

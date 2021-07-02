@@ -1,0 +1,283 @@
+department_list:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取部门的树状结构-主流程'
+      mode: 0
+      type:
+      methods: get
+      url: /opuser/department/list
+      data: {
+      }
+      parser:   &parser {'code' :"['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1000, 'msg': 'Success' }
+
+department_update:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '更新部门备注-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/department/update
+      data: {
+              'id': 1,
+              'note': '总公司001'
+      }
+      parser:   *parser
+      expected:  *expected
+
+departmentUser:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '查询该部门下的员工,分页-主流程'
+      mode: 0
+      type:
+      methods: get
+      url: /opuser/user/departmentUser
+      data: {
+        'departmentId': 334,
+        'pageSize': 10,
+        'pageNum': 1
+      }
+      parser:   *parser
+      expected:  *expected
+
+getUser:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '通过各种查询条件查询用户，单条-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUser
+      data: {
+        'id': 1120
+      }
+      parser:   *parser
+      expected:  *expected
+
+    - test_name: '通过各种查询条件查询用户，单条-工号查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUser
+      data: {
+        'jobId': 2007
+      }
+      parser:    {'jobId': "['data']['jobId']"}
+      expected:  { 'jobId': 2007}
+    - test_name: '通过各种查询条件查询用户，单条-手机号码搜索'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUser
+      data: {
+        'phoneId': 18600531753,
+        'departmentId': 335
+      }
+      parser: { 'jobId': "['data']['jobId']" }
+      expected: { 'jobId': 2007 }
+    - test_name: '通过各种查询条件查询用户，单条-手机号码不存在'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUser
+      data: {
+        'phoneId': 18600531754,
+        'departmentId': 335
+      }
+      parser: { 'data': "['data']" }
+      expected: { 'data': '用户不存在' }
+
+update:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '更新用户备注,状态，业务线-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/update
+      data: {
+        "id": 1120,
+        "note": "测试",
+        "status": 1,
+        "projectList": [
+            1
+        ]
+      }
+      parser:   *parser
+      expected:  *expected
+    -
+      test_name: '更新用户'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/update
+      data: {
+        "id": 1120,
+        "phoneId": 18600531753,
+        "name": "李雪殿",
+        "jobId": 2007,
+        "title": "测试工程师",
+        "status": 0,
+        "isLeave": 0,
+        "entryTime": "2020-08-10T16:00:00.000+00:00",
+        "note": "222",
+        "pageNum": 1,
+        "pageSize": 10,
+        "departmentList": "支持组",
+        "defaultProjectList": [
+          {
+            "projectId": 1,
+            "name": "教师"
+          }
+        ],
+        "projectList": [
+            1
+        ]
+      }
+      parser:   *parser
+      expected:  *expected
+
+
+getUserList:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '多条件组合查询该部门下员工，多条-工号查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUserList
+      data: {
+        'jobId': 2007,
+        departmentId: 334
+      }
+      parser:    {'jobId': "['data']['list'][0]['jobId']"}
+      expected:  { 'jobId': 2007}
+    -
+      test_name: '多条件组合查询该部门下员工，多条-用户id查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUserList
+      data: {
+        'id': 1120,
+        departmentId: 334
+      }
+      parser:    {'jobId': "['data']['list'][0]['jobId']"}
+      expected: { 'jobId': 2007 }
+    -
+      test_name: '多条件组合查询该部门下员工，多条-手机号/账号'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUserList
+      data: {
+        'phoneId': 18600531753,
+        departmentId: 334
+      }
+      parser:    {'jobId': "['data']['list'][0]['jobId']"}
+      expected: { 'jobId': 2007 }
+    -
+      test_name: '多条件组合查询该部门下员工，多条-姓名查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUserList
+      data: {
+        'name': '李雪殿',
+        departmentId: 334
+      }
+      parser:    {'jobId': "['data']['list'][0]['jobId']"}
+      expected: { 'jobId': 2007 }
+    -
+      test_name: '多条件组合查询该部门下员工，多条-账号状态：启用'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUserList
+      data: {
+        'departmentId': 334,
+        'status': 0
+      }
+      parser:   *parser
+      expected:  *expected
+    -
+      test_name: '多条件组合查询该部门下员工，多条-账号状态：禁用'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUserList
+      data: {
+        'departmentId': 334,
+        'status': 1
+      }
+      parser:   *parser
+      expected:  *expected
+    -
+      test_name: '多条件组合查询该部门下员工，多条-账号状态：锁定'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/user/getUserList
+      data: {
+        departmentId: 334,
+          'status': 2
+      }
+      parser:   *parser
+      expected:  *expected
+
+isBussinessInUse:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '判断某条业务线是否在用-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opuser/user/isBussinessInUse
+      data: {
+        'bussinessId': 1
+      }
+      parser:   *parser
+      expected:  *expected
+
+
+password_reset:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '管理员重置密码'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/account/password/reset
+      data: {
+        'userId': 1122,
+        'newWord': 123456
+      }
+      parser:   *parser
+      expected:  *expected
+
+password_change:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '用户修改密码'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/account/password/change
+      data: {
+        'userId': 1122,
+        'oldWord': 123456,
+        'newWord': 123456
+      }
+      parser:   *parser
+      expected:  *expected
