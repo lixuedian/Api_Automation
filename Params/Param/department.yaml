@@ -38,7 +38,7 @@ departmentUser:
       methods: get
       url: /opuser/user/departmentUser
       data: {
-        'departmentId': 334,
+        'departmentId': 432,
         'pageSize': 10,
         'pageNum': 1
       }
@@ -69,7 +69,7 @@ getUser:
         'jobId': 2007
       }
       parser:    {'jobId': "['data']['jobId']"}
-      expected:  { 'jobId': 2007}
+      expected:  { 'jobId': '2007'}
     - test_name: '通过各种查询条件查询用户，单条-手机号码搜索'
       mode: 1
       type: json
@@ -80,7 +80,7 @@ getUser:
         'departmentId': 335
       }
       parser: { 'jobId': "['data']['jobId']" }
-      expected: { 'jobId': 2007 }
+      expected: { 'jobId': '2007' }
     - test_name: '通过各种查询条件查询用户，单条-手机号码不存在'
       mode: 1
       type: json
@@ -159,7 +159,7 @@ getUserList:
         departmentId: 334
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
-      expected:  { 'jobId': 2007}
+      expected:  { 'jobId': '2007'}
     -
       test_name: '多条件组合查询该部门下员工，多条-用户id查询'
       mode: 1
@@ -171,7 +171,7 @@ getUserList:
         departmentId: 334
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
-      expected: { 'jobId': 2007 }
+      expected: { 'jobId': '2007' }
     -
       test_name: '多条件组合查询该部门下员工，多条-手机号/账号'
       mode: 1
@@ -183,7 +183,7 @@ getUserList:
         departmentId: 334
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
-      expected: { 'jobId': 2007 }
+      expected: { 'jobId': '2007' }
     -
       test_name: '多条件组合查询该部门下员工，多条-姓名查询'
       mode: 1
@@ -195,7 +195,7 @@ getUserList:
         departmentId: 334
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
-      expected: { 'jobId': 2007 }
+      expected: { 'jobId': '2007' }
     -
       test_name: '多条件组合查询该部门下员工，多条-账号状态：启用'
       mode: 1

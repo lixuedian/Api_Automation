@@ -16,11 +16,9 @@ url = '%s%s' % ('https://', url)
 
 
 class TestExpress(object):
-    data = GetExpressList()
-    case_data = data.case_data
 
     @allure.description('获取订单物流列表')
-    @pytest.mark.parametrize('case', case_data)
+    @pytest.mark.parametrize('case', GetExpressList().case_data)
     def test_express_01(self, case):
         TestExpress.test_express_01.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
@@ -29,14 +27,11 @@ class TestExpress(object):
         result = notify.notify_result(case['mode'], url + case['url'], case['data'], case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        log.info("*************** 结束执行用例 ***************")
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    data = GetExpressTracesOne()
-    case_data = data.case_data
-
     @allure.description('获取物流进度')
-    @pytest.mark.parametrize('case', case_data)
+    @pytest.mark.parametrize('case', GetExpressTracesOne().case_data)
     def test_express_02(self, case):
         TestExpress.test_express_02.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
@@ -45,14 +40,11 @@ class TestExpress(object):
         result = notify.notify_result(case['mode'], url + case['url'], case['data'], case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        log.info("*************** 结束执行用例 ***************")
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    data = SetExpressOne()
-    case_data = data.case_data
-
     @allure.description('修改物流订单收件信息')
-    @pytest.mark.parametrize('case', case_data)
+    @pytest.mark.parametrize('case', SetExpressOne().case_data)
     def test_express_03(self, case):
         TestExpress.test_express_03.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
@@ -61,5 +53,5 @@ class TestExpress(object):
         result = notify.notify_result(case['mode'], url + case['url'], case['data'], case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        log.info("*************** 结束执行用例 ***************")
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')

@@ -16,11 +16,9 @@ url = config.test_Position_url
 
 
 class TestBanner(object):
-    data = Banner()
-    case_data = data.case_data
 
     @allure.description('根据type获取不同类型轮播图')
-    @pytest.mark.parametrize('case', case_data)
+    @pytest.mark.parametrize('case', Banner().case_data)
     def test_01_banner(self, case):
         TestBanner.test_01_banner.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
@@ -34,11 +32,9 @@ class TestBanner(object):
 
 
 class TestRegion(object):
-    data = Region()
-    case_data = data.case_data
 
     @allure.description('获取所有省份')
-    @pytest.mark.parametrize('case', case_data)
+    @pytest.mark.parametrize('case', Region().case_data)
     def test_02_region(self, case):
         TestRegion.test_02_region.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
@@ -52,11 +48,9 @@ class TestRegion(object):
 
 
 class TestRegionCity(object):
-    data = RegionCity()
-    case_data = data.case_data
 
     @allure.description('根据provinceId获取下辖所有市信息')
-    @pytest.mark.parametrize('case', case_data)
+    @pytest.mark.parametrize('case', RegionCity().case_data)
     def test_03_region_city(self, case):
         TestRegionCity.test_03_region_city.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
@@ -70,11 +64,9 @@ class TestRegionCity(object):
 
 
 class TestRegionCityRegion(object):
-    data = RegionCityRegion()
-    case_data = data.case_data
 
     @allure.description('根据cityId获取下辖所有区县信息')
-    @pytest.mark.parametrize('case', case_data)
+    @pytest.mark.parametrize('case', RegionCityRegion().case_data)
     def test_04_region_city_region(self, case):
         TestRegionCityRegion.test_04_region_city_region.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
@@ -88,11 +80,9 @@ class TestRegionCityRegion(object):
 
 
 class TestPositionList(object):
-    data = PositionList()
-    case_data = data.case_data
 
     @allure.description('获取职位列表')
-    @pytest.mark.parametrize('case', case_data)
+    @pytest.mark.parametrize('case', PositionList().case_data)
     def test_05_position_list(self, case):
         TestPositionList.test_05_position_list.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
@@ -110,7 +100,7 @@ class TestCollect(object):
     case_data = data.case_data
 
     @allure.description('添加收藏')
-    @pytest.mark.parametrize('case', case_data)
+    @pytest.mark.parametrize('case', Collect().case_data)
     def test_06_collect(self, case):
         TestCollect.test_06_collect.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")

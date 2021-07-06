@@ -29,12 +29,12 @@ class Config:
     VALUE_TEST_Position_URL = "test_position_url"
     VALUE_TEST_express_URL = "test_express_url"
     VALUE_TEST_04_user_URL = 'user_url'
+    VALUE_test_sms_url = 'test_sms_url'
     # token
     VALUE_TEST_Token = 'token'
     VALUE_test_mp_url = 'test_mp_url'
     VALUE_test_userid = 'uuid'
     VALUE_test_url = 'url'
-
 
     # values:
     # [debug\release]
@@ -95,6 +95,9 @@ class Config:
         self.test_user_url = self.get_conf(Config.TITLE_HOST, Config.VALUE_TEST_04_user_URL)
 
         self.token = self.get_conf(Config.TITLE_TOKEN, Config.VALUE_TEST_Token)
+        #
+        self.test_sms_url = self.get_conf(Config.TITLE_HOST, Config.VALUE_test_sms_url)
+
         # 综合后台用户token
         self.h_token = self.get_conf(Config.TITLE_TOKEN_ZT_HT, Config.VALUE_TEST_Token)
         # 交易中台用户token
@@ -148,8 +151,3 @@ class Config:
         print('token写入配置文件成功')
         Log.MyLog().info('写入配置文件成功，token ={}'.format(self.get_conf(parameter, 'token')))
         Log.MyLog().info('写入配置文件成功，uuid ={}'.format(self.get_conf(parameter, 'uuid')))
-
-
-
-
-

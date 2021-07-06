@@ -21,7 +21,7 @@ DB_CONF = {
 }
 
 
-class MysqlDb():
+class MysqlDb(object):
 
     def __init__(self, db_conf=DB_CONF):
         # 通过字典拆包传递配置信息，建立数据库连接
@@ -60,6 +60,8 @@ class MysqlDb():
             self.conn.rollback()
 
 
-db = MysqlDb()
-data = db.select_db('SELECT * from test_contract.contract c where c.phone=18600531753 and businessId= 2')
-print(data[0]['id'])
+# db = MysqlDb()
+# data = db.select_db('SELECT * from test_contract.contract c where c.phone=18600531753 and businessId= 2')
+# MysqlDb().select_db('update gk_ucenter.kg_nonuse_user set isDeleted=0 where username = 18600531753 and id=6')
+
+# print(data[0]['id'])

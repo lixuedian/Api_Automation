@@ -63,13 +63,13 @@ permission_edit:
         "updateBy": 1120,
         "isDeleted": 0,
         "projectId": 110,
-        "name": "getPermissionsByLevel",
+        "name": "测试功能001",
         "path": "/getPermissionsByLevel",
         "permissionLevel": 3,
         "display": 1,
         "rootId": 42,
         "rootIds": "41,42",
-        "permissionType": 2,
+        "permissionType": 3,
         "permissionPath": "后台管理-\u003e权限系统",
         "rootIdList": [
             41,
@@ -94,7 +94,8 @@ menu_add:
         "rootId": "0",
         "rootIds": "",
         "path": "http://test-trade.ekeguan.com/#/system/menuManage",
-        "display": 1
+        "display": 1,
+        "permissionType": 1
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
@@ -124,11 +125,11 @@ func_add:
       methods: post
       url: /oauth/permission/func/add
       data: {
-        "name": "getPermissionsByLevel",
-        "rootId": 42,
-        "rootIds": "41,42",
+        "name": "测试功能",
+        "rootId": 166,
+        "rootIds": "165,166",
         "path": "/getPermissionsByLevel",
-        "display": 1
+        "display": 1,
       }
       parser: { 'code': "['code']" }
       expected: { 'code': 1000}
@@ -162,7 +163,7 @@ func_list:
         'pageNum': "1",
         'pageSize': '10',
         'searchParam': {
-          'funcName': 'getPermissionsByLevel',
+          'funcName': '测试功能',
           'menuId': ''
         }
       }
@@ -327,9 +328,9 @@ status:
       methods: post
       url: /oauth/user/role/status
       data: {
-        "userId": 1120,
-        "roleId": 125,
-        "departmentId": 334,
+        "userId": 14,
+        "roleId": 154,
+        "departmentId": 432,
         "status": 0
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
@@ -341,10 +342,10 @@ status:
       methods: post
       url: /oauth/user/role/status
       data: {
-        "userId": 1120,
-        "roleId": 125,
-        "departmentId": 334,
-        "status": 1
+        "userId": 14,
+        "roleId": 154,
+        "departmentId": 432,
+        "status": 0
       }
       parser: { 'code': "['code']", 'msg': '["msg"]' }
       expected: { 'code': 1000, 'msg': '操作成功' }

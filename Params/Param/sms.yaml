@@ -1,0 +1,170 @@
+
+getMassSmsTaskList:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取短信任务列表-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+    -
+      test_name: '获取部门下可添加的角色-发送id查询'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1,
+        'stId': 333
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+    -
+      test_name: '获取部门下可添加的角色-短信类型查询（模版短信）'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1,
+        'sendType': 1
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1, 'msg': '成功' }
+    -
+      test_name: '获取部门下可添加的角色-短信类型查询（营销短信）'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1,
+        'sendType': 2
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1, 'msg': '成功' }
+    -
+      test_name: '获取部门下可添加的角色-模版id查询'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1,
+        'sendType': 2
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1, 'msg': '成功' }
+    -
+      test_name: '获取部门下可添加的角色-模版id查询'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1,
+        'templateId': 939709
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1, 'msg': '成功' }
+    -
+      test_name: '获取部门下可添加的角色-创建时间查询'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1,
+        'startTime': 1622476800,
+        'endTime': 1624982400
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1, 'msg': '成功' }
+
+    -
+      test_name: '获取部门下可添加的角色-创建时间查询'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1,
+        'startTime': 1622476800,
+        'endTime': 1624982400
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1, 'msg': '成功' }
+
+    -
+      test_name: '获取部门下可添加的角色-操作人查询'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1,
+        'operatorId': 10672
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1, 'msg': '成功' }
+
+
+addMassSmsTaskOne:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取短信任务列表-定时发送'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/addMassSmsTaskOne
+      data: {
+        'sendType': 1,
+        'businessType' : 51,
+        'templateId': 939709,
+        'templateName': '课程更新通知',
+        'templateContent': '【课观教育】同学你好，你购买的测试 101课程视频已更新，请及时登录课观教师APP，在我的-我的课程中查看已更新课程。',
+        'choiceType':  1,
+        'sendTelephone': 18600531753,
+        'noticeTelephone': '',
+        'sendParams': '测试 101',
+        'timedSendTime': ''
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+
+getNonuseUserList:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取免扰用户列表-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-user/getNonuseUserList
+      data: {
+        'username': 18600531753,
+        'page' : 1,
+        'pageSize': 10
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+delNonuseUserOne:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '删除单条免扰用户-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-user/delNonuseUserOne
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }

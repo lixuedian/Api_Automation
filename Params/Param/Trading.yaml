@@ -41,8 +41,8 @@ department_add:
       methods: POST
       url: /oauth/department/role/add
       data: {
-        'departmentId': 334,
-        'roleId': 48
+        'departmentId': 432,
+        'roleId': 154
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
@@ -57,8 +57,8 @@ department_delRole:
       methods: POST
       url: /oauth/department/role/delRole
       data: {
-        'departmentId': 334,
-        'roleId': 48
+        'departmentId': 432,
+        'roleId': 154
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }

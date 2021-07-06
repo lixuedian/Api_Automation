@@ -88,7 +88,7 @@ class Role(object):
         """根据角色修改对应的权限信息"""
         data = {
             "roleId": Role.roleId,
-            "permissionIds": "41,42,43,79,44,91,59,107,71,80,73,75"
+            "permissionIds": "192,193,194,41,42,43"
         }
         case = PrDelePermissionByRole().case_data
         log.info("*************** 开始执行用例 ***************")
@@ -132,7 +132,7 @@ class PermissionS(object):
             "display": 1,
             "rootId": 42,
             "rootIds": "41,42",
-            "permissionType": 2,
+            "permissionType": 3,
             "permissionPath": "后台管理-\u003e权限系统",
             "rootIdList": [
                 41,

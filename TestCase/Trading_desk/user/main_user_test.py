@@ -6,7 +6,7 @@ from Common import Consts
 from Params.params_department import *
 from Common.Parser import parser
 from Common.Methodes import notify, log
-import TestCase.token
+import TestCase.ZT_token
 
 
 url = TestCase.Trading_desk.url

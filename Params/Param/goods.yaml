@@ -1,0 +1,105 @@
+goods_add:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '添加一个课程-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /admin-sms/send/getMassSmsTaskList
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+goods_delete:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '添加一个课程-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /goods/course/delete
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+goods_edit:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '编辑课程-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /goods/course/edit
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+goods_openOrClose:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '启用/禁用课程-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /goods/course/openOrClose
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+getOneCourse:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取一个课程的详细信息(基本字段和动态字段)-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /goods/course/getOneCourse
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+
+GetCourseList:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '分页获取课程列表-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /goods/course/getCourseList
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+project_add:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '添加项目-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /project/add
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }

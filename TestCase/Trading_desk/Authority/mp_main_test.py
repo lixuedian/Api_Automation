@@ -126,9 +126,20 @@ class TestDepartment(object):
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
+    @allure.description('禁用、启用用户角色')
+    @pytest.mark.parametrize('case', Status().case_data)
+    def test_department_11(self, case):
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
+        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        log.info('响应结果：%s' % result)
+        parser(result, case['test_name'], case['parser'], case['expected'])
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        Consts.RESULT_LIST.append('True')
+
     @allure.description('从部门下删除角色')
     @pytest.mark.parametrize('case', DelRoleDepartment().case_data)
-    def test_department_11(self, case):
+    def test_department_12(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
@@ -286,17 +297,6 @@ class TestUserRole(object):
     @allure.description('获取用户可用角色列表')
     @pytest.mark.parametrize('case', UserGetUsableRole().case_data)
     def test_user_role_21(self, case):
-        log.info("*************** 开始执行用例 ***************")
-        log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
-        log.info('响应结果：%s' % result)
-        parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
-        Consts.RESULT_LIST.append('True')
-
-    @allure.description('禁用、启用用户角色')
-    @pytest.mark.parametrize('case', Status().case_data)
-    def test_user_role_22(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
