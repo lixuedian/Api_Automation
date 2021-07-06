@@ -6,7 +6,7 @@ from Params.params_sms import *
 from Common.Parser import parser
 from Common.Methodes import notify, log
 import TestCase
-from Common.Mysql_operate import MysqlDb
+from Common.Mysql_operate import MysqlDb, mysql_conf
 
 
 header = TestCase.H_header
@@ -56,9 +56,11 @@ class TestBlacklist(object):
     @allure.description('删除单条免扰用户')
     @pytest.mark.parametrize('case', DelNonuseUserOne().case_data)
     def test_blacklist_02(self, case):
-        MysqlDb().select_db('update gk_ucenter.kg_nonuse_user set isDeleted=0 where username = 18600531753 and id=6')
+        DB_CONF = mysql_conf('mysql_comprehensive')
+        mysql = 'update gk_ucenter.kg_nonuse_user set isDeleted=0 where username = 18600531753 and id=6'
+        MysqlDb(DB_CONF).select_db(mysql)
         data = {
-            "id": "6"
+            'id': 6
         }
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))

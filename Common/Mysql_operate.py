@@ -5,25 +5,16 @@
 # 开发工具 ： PyCharm
 import pymysql
 import os
-from Common.Read_data import data
+
+import Common.Read_data
 from Common.Log import logger
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-data_file_path = os.path.join(BASE_PATH, "config", "Config.ini")
-data = data.load_ini(data_file_path)["mysql"]
-
-DB_CONF = {
-    "host": data["mysql_host"],
-    "port": int(data["mysql_port"]),
-    "user": data["mysql_user"],
-    "password": data["mysql_passwd"],
-    "db": data["mysql_db"]
-}
 
 
 class MysqlDb(object):
 
-    def __init__(self, db_conf=DB_CONF):
+    def __init__(self, db_conf):
         # 通过字典拆包传递配置信息，建立数据库连接
         self.conn = pymysql.connect(**db_conf, autocommit=True)
         # 通过 cursor() 创建游标对象，并让查询结果以字典格式输出
@@ -63,5 +54,21 @@ class MysqlDb(object):
 # db = MysqlDb()
 # data = db.select_db('SELECT * from test_contract.contract c where c.phone=18600531753 and businessId= 2')
 # MysqlDb().select_db('update gk_ucenter.kg_nonuse_user set isDeleted=0 where username = 18600531753 and id=6')
-
 # print(data[0]['id'])
+
+def mysql_conf(mysql):
+    data_file_path = os.path.join(BASE_PATH, "config", "Config.ini")
+    data = Common.Read_data.data.load_ini(data_file_path)[f'{mysql}']
+    DB_CONF = {
+        "host": data["mysql_host"],
+        "port": int(data["mysql_port"]),
+        "user": data["mysql_user"],
+        "password": data["mysql_passwd"],
+        "db": data["mysql_db"]
+    }
+    return DB_CONF
+
+
+# DB_CONF = mysql_conf('mysql')
+# mysql = 'update gk_ucenter.kg_nonuse_user set isDeleted=0 where username = 18600531753 and id=6'
+# MysqlDb(DB_CONF).select_db(mysql)
