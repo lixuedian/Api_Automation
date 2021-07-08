@@ -1,0 +1,170 @@
+add_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '新增讲义-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/add
+      data: {
+        'id': '',
+        'name': '',
+        'filePath': '',
+        'fileSize': '',
+        'fileType': '',
+        'status': '',
+        'projectId': ''
+      }
+      parser:   &parser {'code' :"['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1000, 'msg': 'Success' }
+
+edit_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '编辑讲义-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/edit
+      data: {
+        'id': '',
+        'name': '',
+        'filePath': '',
+        'fileSize': '',
+        'fileType': '',
+        'status': '',
+        'projectId': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+openOrCloseBranch_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '批量启用禁用讲义-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/openOrCloseBranch
+      data: {
+        'handoutIds': '',
+        'status': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+deleteBranch_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '批量删除讲义-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/deleteBranch
+      data: {
+        'handoutIds': '',
+        'status': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+getListByProjectId_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '根据项目id查询讲义列表(项目id在请求头中)-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/getListByProjectId
+      data: {
+        'projectId': '',
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+
+getListByCondition_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '根据项目id和筛选条件查询讲义列表-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/getListByCondition
+      data: {
+        'name': '',
+        'fileType': 1,
+        'orderBy': 10,
+        'projectId': '',
+        'pageNum': '',
+        'pageSize': 10,
+        'id': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+getHandoutListItem_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '根据讲义id搜索讲义列表项信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/handout/getHandoutListItem
+      data: {
+        'handoutId': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+getHandoutBaseInfo_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '根据讲义id搜索讲义基本信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/handout/getHandoutBaseInfo
+      data: {
+        'handoutId': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+getHandOutTypeEnum_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '讲义类型枚举-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/handout/getHandOutTypeEnum
+      data: {
+      }
+      parser:   *parser
+      expected: *expected
+
+getOrderByEnum_handout:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '排序类型枚举-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/handout/getOrderByEnum
+      data: {
+      }
+      parser:   *parser
+      expected: *expected
+

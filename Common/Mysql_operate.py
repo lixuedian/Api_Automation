@@ -5,7 +5,6 @@
 # 开发工具 ： PyCharm
 import pymysql
 import os
-
 import Common.Read_data
 from Common.Log import logger
 
@@ -50,11 +49,6 @@ class MysqlDb(object):
             # 回滚所有更改
             self.conn.rollback()
 
-
-# db = MysqlDb()
-# data = db.select_db('SELECT * from test_contract.contract c where c.phone=18600531753 and businessId= 2')
-# MysqlDb().select_db('update gk_ucenter.kg_nonuse_user set isDeleted=0 where username = 18600531753 and id=6')
-# print(data[0]['id'])
 
 def mysql_conf(mysql):
     data_file_path = os.path.join(BASE_PATH, "config", "Config.ini")

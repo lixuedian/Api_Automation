@@ -6,7 +6,7 @@ from Common.Parser import parser
 
 class Role(object):
     url = TestCase.Trading_desk.url
-    header = TestCase.Trading_desk.header()
+    header = TestCase.Trading_desk.header('Trading')
     roleId = ''
 
     def role_list(self):
@@ -100,7 +100,7 @@ class Role(object):
 
 class PermissionS(object):
     url = TestCase.Trading_desk.url
-    header = TestCase.Trading_desk.header()
+    header = TestCase.Trading_desk.header('Trading')
     permissionId = ''
 
     def permission_get(self):
@@ -191,6 +191,3 @@ class PermissionS(object):
         PermissionS().permission_edit()
         PermissionS().permission_display()
         PermissionS().permission_delete()
-
-
-

@@ -151,3 +151,34 @@ class Config:
         print('token写入配置文件成功')
         Log.MyLog().info('写入配置文件成功，token ={}'.format(self.get_conf(parameter, 'token')))
         Log.MyLog().info('写入配置文件成功，uuid ={}'.format(self.get_conf(parameter, 'uuid')))
+
+    def header_json(self, TEXT):
+        token = self.get_conf(TEXT, 'token')
+        uuid = self.get_conf(TEXT, 'uuid')
+        header = {
+            'Content-Type': 'application/json',
+            'token': token,
+            'userid': uuid,
+            'projectid': '110'
+        }
+        return header
+
+    def header_data(self, TEXT):
+        token = self.get_conf(TEXT, 'token')
+        uuid = self.get_conf(TEXT, 'uuid')
+        header = {
+            'token': token,
+            'AppFlag': '1',
+            'TIMESTAMP': '16158593565001',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'DeviceID': '267B298F-7B73-4DBE-A13C-68FBCF0319A7',
+            'source': '134',
+            'DeviceType': 'iPhone 6s',
+            'PlatformVersion': '123',
+            'Platform': '123',
+            'projectId': '1',
+            'EagleEye-TraceId': '4E3A3F40-67A6-4890-A335-D30EFCA984FC__1615859356499',
+            'APPVERSION': '1.0.0',
+            'uuid': uuid
+        }
+        return header

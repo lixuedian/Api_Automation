@@ -9,9 +9,9 @@ url = config.test_url
 url = '%s%s' % ('http://', url)
 
 
-def header():
-    token = config.get_conf('Trading', 'token')
-    uuid = config.get_conf('Trading', 'uuid')
+def header(TEXT):
+    token = config.get_conf(TEXT, 'token')
+    uuid = config.get_conf(TEXT, 'uuid')
     header = {
         'Content-Type': 'application/json',
         'token': token,

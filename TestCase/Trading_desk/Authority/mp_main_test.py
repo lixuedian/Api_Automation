@@ -1,16 +1,18 @@
 
 import allure
 import pytest
-from Common import Consts
+from Common import Consts, Assert
 from Params.params_ht import *
 from Params.params_department import *
 from Common.Parser import parser
 from Common.Methodes import notify, log
 import TestCase
 from Params.params_mp import Role, PermissionS
+from Common.Mysql_operate import MysqlDb, mysql_conf
+
 
 url = TestCase.Trading_desk.url
-header = TestCase.Trading_desk.header()
+header = TestCase.Trading_desk.header('Trading')
 BASE_PATH = TestCase.BASE_PATH
 
 
@@ -154,6 +156,9 @@ class TestRole(object):
     @allure.description('添加角色')
     @pytest.mark.parametrize('case', RoleAdd().case_data)
     def test_role_01(self, case):
+        DB_CONF = mysql_conf('mysql')
+        mysql = "update test_mp_oauth_center.role_info set is_deleted=1 where role_name = '测试角色001'"
+        MysqlDb(DB_CONF).execute_db(mysql)
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
@@ -216,11 +221,15 @@ class TestPermission(object):
     @allure.description('添加菜单权限')
     @pytest.mark.parametrize('case', MenuAdd().case_data)
     def test_permission_10(self, case):
+        DB_CONF = mysql_conf('mysql')
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
+        name = MysqlDb(DB_CONF).select_db("select name from test_mp_oauth_center.permission_info where name = '测试菜单权限'")
+        Assert.Assertions().assert_text('测试菜单权限', str(name[0]['name']), case['test_name'])
         parser(result, case['test_name'], case['parser'], case['expected'])
+        MysqlDb(DB_CONF).execute_db("delete from test_mp_oauth_center.permission_info where name = '测试菜单权限'")
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 

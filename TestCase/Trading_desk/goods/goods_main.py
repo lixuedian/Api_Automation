@@ -8,7 +8,7 @@ from Common.Methodes import notify, log
 import TestCase
 
 
-header = TestCase.Trading_desk.header()
+header = TestCase.Trading_desk.header('Trading')
 BASE_PATH = TestCase.BASE_PATH
 url = TestCase.Trading_desk.url
 

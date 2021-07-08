@@ -12,7 +12,7 @@ from Common.Methodes import notify
 
 url = TestCase.Trading_desk.url
 BASE_PATH = TestCase.BASE_PATH
-header = TestCase.Trading_desk.header()
+header = TestCase.Trading_desk.header('Trading')
 
 
 class TestLogin(object):
