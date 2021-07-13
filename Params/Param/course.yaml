@@ -1,19 +1,19 @@
 getCourseType:
-  dec: "主流程"
+  dec: "获取课程类型"
   parameters:
     -
       test_name: '获取课程类型-主流程'
-      mode: 1
+      mode: 0
       type: json
-      methods: post
+      methods: get
       url: /opservice/goods/course/getCourseType
       data: {
       }
       parser:   &parser {'code' :"['code']", 'msg': '["msg"]' }
-      expected: &expected { 'code': 1000, 'msg': 'Success' }
+      expected: &expected { 'code': 1000, 'msg': '成功' }
 
 course_list:
-  dec: "主流程"
+  dec: "分页获取课程列表"
   parameters:
     -
       test_name: '分页获取课程列表-主流程'
@@ -22,7 +22,66 @@ course_list:
       methods: get
       url: /opservice/goods/course/findPage
       data: {
-        'propertyId': ''
+        'projectId': 1,
+        'courseType': 1,
+        'orderBy': 'create_time'
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '分页获取课程列表-课程id查询'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/findPage
+      data: {
+        'projectId': 1,
+        'courseType': 1,
+        'orderBy': 'create_time',
+        'id': 1
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '分页获取课程列表-课程名称查询'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/findPage
+      data: {
+        'projectId': 1,
+        'courseType': 1,
+        'orderBy': 'create_time',
+        'name': 1
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '分页获取课程列表-年份查询'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/findPage
+      data: {
+        'projectId': 1,
+        'courseType': 1,
+        'orderBy': 'create_time',
+        'year': 2019
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '分页获取课程列表-创建时间'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/findPage
+      data: {
+        'projectId': 1,
+        'courseType': 1,
+        'orderBy': 'create_time',
+        'startTime': 2019,
+        'endTime': 2019
       }
       parser:   *parser
       expected: *expected
@@ -32,9 +91,9 @@ course_delete:
   parameters:
     -
       test_name: '删除课程-主流程'
-      mode: 0
+      mode: 1
       type: json
-      methods: get
+      methods: post
       url: /opservice/goods/course/delete
       data: {
         'id': ''
@@ -47,12 +106,13 @@ course_openOrClose:
   parameters:
     -
       test_name: '启用禁用课程-主流程'
-      mode: 0
+      mode: 1
       type: json
-      methods: get
+      methods: post
       url: /opservice/goods/course/openOrClose
       data: {
-        'id': ''
+        'courseId': '',
+        'openOrCloseFlag': ''
       }
       parser:   *parser
       expected: *expected
@@ -67,22 +127,21 @@ getDynamicFieldList:
       methods: get
       url: /opservice/goods/course/getDynamicFieldList
       data: {
-        'id': ''
+        'id': 1
       }
       parser:   *parser
       expected: *expected
 
-getTeachType:
+getTeachType_s:
   dec: "主流程"
   parameters:
     -
-      test_name: '获取动态字段-主流程'
+      test_name: '获取授课形式-主流程'
       mode: 0
       type: json
       methods: get
       url: /opservice/goods/course/getTeachType
       data: {
-        'id': ''
       }
       parser:   *parser
       expected: *expected
@@ -97,7 +156,6 @@ getRegion:
       methods: get
       url: /opservice/goods/course/getRegion
       data: {
-        'id': ''
       }
       parser:   *parser
       expected: *expected
@@ -107,12 +165,26 @@ course_add:
   parameters:
     -
       test_name: '添加课程-主流程'
-      mode: 0
+      mode: 10
       type: json
-      methods: get
+      methods: post
       url: /opservice/goods/course/add
       data: {
-        'id': ''
+        'projectCategoryId': 3,
+        'projectId': 1,
+        'name': 'xuejian_课程',
+        'year': 2019,
+        'regions': '地区 ',
+        'teachTypes': '授课形式 ,Integer	',
+        'startTime': '',
+        'endTime': '',
+        'courseType': '',
+        'predictHours': '',
+        'predictTimes': '',
+        'costPrice': '',
+        'teachers': '',
+        'status': 1,
+        'courseDynamicList': []
       }
       parser:   *parser
       expected: *expected
@@ -122,12 +194,26 @@ course_edit:
   parameters:
     -
       test_name: '编辑课程-主流程'
-      mode: 0
+      mode: 1
       type: json
-      methods: get
+      methods: post
       url: /opservice/goods/course/edit
       data: {
-        'id': ''
+        'projectCategoryId': 3,
+        'projectId': 1,
+        'name': 'xuejian_课程',
+        'year': 2019,
+        'regions': '地区 ',
+        'teachTypes': '授课形式 ,Integer	',
+        'startTime': '',
+        'endTime': '',
+        'courseType': '',
+        'predictHours': '',
+        'predictTimes': '',
+        'costPrice': '',
+        'teachers': '',
+        'status': 1,
+        'courseDynamicList': []
       }
       parser:   *parser
       expected: *expected
@@ -142,7 +228,23 @@ getCourseBaseInfo:
       methods: get
       url: /opservice/goods/course/getCourseBaseInfo
       data: {
-        'id': ''
+        'courseId': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+getByIdAndProjectId:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '根据项目和课程id获取课程信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/getByIdAndProjectId
+      data: {
+        'courseId': '',
+        'projectId': 1
       }
       parser:   *parser
       expected: *expected

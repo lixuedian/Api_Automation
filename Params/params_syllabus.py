@@ -17,9 +17,9 @@ class DeleteSyllabus:
         case_data.append(params[i])
 
 
-class GetTeachType:
+class GetTeachTypeS:
     """授课形式"""
-    params = get_parameter('getTeachType')
+    params = get_parameter('getTeachType_s')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])

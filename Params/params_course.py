@@ -41,9 +41,9 @@ class GetDynamicFieldList:
         case_data.append(params[i])
 
 
-class GetTeachType:
+class GetTeachTypeG:
     """获取授课形式"""
-    params = get_parameter('getTeachType')
+    params = get_parameter('getTeachType_g')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
@@ -76,6 +76,14 @@ class CourseEdit:
 class GetCourseBaseInfo:
     """获取课程的基本信息"""
     params = get_parameter('getCourseBaseInfo')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class GetByIdAndProjectId:
+    """根据项目和课程id获取课程信息"""
+    params = get_parameter('getByIdAndProjectId')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])

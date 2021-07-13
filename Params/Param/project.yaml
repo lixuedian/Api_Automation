@@ -106,6 +106,22 @@ add_property:
       }
       parser:   *parser
       expected: *expected
+    -
+      test_name: '新增动态属性-名称重复'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/property/add
+      data: {
+        'name': 'xuejian_属性001',
+        'projectId': 1,
+        'description': '测试',
+        'isMust': 0,
+        'isMulti': 0
+      }
+      parser:    {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 10002, 'msg': '名称不可重复' }
+
 
 edit_property:
   dec: "主流程"

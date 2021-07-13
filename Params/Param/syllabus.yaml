@@ -26,7 +26,7 @@ delete_syllabus:
       parser: *parser
       expected: *expected
 
-getTeachType:
+getTeachType_s:
   dec: "主流程"
   parameters:
     - test_name: '授课形式-主流程'

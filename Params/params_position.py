@@ -9,23 +9,11 @@ log = Log.MyLog()
 path_dir = str(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 
 
-def badydata(locator, key, string):
-    # 获取data中要传参数的valve
-    olddata = locator['data'][key]
-    # 将value和参数拼接新的value
-    newdata = olddata % string
-    # 将新的value复制给data中对应的key
-    locator['data'][key] = newdata
-    # 讲新的locator返回
-    return locator
-
-
 class Banner:
     # log.info('解析yaml, Path:' + path_dir + '/Params/Param/Position.yaml')
     params = get_parameter('banner')
     case_data = []
     for i in range(0, len(params)):
-        # badydata(params, i, 3)
         case_data.append(params[i])
 
 

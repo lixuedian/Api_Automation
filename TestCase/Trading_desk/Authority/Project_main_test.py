@@ -4,7 +4,7 @@ from Common import Consts
 from Common.Parser import parser
 from Common.Methodes import notify, log
 import TestCase
-from Common.Mysql_operate import mysql_select
+from Common.Mysql_operate import mysql_select, mysql_db
 from Params.params_project import AddProject, AddProjectType, GetProjectTypes, GetProjectTypeByName, \
     GetProjectListByCondition, SearchModule, GetSearch, AddProperty, EditProperty, GetOne, AddPropertyField, \
     EditPropertyField, GetPropertyField, GetOnePropertyField
@@ -102,15 +102,15 @@ class TestProperty(object):
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        mysql = "update test_common.property_name  set is_delete = 1  where name = 'xuejian_属性'"
+        mysql_db(mysql)
         allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
     @allure.description('编辑动态属性')
     @pytest.mark.parametrize('case', EditProperty().case_data)
     def test_property_04(self, case):
-        # mysql = "select id from test_mp_goods_center.goods_video where name = 'xuejian_组合'"
-        # mysql_select(mysql)
-        # data = videoId
+
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])

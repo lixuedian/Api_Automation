@@ -2,11 +2,11 @@ goods_add:
   dec: "主流程"
   parameters:
     -
-      test_name: '添加一个课程-主流程'
+      test_name: '新增商品-主流程'
       mode: 1
       type: data
       methods: post
-      url: /admin-sms/send/getMassSmsTaskList
+      url: /opservice/goods/add
       data: {
         'page': 1
       }
@@ -17,11 +17,11 @@ goods_delete:
   dec: "主流程"
   parameters:
     -
-      test_name: '添加一个课程-主流程'
+      test_name: '删除商品-主流程'
       mode: 1
       type: data
       methods: post
-      url: /goods/course/delete
+      url: /opservice/goods/delete
       data: {
         'page': 1
       }
@@ -32,41 +32,41 @@ goods_edit:
   dec: "主流程"
   parameters:
     -
-      test_name: '编辑课程-主流程'
+      test_name: '编辑商品-主流程'
       mode: 1
       type: data
       methods: post
-      url: /goods/course/edit
+      url: /opservice/goods/edit
       data: {
         'page': 1
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1, 'msg': '成功' }
 
-goods_openOrClose:
+getAllProductType:
   dec: "主流程"
   parameters:
     -
-      test_name: '启用/禁用课程-主流程'
+      test_name: '获取产品类型-主流程'
       mode: 1
       type: data
       methods: post
-      url: /goods/course/openOrClose
+      url: /opservice/goods/getAllProductType
       data: {
         'page': 1
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1, 'msg': '成功' }
 
-getOneCourse:
+getAllGoodsStatus:
   dec: "主流程"
   parameters:
     -
-      test_name: '获取一个课程的详细信息(基本字段和动态字段)-主流程'
+      test_name: '获取商品状态-主流程'
       mode: 1
       type: data
       methods: post
-      url: /goods/course/getOneCourse
+      url: /opservice/goods/getAllGoodsStatus
       data: {
         'page': 1
       }
@@ -74,30 +74,75 @@ getOneCourse:
       expected:  { 'code': 1, 'msg': '成功' }
 
 
-GetCourseList:
+getAllGoodsSort:
   dec: "主流程"
   parameters:
     -
-      test_name: '分页获取课程列表-主流程'
+      test_name: '获取商品排序集合-主流程'
       mode: 1
       type: data
       methods: post
-      url: /goods/course/getCourseList
+      url: /opservice/goods/getAllGoodsSort
       data: {
         'page': 1
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1, 'msg': '成功' }
 
-project_add:
+getGoodsListByCondition:
   dec: "主流程"
   parameters:
     -
-      test_name: '添加项目-主流程'
+      test_name: '根据筛选条件分页获取商品列表-主流程'
       mode: 1
       type: data
       methods: post
-      url: /project/add
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+enableLaunch:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '上下架商品-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /opservice/goods/enableLaunch
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+launchGoodsByTimer:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '定时上架商品-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /opservice/goods/launchGoodsByTimer
+      data: {
+        'page': 1
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1, 'msg': '成功' }
+
+getGoodsProductById:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '根据商品id查详情-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /opservice/goods/getGoodsProductById
       data: {
         'page': 1
       }

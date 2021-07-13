@@ -2,7 +2,7 @@ from Params.params import get_parameter
 
 
 class AddGoods:
-    """添加一个课程"""
+    """新增商品"""
     params = get_parameter('goods_add')
     case_data = []
     for i in range(0, len(params)):
@@ -10,7 +10,7 @@ class AddGoods:
 
 
 class DeleteGoods:
-    """添加一个课程"""
+    """删除商品"""
     params = get_parameter('goods_delete')
     case_data = []
     for i in range(0, len(params)):
@@ -18,34 +18,64 @@ class DeleteGoods:
 
 
 class EditGoods:
-    """编辑课程"""
+    """编辑商品"""
     params = get_parameter('goods_edit')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
 
 
-class OpenOrCloseGoods:
-    """启用/禁用课程"""
-    params = get_parameter('goods_openOrClose')
+class GetAllProductType:
+    """获取产品类型"""
+    params = get_parameter('getAllProductType')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
 
 
-class GetOneCourse:
-    """获取一个课程的详细信息(基本字段和动态字段)"""
-    params = get_parameter('getOneCourse')
+class GetAllGoodsStatus:
+    """获取商品状态"""
+    params = get_parameter('getAllGoodsStatus')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
 
 
-class GetCourseList:
-    """分页获取课程列表"""
-    params = get_parameter('GetCourseList')
+class GetAllGoodsSort:
+    """获取商品排序集合"""
+    params = get_parameter('getAllGoodsSort')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
 
 
+class GetGoodsListByCondition:
+    """根据筛选条件分页获取商品列表"""
+    params = get_parameter('getGoodsListByCondition')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class EnableLaunch:
+    """上下架商品"""
+    params = get_parameter('enableLaunch')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class LaunchGoodsByTimer:
+    """定时上架商品"""
+    params = get_parameter('launchGoodsByTimer')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class GetGoodsProductById:
+    """根据商品id查详情"""
+    params = get_parameter('getGoodsProductById')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])

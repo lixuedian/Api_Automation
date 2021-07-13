@@ -80,3 +80,8 @@ def mysql_id(mysql):
 def mysql_select(mysql):
     DB_CONF = mysql_conf('mysql')
     return MysqlDb(DB_CONF).select_db(mysql)
+
+
+def mysql_db(mysql):
+    DB_CONF = mysql_conf('mysql')
+    return MysqlDb(DB_CONF).execute_db(mysql)

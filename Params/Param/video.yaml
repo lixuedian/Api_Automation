@@ -218,6 +218,7 @@ getAudioListByCondition:
       data: {
         'projectId': 1,
         'pageNum': 1,
+        'orderBy': "create_time desc",
         'pageSize': 10
       }
       parser:   *parser
@@ -232,6 +233,7 @@ getAudioListByCondition:
         'projectId': 1,
         'name': 'xuejian',
         'pageNum': 1,
+        'orderBy': "create_time desc",
         'pageSize': 10
       }
       parser:   *parser
@@ -246,6 +248,7 @@ getAudioListByCondition:
         'id' : 27,
         'projectId': 1,
         'pageNum': 1,
+        'orderBy': "create_time desc",
         'pageSize': 10
       }
       parser:   *parser
@@ -295,6 +298,7 @@ getVideoListByCondition:
       data: {
         'projectId': 1,
         'pageNum': 1,
+        'orderBy': "create_time desc",
         'pageSize': 10
       }
       parser:   *parser
@@ -309,6 +313,7 @@ getVideoListByCondition:
         'projectId': 1,
         'name': 'xuejian',
         'pageNum': 1,
+        'orderBy': "create_time desc",
         'pageSize': 10
       }
       parser:   *parser
@@ -323,6 +328,7 @@ getVideoListByCondition:
         'id' : 27,
         'projectId': 1,
         'pageNum': 1,
+        'orderBy': "create_time desc",
         'pageSize': 10
       }
       parser:   *parser
