@@ -12,6 +12,7 @@ import os
 import random
 import requests
 import Common.Consts
+import Config
 from requests_toolbelt import MultipartEncoder
 from Common import Log
 from Config.Config import Config
@@ -203,7 +204,7 @@ class Request:
             data = json_to_get(data)
             url = url+'?'+data
             response = requests.post(url=url, headers=header)
-            print(response.json())
+            # print(response.json())
         except requests.RequestException as e:
             print('%s%s' % ('RequestException url: ', url))
             print(e)

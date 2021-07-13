@@ -1,6 +1,7 @@
 import requests
-from Params.params import ZTLogin
 from Config.Config import Config
+from Params.params_login import ZTLogin
+
 url = Config().test_url
 url = '%s%s' % ('http://', url)
 

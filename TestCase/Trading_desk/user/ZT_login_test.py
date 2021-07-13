@@ -5,7 +5,8 @@ import TestCase
 from Common import Request
 from Common import Consts
 from Config.Config import Config
-from Params.params import ZTLogin, log
+from Params.params import log
+from Params.params_login import ZTLogin
 from Params.params_ht import *
 from Common.Parser import parser
 from Common.Methodes import notify

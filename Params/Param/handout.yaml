@@ -2,22 +2,37 @@ add_handout:
   dec: "主流程"
   parameters:
     -
-      test_name: '新增讲义-主流程'
+      test_name: '新增讲义-图片'
       mode: 1
       type: json
       methods: post
       url: /opservice/goods/course/handout/add
       data: {
-        'id': '',
-        'name': '',
-        'filePath': '',
-        'fileSize': '',
-        'fileType': '',
-        'status': '',
-        'projectId': ''
+        'name': '测试_xuejian01',
+        'filePath': 'https://kg-oss-test-all.oss-cn-hangzhou.aliyuncs.com/1420-560.jpg',
+        'fileSize': '0.3317413330078125',
+        'fileType': 1,
+        'status': 1,
+        'projectId': 1
       }
       parser:   &parser {'code' :"['code']", 'msg': '["msg"]' }
-      expected: &expected { 'code': 1000, 'msg': 'Success' }
+      expected: &expected { 'code': 1000, 'msg': '成功' }
+    -
+      test_name: '新增讲义-pdf'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/add
+      data: {
+        'name': '测试_xuejian01',
+        'filePath': 'https://kg-oss-test-all.oss-cn-hangzhou.aliyuncs.com/048c0cc4205344469939d3dd7dce1859.pdf',
+        'fileSize': '0.2974262237548828',
+        'fileType': 2,
+        'status': 1,
+        'projectId': 1
+      }
+      parser:    {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '成功' }
 
 edit_handout:
   dec: "主流程"
@@ -29,13 +44,13 @@ edit_handout:
       methods: post
       url: /opservice/goods/course/handout/edit
       data: {
-        'id': '',
-        'name': '',
-        'filePath': '',
-        'fileSize': '',
-        'fileType': '',
-        'status': '',
-        'projectId': ''
+        'name': '测试_xuejian',
+        'filePath': 'https://kg-oss-test-all.oss-cn-hangzhou.aliyuncs.com/048c0cc4205344469939d3dd7dce1859.pdf',
+        'fileSize': '0.2974262237548828',
+        'fileType': 2,
+        'status': 1,
+        'projectId': 1,
+        'id': 38
       }
       parser:   *parser
       expected: *expected
@@ -50,8 +65,20 @@ openOrCloseBranch_handout:
       methods: post
       url: /opservice/goods/course/handout/openOrCloseBranch
       data: {
-        'handoutIds': '',
-        'status': ''
+        'handoutIds': [38],
+        'status': 1
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '批量启用禁用讲义-禁用'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/openOrCloseBranch
+      data: {
+        'handoutIds': [38],
+        'status': 0
       }
       parser:   *parser
       expected: *expected
@@ -67,7 +94,6 @@ deleteBranch_handout:
       url: /opservice/goods/course/handout/deleteBranch
       data: {
         'handoutIds': '',
-        'status': ''
       }
       parser:   *parser
       expected: *expected
@@ -82,7 +108,7 @@ getListByProjectId_handout:
       methods: post
       url: /opservice/goods/course/handout/getListByProjectId
       data: {
-        'projectId': '',
+        'projectId': 1,
         'pageNum': 1,
         'pageSize': 10
       }
@@ -93,7 +119,23 @@ getListByCondition_handout:
   dec: "主流程"
   parameters:
     -
-      test_name: '根据项目id和筛选条件查询讲义列表-主流程'
+      test_name: '根据项目id和筛选条件查询讲义列表-文件名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/getListByCondition
+      data: {
+        'name': '测试_xuejian',
+        'fileType': '',
+        'orderBy': 'create_time desc',
+        'projectId': 1,
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据项目id和筛选条件查询讲义列表-文件类型'
       mode: 1
       type: json
       methods: post
@@ -101,11 +143,75 @@ getListByCondition_handout:
       data: {
         'name': '',
         'fileType': 1,
-        'orderBy': 10,
-        'projectId': '',
-        'pageNum': '',
+        'orderBy': 'create_time desc',
+        'projectId': 1,
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据项目id和筛选条件查询讲义列表-文件类型'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/getListByCondition
+      data: {
+        'name': '',
+        'fileType': 2,
+        'orderBy': 'create_time desc',
+        'projectId': 1,
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据项目id和筛选条件查询讲义列表-文件id'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/getListByCondition
+      data: {
+        'name': '',
+        'fileType': '',
+        'orderBy': 'create_time desc',
+        'projectId': 1,
+        'pageNum': 1,
         'pageSize': 10,
-        'id': ''
+        'id': 38
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据项目id和筛选条件查询讲义列表-项目查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/getListByCondition
+      data: {
+        'name': '',
+        'fileType': '',
+        'orderBy': 'create_time desc',
+        'projectId': 2,
+        'pageNum': 1,
+        'pageSize': 10,
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据项目id和筛选条件查询讲义列表-时间查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/handout/getListByCondition
+      data: {
+        'name': '',
+        'fileType': '',
+        'orderBy': 'update_time desc',
+        'projectId': 2,
+        'pageNum': 1,
+        'pageSize': 10,
       }
       parser:   *parser
       expected: *expected
@@ -120,7 +226,7 @@ getHandoutListItem_handout:
       methods: get
       url: /opservice/goods/course/handout/getHandoutListItem
       data: {
-        'handoutId': ''
+        'handoutId': 38
       }
       parser:   *parser
       expected: *expected
@@ -135,7 +241,7 @@ getHandoutBaseInfo_handout:
       methods: get
       url: /opservice/goods/course/handout/getHandoutBaseInfo
       data: {
-        'handoutId': ''
+        'handoutId': 38
       }
       parser:   *parser
       expected: *expected

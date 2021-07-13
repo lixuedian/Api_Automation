@@ -50,9 +50,10 @@ class MysqlDb(object):
             self.conn.rollback()
 
 
-def mysql_conf(mysql):
+# 读取配置参数
+def mysql_conf(conf):
     data_file_path = os.path.join(BASE_PATH, "config", "Config.ini")
-    data = Common.Read_data.data.load_ini(data_file_path)[f'{mysql}']
+    data = Common.Read_data.data.load_ini(data_file_path)[f'{conf}']
     DB_CONF = {
         "host": data["mysql_host"],
         "port": int(data["mysql_port"]),
@@ -63,6 +64,19 @@ def mysql_conf(mysql):
     return DB_CONF
 
 
-# DB_CONF = mysql_conf('mysql')
-# mysql = 'update gk_ucenter.kg_nonuse_user set isDeleted=0 where username = 18600531753 and id=6'
-# MysqlDb(DB_CONF).select_db(mysql)
+# 获取多个id列表
+def mysql_id(mysql):
+    DB_CONF = mysql_conf('mysql')
+    # mysql = "select id from test_mp_goods_center.goods_handout where name = '测试_xuejian01'"
+    Ids = MysqlDb(DB_CONF).select_db(mysql)
+    a = []
+    for handoutId in Ids:
+        for handout in handoutId.values():
+            a.append(handout)
+    return a
+
+
+# 测试库
+def mysql_select(mysql):
+    DB_CONF = mysql_conf('mysql')
+    return MysqlDb(DB_CONF).select_db(mysql)

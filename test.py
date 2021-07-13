@@ -35,13 +35,14 @@ import json
 # print(response.json())
 #
 #
-import TestCase.Trading_desk.user
-url = TestCase.Trading_desk.user.url
-header = TestCase.Trading_desk.user.header
-data1 = {
-    "id": 1,
-    "note": "总公司001"
+import TestCase.Trading_desk
+header = TestCase.Trading_desk.header('Trading')
+url = 'http://test-trade.ekeguan.com/api/opservice/propertyfield/search?propertyNameId=10&fieldName=xuejian'
+data = {
+    "propertyNameId": 10,
+    "fieldName": "xuejian"
 }
 
-response = requests.post(url=url, headers=header, data=json.dumps(data1))
+response = requests.get(url=url, params=data, headers=header)
+
 print(response.json())

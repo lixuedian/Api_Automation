@@ -80,3 +80,25 @@ class GetOrderByEnum:
     for i in range(0, len(params)):
         case_data.append(params[i])
 
+
+# def post_request_jpg(url, header):
+#     if not url.startswith('https://'):
+#         url = '%s%s' % ('https://', url)
+#         print(url)
+#     file_path = os.path.join(Config.dir_path, 'unnamed.jpg')
+#     data = MultipartEncoder(
+#         fields={
+#             'file': ('unnamed.jpg', open(file_path, 'rb'), 'image/jpeg')})
+#     try:
+#         response = requests.put(url=url, params=data, headers=header)
+#     except requests.RequestException as e:
+#         print('%s%s' % ('RequestException url: ', url))
+#         print(e)
+#         return ()
+#
+#     except Exception as e:
+#         print('%s%s' % ('Exception url: ', url))
+#         print(e)
+#         return ()
+#
+#     return response.json()

@@ -1,0 +1,148 @@
+getCourseType:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取课程类型-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/getCourseType
+      data: {
+      }
+      parser:   &parser {'code' :"['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1000, 'msg': 'Success' }
+
+course_list:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '分页获取课程列表-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/findPage
+      data: {
+        'propertyId': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+course_delete:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '删除课程-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/delete
+      data: {
+        'id': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+course_openOrClose:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '启用禁用课程-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/openOrClose
+      data: {
+        'id': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+getDynamicFieldList:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取动态字段-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/getDynamicFieldList
+      data: {
+        'id': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+getTeachType:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取动态字段-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/getTeachType
+      data: {
+        'id': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+getRegion:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取地区-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/getRegion
+      data: {
+        'id': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+course_add:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '添加课程-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/add
+      data: {
+        'id': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+course_edit:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '编辑课程-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/edit
+      data: {
+        'id': ''
+      }
+      parser:   *parser
+      expected: *expected
+
+getCourseBaseInfo:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '获取课程的基本信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/getCourseBaseInfo
+      data: {
+        'id': ''
+      }
+      parser:   *parser
+      expected: *expected

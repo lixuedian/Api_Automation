@@ -6,14 +6,14 @@ from Config.Config import Config
 from Common import Request, Log
 from Common import Consts
 from Common import Assert
-from Params.params import Basic
+from Params.params_login import Login
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 
 class TestBasic(object):
     log = Log.MyLog()
-    data = Basic()
+    data = Login()
     case_data = data.case_data
     request = Request.Request()
     test = Assert.Assertions()

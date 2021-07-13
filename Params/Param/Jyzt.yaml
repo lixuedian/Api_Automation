@@ -22,7 +22,7 @@ permission:
       methods: get
       url: /ucenter/account/permission
       data: {
-              'userId': 1120,
+              'userId': 1099,
               'projectId': 110
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }

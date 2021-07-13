@@ -31,7 +31,6 @@ class notify(object):
             2: self.post_request_multipart,
             3: self.post_request_urlencoded,
             4: self.put_request
-
         }
         method = numbers.get(mode)
         if mode == 1:

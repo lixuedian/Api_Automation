@@ -81,13 +81,13 @@ class TestGoods(object):
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('添加项目')
-    @pytest.mark.parametrize('case', AddProject().case_data)
-    def test_goods_03(self, case):
-        log.info("*************** 开始执行用例 ***************")
-        log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
-        log.info('响应结果：%s' % result)
-        parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
-        Consts.RESULT_LIST.append('True')
+    # @allure.description('添加项目')
+    # @pytest.mark.parametrize('case', AddProject().case_data)
+    # def test_goods_03(self, case):
+    #     log.info("*************** 开始执行用例 ***************")
+    #     log.info("用例名称  ==>> {}".format(case['test_name']))
+    #     result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+    #     log.info('响应结果：%s' % result)
+    #     parser(result, case['test_name'], case['parser'], case['expected'])
+    #     allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+    #     Consts.RESULT_LIST.append('True')

@@ -5,7 +5,7 @@ import allure
 import pytest
 from Common.Methodes import notify
 from Config.Config import Config
-from Params.params import ShiJuan
+from Params.params_shijuan import ShiJuan
 from Common import Log
 from Common import Consts
 from Common import Assert

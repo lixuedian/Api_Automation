@@ -1,7 +1,7 @@
 import requests
 import json
 from Common import Log, Assert
-
+from Params.params import get_parameter
 log = Log.MyLog()
 test = Assert.Assertions()
 
@@ -509,3 +509,10 @@ class ReceiveApi(object):
         test.assert_text(res['msg'], '成功', '预置位编辑接口)')
 
 
+class ShiJuan:
+    # log.info('解析yaml, Path:' + path_dir + '/Params/Param/Shijuan.yaml')
+    params = get_parameter('ShiJuan')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+        # print(params)

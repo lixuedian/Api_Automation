@@ -49,9 +49,3 @@ class GetCourseList:
         case_data.append(params[i])
 
 
-class AddProject:
-    """添加项目"""
-    params = get_parameter('project_add')
-    case_data = []
-    for i in range(0, len(params)):
-        case_data.append(params[i])

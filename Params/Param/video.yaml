@@ -1,0 +1,359 @@
+addAudio:
+  dec: "新增音频"
+  parameters:
+    -
+      test_name: '新增音频-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/addAudio
+      data: {
+        'name': 'xuejian_组合',
+        'videoLink': 'https://www.baidu.com/',
+        'lecturerId': 24,
+        'lecturerName': '魏紫老师',
+        'duration': 30,
+        'status': 1,
+        'videoType': 1,
+        'projectId': 1
+      }
+      parser:   &parser {'code' :"['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1000, 'msg': '成功' }
+
+addVideo:
+  dec: "新增视频"
+  parameters:
+    -
+      test_name: '新增视频-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/addVideo
+      data: {
+        'name': 'xuejian_组合',
+        'videoLink': 'https://www.baidu.com/',
+        'lecturerId': 24,
+        'lecturerName': '魏紫老师',
+        'duration': 30,
+        'status': 1,
+        'videoType': 2,
+        'projectId': 1
+      }
+      parser:   *parser
+      expected: *expected
+
+edit_Video:
+  dec: "编辑音视频"
+  parameters:
+    -
+      test_name: '编辑视频-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/edit
+      data: {
+        'id': 28,
+        'name': 'xuejian_视频',
+        'videoLink': 'https://www.baidu.com/',
+        'lecturerId': 24,
+        'lecturerName': '魏紫老师',
+        'duration': 30,
+        'status': 1,
+        'videoType': 2,
+        'projectId': 1
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '编辑音频-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/edit
+      data: {
+        'id': 27,
+        'name': 'xuejian_音频',
+        'videoLink': 'https://www.baidu.com/',
+        'lecturerId': 24,
+        'lecturerName': '魏紫老师',
+        'duration': 30,
+        'status': 1,
+        'videoType': 2,
+        'projectId': 1
+      }
+      parser:   *parser
+      expected: *expected
+
+getAudioBaseInfo:
+  dec: "根据id搜索音视频基本信息"
+  parameters:
+    -
+      test_name: '根据id搜索音视频基本信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/video/getAudioBaseInfo
+      data: {
+        'audioId': 27
+      }
+      parser:   *parser
+      expected: *expected
+
+getOneAudioListInfo:
+  dec: "根据id搜索音视频列表信息"
+  parameters:
+    -
+      test_name: '根据id搜索音视频列表信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /opservice/goods/course/video/getOneAudioListInfo
+      data: {
+        'audioId': 27
+      }
+      parser:   *parser
+      expected: *expected
+
+getAudioListByProjectId:
+  dec: "根据项目id获取音频列表"
+  parameters:
+    -
+      test_name: '根据项目id获取音频列表-主流程'
+      mode: 0
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getAudioListByProjectId
+      data: {
+        'projectId': 1,
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+
+getVideoListByProjectId:
+  dec: "根据项目id获取视频列表"
+  parameters:
+    -
+      test_name: '根据项目id获取视频列表-主流程'
+      mode: 0
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getVideoListByProjectId
+      data: {
+        'projectId': 1,
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+
+getVideoBaseInfoById:
+  dec: "根据音视频id获取音视频的基本信息"
+  parameters:
+    -
+      test_name: '根据音视频id获取音视频的基本信息-主流程'
+      mode: 0
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getVideoBaseInfoById
+      data: {
+        'videoId': 27
+      }
+      parser:   *parser
+      expected: *expected
+
+deleteVideoBranch:
+  dec: "批量删除音视频"
+  parameters:
+    -
+      test_name: '批量删除音视频-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/deleteVideoBranch
+      data: {
+
+      }
+      parser:   *parser
+      expected: *expected
+
+openOrCloseBranch:
+  dec: "批量启用禁用音视频"
+  parameters:
+    -
+      test_name: '批量启用禁用音视频-启用'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/openOrCloseBranch
+      data: {
+        'handoutIds': [27, 28],
+        'status': 1
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '批量启用禁用音视频-禁用'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/openOrCloseBranch
+      data: {
+        'handoutIds': [27, 28],
+          'status': 0
+      }
+      parser:   *parser
+      expected: *expected
+
+getAudioListByCondition:
+  dec: "根据筛选条件获取音频列表"
+  parameters:
+    -
+      test_name: '根据筛选条件获取音频列表-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getAudioListByCondition
+      data: {
+        'projectId': 1,
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件获取音频列表-名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getAudioListByCondition
+      data: {
+        'projectId': 1,
+        'name': 'xuejian',
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件获取音频列表-id查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getAudioListByCondition
+      data: {
+        'id' : 27,
+        'projectId': 1,
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件获取音频列表-排序规则'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getAudioListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 'create_time',
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件获取音频列表-组合条件'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getAudioListByCondition
+      data: {
+        'id': 27,
+        'name': 'xuejian',
+        'projectId': 1,
+        'orderBy': 'create_time',
+        'pageNum': 1,
+        'pageSize': 10,
+        'videoType': 1
+      }
+      parser:   *parser
+      expected: *expected
+
+
+getVideoListByCondition:
+  dec: "根据筛选条件获取视频列表"
+  parameters:
+    -
+      test_name: '根据筛选条件获取视频列表-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getVideoListByCondition
+      data: {
+        'projectId': 1,
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件获取视频列表-名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getVideoListByCondition
+      data: {
+        'projectId': 1,
+        'name': 'xuejian',
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件获取视频列表-id查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getVideoListByCondition
+      data: {
+        'id' : 27,
+        'projectId': 1,
+        'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件获取视频列表-排序规则'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getVideoListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 'create_time',
+          'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件获取视频列表-组合条件'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/course/video/getVideoListByCondition
+      data: {
+        'id': 27,
+        'name': 'xuejian',
+          'projectId': 1,
+        'orderBy': 'create_time',
+          'pageNum': 1,
+        'pageSize': 10
+      }
+      parser:   *parser
+      expected: *expected

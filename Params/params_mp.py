@@ -88,7 +88,7 @@ class Role(object):
         """根据角色修改对应的权限信息"""
         data = {
             "roleId": Role.roleId,
-            "permissionIds": "192,193,194,41,42,43"
+            "permissionIds": "181,182,183,184,192,41,42,43"
         }
         case = PrDelePermissionByRole().case_data
         log.info("*************** 开始执行用例 ***************")
@@ -120,23 +120,24 @@ class PermissionS(object):
         """根据id修改资源信息"""
         data = {
             "id": PermissionS.permissionId,
-            "createTime": "2021-07-02T02:26:24.000+00:00",
-            "updateTime": "2021-07-02T02:26:24.000+00:00",
-            "createBy": 1120,
-            "updateBy": 1120,
+            "createTime": "2021-07-12T10:43:40.000+00:00",
+            "updateTime": "2021-07-12T10:43:40.000+00:00",
+            "createBy": 1099,
+            "updateBy": 1099,
             "isDeleted": 0,
             "projectId": 110,
-            "name": "getPermissionsByLevel",
-            "path": "/getPermissionsByLevel",
-            "permissionLevel": 3,
+            "name": "测试功能",
+            "path": "/getPermissionsByLevel001",
+            "permissionLevel": 4,
             "display": 1,
-            "rootId": 42,
-            "rootIds": "41,42",
+            "rootId": 43,
+            "rootIds": "41,42,43",
             "permissionType": 3,
-            "permissionPath": "后台管理-\u003e权限系统",
+            "permissionPath": "后台管理-\u003e权限系统-\u003e菜单管理",
             "rootIdList": [
                 41,
-                42
+                42,
+                43
             ]
         }
         case = PermissionEdit().case_data

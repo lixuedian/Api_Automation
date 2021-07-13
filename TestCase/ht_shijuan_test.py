@@ -1,7 +1,7 @@
 from Config.Config import Config
 from Params.params_shijuan import ReceiveApi
 from Common import Consts
-from Params.params import ShiJuan
+from Params.params_shijuan import ShiJuan
 import allure
 import pytest
 config = Config()

@@ -55,7 +55,7 @@ getUser:
       methods: post
       url: /opuser/user/getUser
       data: {
-        'id': 1120
+        'id': 1099
       }
       parser:   *parser
       expected:  *expected
@@ -103,7 +103,7 @@ update:
       methods: post
       url: /opuser/user/update
       data: {
-        "id": 1120,
+        "id": 1099,
         "note": "测试",
         "status": 1,
         "projectList": [
@@ -119,7 +119,7 @@ update:
       methods: post
       url: /opuser/user/update
       data: {
-        "id": 1120,
+        "id": 1099,
         "phoneId": 18600531753,
         "name": "李雪殿",
         "jobId": 2007,
@@ -156,7 +156,7 @@ getUserList:
       url: /opuser/user/getUserList
       data: {
         'jobId': 2007,
-        departmentId: 334
+        departmentId: 338
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
       expected:  { 'jobId': '2007'}
@@ -167,8 +167,8 @@ getUserList:
       methods: post
       url: /opuser/user/getUserList
       data: {
-        'id': 1120,
-        departmentId: 334
+        'id': 1099,
+        departmentId: 338
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
       expected: { 'jobId': '2007' }
@@ -180,7 +180,7 @@ getUserList:
       url: /opuser/user/getUserList
       data: {
         'phoneId': 18600531753,
-        departmentId: 334
+        departmentId: 338
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
       expected: { 'jobId': '2007' }
@@ -192,7 +192,7 @@ getUserList:
       url: /opuser/user/getUserList
       data: {
         'name': '李雪殿',
-        departmentId: 334
+        departmentId: 338
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
       expected: { 'jobId': '2007' }
@@ -203,7 +203,7 @@ getUserList:
       methods: post
       url: /opuser/user/getUserList
       data: {
-        'departmentId': 334,
+        'departmentId': 338,
         'status': 0
       }
       parser:   *parser
@@ -215,7 +215,7 @@ getUserList:
       methods: post
       url: /opuser/user/getUserList
       data: {
-        'departmentId': 334,
+        'departmentId': 338,
         'status': 1
       }
       parser:   *parser
@@ -227,7 +227,7 @@ getUserList:
       methods: post
       url: /opuser/user/getUserList
       data: {
-        departmentId: 334,
+        departmentId: 338,
           'status': 2
       }
       parser:   *parser
@@ -259,7 +259,7 @@ password_reset:
       methods: post
       url: /opuser/account/password/reset
       data: {
-        'userId': 1122,
+        'userId': 1153,
         'newWord': 123456
       }
       parser:   *parser
@@ -275,7 +275,7 @@ password_change:
       methods: post
       url: /opuser/account/password/change
       data: {
-        'userId': 1122,
+        'userId': 1153,
         'oldWord': 123456,
         'newWord': 123456
       }

@@ -59,8 +59,8 @@ permission_edit:
         "id": 65,
         "createTime": "2021-07-02T02:26:24.000+00:00",
         "updateTime": "2021-07-02T02:26:24.000+00:00",
-        "createBy": 1120,
-        "updateBy": 1120,
+        "createBy": 1099,
+        "updateBy": 1099,
         "isDeleted": 0,
         "projectId": 110,
         "name": "测试功能001",
@@ -126,8 +126,8 @@ func_add:
       url: /oauth/permission/func/add
       data: {
         "name": "测试功能",
-        "rootId": 166,
-        "rootIds": "165,166",
+        "rootId": 43,
+        "rootIds": "41,42,43",
         "path": "/getPermissionsByLevel",
         "display": 1,
       }
@@ -212,7 +212,7 @@ user_role_add:
       methods: post
       url: /oauth/user/role/add
       data: {
-        'userId': 1120,
+        'userId': 1099,
         'roleId': 9
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
@@ -229,7 +229,7 @@ user_role_delete:
       methods: post
       url: /oauth/user/role/delete
       data: {
-        'userId': 1120,
+        'userId': 1099,
         'roleId': 9
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
@@ -241,7 +241,7 @@ user_role_delete:
       methods: post
       url: /oauth/user/role/delete
       data: {
-        'userId': 1120,
+        'userId': 1099,
         'roleId': 79
       }
       parser: { 'code': "['code']", 'msg': '["msg"]' }
@@ -259,7 +259,7 @@ user_role_list:
       methods: get
       url: /oauth/permission/getPermissionsByLevel
       data: {
-        'userId': 1120,
+        'userId': 1099,
         'roleName': ,
         'roleType': ,
       }
@@ -273,7 +273,7 @@ user_role_list:
       methods: get
       url: /oauth/permission/getPermissionsByLevel
       data: {
-        'userId': 1120,
+        'userId': 1099,
         'roleType': 1
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
@@ -285,7 +285,7 @@ user_role_list:
       methods: get
       url: /oauth/permission/getPermissionsByLevel
       data: {
-        'userId': 1120,
+        'userId': 1099,
         'roleType': 2
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
@@ -297,7 +297,7 @@ user_role_list:
       methods: get
       url: /oauth/permission/getPermissionsByLevel
       data: {
-        'userId': 1120,
+        'userId': 1099,
         'roleName': '开发使用不能删除'
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
@@ -313,42 +313,10 @@ user_getUsableRole:
       methods: get
       url: /oauth/user/role/getUsableRole
       data: {
-        'userId': 1120
+        'userId': 1099
       }
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': '操作成功' }
-
-status:
-  dec: "主流程"
-  parameters:
-    -
-      test_name: '禁用用户角色-主流程'
-      mode: 1
-      type: json
-      methods: post
-      url: /oauth/user/role/status
-      data: {
-        "userId": 14,
-        "roleId": 154,
-        "departmentId": 432,
-        "status": 0
-      }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1000, 'msg': '操作成功' }
-
-    - test_name: '启用用户角色-主流程'
-      mode: 1
-      type: json
-      methods: post
-      url: /oauth/user/role/status
-      data: {
-        "userId": 14,
-        "roleId": 154,
-        "departmentId": 432,
-        "status": 0
-      }
-      parser: { 'code': "['code']", 'msg': '["msg"]' }
-      expected: { 'code': 1000, 'msg': '操作成功' }
 
 getPermissionByRole:
   dec: "主流程"
