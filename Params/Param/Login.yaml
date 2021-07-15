@@ -87,3 +87,22 @@ ZT_login:
       header: {'Content-Type': 'application/json' }
       parser: { 'code': "['code']", 'msg': '["msg"]' }
       expected: { 'code': 1000, 'msg': 'Success' }
+
+C_login:
+  dec: "C端用户登录"
+  parameters:
+    -
+      test_name: '用户密码登录'
+      mode: 1
+      method: post
+      type: json
+      url: /cucenter/user/account/login
+      data: {
+        'type': 1,
+        'mobile': 18600531753,
+        'password': 'keguan123',
+        'client': 1
+      }
+      header: {'Content-Type': 'application/json' }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1000, 'msg': 'Success' }

@@ -10,7 +10,16 @@ class Login:
 
 
 class ZTLogin:
+    """交易中台登录"""
     params = get_parameter('ZT_login')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class LoginC:
+    """C端用户登录"""
+    params = get_parameter('C_login')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])

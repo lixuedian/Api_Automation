@@ -1,0 +1,254 @@
+order_list:
+  dec: "根据条件筛选订单信息"
+  parameters:
+    - test_name: '根据条件筛选订单信息-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+      }
+      parser: &parser { 'code': "['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1000, 'msg': 'Success' }
+
+order_export:
+  dec: "根据条件筛选订单信息"
+  parameters:
+    - test_name: '根据条件筛选订单信息-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/export
+      data: {
+      }
+      parser: *parser
+      expected: *expected 
+
+
+pay_list:
+  dec: "根据条件获取订单流水列表"
+  parameters:
+    - test_name: '根据条件获取订单流水列表-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/pay/list
+      data: {
+      }
+      parser: *parser
+      expected: *expected
+
+pay_get:
+  dec: "根据orderPayId获取相应的支付单信息"
+  parameters:
+    - test_name: '根据orderPayId获取相应的支付单信息-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/pay/get
+      data: {
+      }
+      parser: *parser
+      expected: *expected
+
+pay_saveNote:
+  dec: "保存审核备注的修改"
+  parameters:
+    - test_name: '保存审核备注的修改-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/pay/saveNote
+      data: {
+      }
+      parser: *parser
+      expected: *expected
+
+pay_refused:
+  dec: "支付单审核-打回"
+  parameters:
+    - test_name: '支付单审核-打回-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/pay/refused
+      data: {
+      }
+      parser: *parser
+      expected: *expected
+
+pay_refusedBatch:
+  dec: "支付单审核-批量打回"
+  parameters:
+    - test_name: '支付单审核-批量打回-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/pay/refusedBatch
+      data: {
+      }
+      parser: *parser
+      expected: *expected
+
+pay_check:
+  dec: "支付单审核-复核通过"
+  parameters:
+    - test_name: '支付单审核-复核通过-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/pay/check
+      data: {
+      }
+      parser: *parser
+      expected: *expected
+
+pay_checkBatch:
+  dec: "支付单审核-批量复核通过"
+  parameters:
+    - test_name: '支付单审核-批量复核通过-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/pay/checkBatch
+      data: {
+      }
+      parser: *parser
+      expected: *expected
+
+PayExport:
+  dec: "导出支付单信息"
+  parameters:
+    - test_name: '导出支付单信息-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/pay/export
+      data: {
+      }
+      parser: *parser
+      expected: *expected
+
+prePurchase:
+  dec: "商品确认页面"
+  parameters:
+    - test_name: '按商品ID、用户ID查询预购买信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/order/prePurchase
+      data: {
+      }
+      parser: *parser
+      expected: *expected
+
+CreateOrder:
+  dec: "创建商品订单"
+  parameters:
+    - test_name: '创建商品订单-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/order/create
+      data: {
+              'projectId': 1,
+              'goodsId': 1,
+              'paidPrice': 1,
+              'paymentMethod': 1
+      }
+      parser: *parser
+      expected: *expected
+
+getPayment:
+  dec: "获取支付信息"
+  parameters:
+    - test_name: '获取支付信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/pay/getPayment
+      data: {
+        'orderId': 1
+      }
+      parser: *parser
+      expected: *expected
+
+repay_order:
+  dec: "订单重新支付"
+  parameters:
+    - test_name: '订单重新支付-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/order/repay
+      data: {
+        'orderId': 1,
+        'paidPrice': '',
+        'paymentMethod': ''
+      }
+      parser: *parser
+      expected: *expected
+
+getDetailByOrderId:
+  dec: "查询订单详情"
+  parameters:
+    - test_name: '查询订单详情-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/order/getDetailByOrderId
+      data: {
+        'orderId': 1,
+        'paidPrice': '',
+        'paymentMethod': ''
+      }
+      parser: *parser
+      expected: *expected
+
+getOrders:
+  dec: "获取订单列表"
+  parameters:
+    - test_name: '获取订单列表-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/order/getDetailByOrderId
+      data: {
+        'orderId': 1,
+        'paidPrice': '',
+        'paymentMethod': ''
+      }
+      parser: *parser
+      expected: *expected
+
+CancelOrders:
+  dec: "取消订单"
+  parameters:
+    - test_name: '取消订单-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/order/cancel
+      data: {
+        'orderId': 1,
+        'paidPrice': '',
+        'paymentMethod': ''
+      }
+      parser: *parser
+      expected: *expected
+
+PayCallBack:
+  dec: "支付回调（后端使用）"
+  parameters:
+    - test_name: '支付回调（后端使用）-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/order/cancel
+      data: {
+        'orderId': 1,
+        'paidPrice': '',
+        'paymentMethod': ''
+      }
+      parser: *parser
+      expected: *expected
