@@ -105,4 +105,4 @@ C_login:
       }
       header: {'Content-Type': 'application/json' }
       parser: { 'code': "['code']", 'msg': '["msg"]' }
-      expected: { 'code': 1000, 'msg': 'Success' }
+      expected: { 'code': 200, 'msg': '操作成功' }

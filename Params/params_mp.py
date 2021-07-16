@@ -1,4 +1,4 @@
-from Params.params_ht import *
+from Params.params_user import *
 import TestCase.Trading_desk
 from Common.Methodes import notify, log
 from Common.Parser import parser

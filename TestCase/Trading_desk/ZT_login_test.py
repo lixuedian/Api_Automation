@@ -7,13 +7,14 @@ from Common import Consts
 from Config.Config import Config
 from Params.params import log
 from Params.params_login import ZTLogin, LoginC
-from Params.params_ht import *
+from Params.params_user import *
 from Common.Parser import parser
 from Common.Methodes import notify
 
 url = TestCase.Trading_desk.url
 BASE_PATH = TestCase.BASE_PATH
 header = TestCase.Trading_desk.header('Trading')
+test_mp_url = TestCase.Trading_desk.test_mp_url
 
 
 class TestLogin(object):
@@ -34,10 +35,11 @@ class TestLogin(object):
 
     @allure.description('C端用户登录')
     @pytest.mark.parametrize('case', LoginC().case_data)
-    def login_c_01(self, case):
+    def test_login_c_01(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], case['header'], case['type'])
+        result = notify().notify_result(case['mode'], test_mp_url + case['url'], case['data'],
+                                        case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
         # self.config.write_configuration('Trading', result['data']['token'], str(result['data']['id']))

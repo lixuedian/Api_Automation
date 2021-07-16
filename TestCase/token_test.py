@@ -24,17 +24,18 @@ class TestBasic(object):
     #     "测试：{}".
     #         format(case['test_name']) for case in case_data
     # ]
-    @allure.feature('Home')
-    @allure.severity('blocker')
-    @allure.story('Basic')
-    @allure.issue('https://baidu.com')
-    @allure.testcase('https://baidu.com')
-    @pytest.mark.flaky(reruns=3)
+    # @allure.feature('Home')
+    # @allure.severity('blocker')
+    # @allure.story('Basic')
+    # @allure.issue('https://baidu.com')
+    # @allure.testcase('https://baidu.com')
+    # @pytest.mark.flaky(reruns=3)
     # @pytest.mark.parametrize('case', case_data, ids=ids)
+    @allure.description('综合用户登录')
     @pytest.mark.parametrize('case', case_data)
-    def test_login(self, case):
+    def login(self, case):
         """
-        小程序登录
+        综合用户登录
         """
         self.log.info('demo, utl={}, data={}, header={}'.format(case['url'], case['data'], case['header']))
         if case['method'] == 'post_request_urlencoded':

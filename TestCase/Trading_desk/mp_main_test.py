@@ -2,7 +2,7 @@
 import allure
 import pytest
 from Common import Consts, Assert
-from Params.params_ht import *
+from Params.params_user import *
 from Params.params_department import *
 from Common.Parser import parser
 from Common.Methodes import notify, log
