@@ -4,14 +4,36 @@ goods_add:
     -
       test_name: '新增商品-主流程'
       mode: 1
-      type: data
+      type: json
       methods: post
       url: /opservice/goods/add
       data: {
-        'page': 1
+        "projectId": 1,
+        "name": "xuejian_商品",
+        "productType": 1,
+        "productId": 1,
+        "goodsExpireTypeVo": {
+          "expireType": 0,
+          "expireTime": "2021-07-15",
+          "expireDays": 1
+        },
+        "currentPrice": 100,
+        "originalPrice": 100,
+        "goodsStockTypeVo": {
+          "stockType": 0,
+          "stock": 1
+        },
+        "goodsLimitBuyNumVo": {
+          "limitBuyNumType": 0,
+          "limitBuyNum": 1
+        },
+        "image": "https://kg-oss-test-all.oss-cn-hangzhou.aliyuncs.com/5.jpg",
+        "content": "\u003cp\u003etest\u003c/p\u003e\n",
+        "status": 1,
+        "goodsType": 1
       }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
+      parser:  &parser {'code' :"['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1000, 'msg': '成功' }
 
 goods_delete:
   dec: "主流程"
@@ -19,14 +41,12 @@ goods_delete:
     -
       test_name: '删除商品-主流程'
       mode: 1
-      type: data
+      type: json
       methods: post
       url: /opservice/goods/delete
-      data: {
-        'page': 1
-      }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
+      data: {'id': 69}
+      parser: *parser
+      expected: *expected
 
 goods_edit:
   dec: "主流程"
@@ -34,60 +54,80 @@ goods_edit:
     -
       test_name: '编辑商品-主流程'
       mode: 1
-      type: data
+      type: json
       methods: post
       url: /opservice/goods/edit
       data: {
-        'page': 1
+        'id': 68,
+        "projectId": 1,
+        "name": "xuejian_商品",
+        "productType": 1,
+        "productId": 1,
+        "goodsExpireTypeVo": {
+          "expireType": 0,
+          "expireTime": "2021-07-15",
+          "expireDays": 1
+        },
+        "currentPrice": 100,
+        "originalPrice": 100,
+        "goodsStockTypeVo": {
+          "stockType": 0,
+          "stock": 1
+        },
+        "goodsLimitBuyNumVo": {
+          "limitBuyNumType": 0,
+          "limitBuyNum": 1
+        },
+        "image": "https://kg-oss-test-all.oss-cn-hangzhou.aliyuncs.com/5.jpg",
+        "content": "\u003cp\u003etest\u003c/p\u003e\n",
+        "status": 1,
+        "goodsType": 1
       }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
+      parser: *parser
+      expected: *expected
 
 getAllProductType:
   dec: "主流程"
   parameters:
     -
       test_name: '获取产品类型-主流程'
-      mode: 1
-      type: data
-      methods: post
+      mode: 0
+      type: json
+      methods: get
       url: /opservice/goods/getAllProductType
       data: {
-        'page': 1
       }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
+      parser: *parser
+      expected: *expected
+
 
 getAllGoodsStatus:
   dec: "主流程"
   parameters:
     -
       test_name: '获取商品状态-主流程'
-      mode: 1
-      type: data
-      methods: post
+      mode: 0
+      type: json
+      methods: get
       url: /opservice/goods/getAllGoodsStatus
       data: {
-        'page': 1
       }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
-
+      parser: *parser
+      expected: *expected
 
 getAllGoodsSort:
   dec: "主流程"
   parameters:
     -
       test_name: '获取商品排序集合-主流程'
-      mode: 1
-      type: data
-      methods: post
+      mode: 0
+      type: json
+      methods: get
       url: /opservice/goods/getAllGoodsSort
       data: {
-        'page': 1
       }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
+      parser: *parser
+      expected: *expected
 
 getGoodsListByCondition:
   dec: "主流程"
@@ -95,29 +135,203 @@ getGoodsListByCondition:
     -
       test_name: '根据筛选条件分页获取商品列表-主流程'
       mode: 1
-      type: data
+      type: json
       methods: post
       url: /opservice/goods/getGoodsListByCondition
       data: {
-        'page': 1
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10
       }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件分页获取商品列表-商品id查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10,
+        'goodsId': 68
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件分页获取商品列表-商品名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10,
+        'goodsName': 'xuejian_商品'
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件分页获取商品列表-产品类型查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10,
+        'productType': 1
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件分页获取商品列表-产品名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10,
+        'productName': '公考'
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件分页获取商品列表-上架'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10,
+        'status': 1
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件分页获取商品列表-下架'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10,
+        'status': 2
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件分页获取商品列表-下架'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10,
+        'status': 2
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件分页获取商品列表-待上架'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10,
+        'status': 3
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据筛选条件分页获取商品列表-新增时间查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/getGoodsListByCondition
+      data: {
+        'projectId': 1,
+        'orderBy': 1,
+        'pageNum': 1,
+        'pageSize': 10,
+        'startTime': "2021-07-14",
+        'endTime':  "2021-07-31"
+      }
+      parser: *parser
+      expected: *expected
+
 
 enableLaunch:
   dec: "主流程"
   parameters:
     -
-      test_name: '上下架商品-主流程'
+      test_name: '上下架商品-下架'
       mode: 1
-      type: data
+      type: json
       methods: post
       url: /opservice/goods/enableLaunch
       data: {
-        'page': 1
+        'goodsIdList': [68],
+        'goodsLaunchTypeVo': {
+            'launchType': 2,
+            'launchTime': '2021-07-15 15:30:55'
+        }
       }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '上下架商品-上架'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/enableLaunch
+      data: {
+        'goodsIdList': [68],
+        'goodsLaunchTypeVo': {
+          'launchType': 1,
+          'launchTime': '2021-07-15 15:30:55'
+        }
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '上下架商品-定时上架'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/enableLaunch
+      data: {
+        'goodsIdList': [68],
+        'goodsLaunchTypeVo': {
+          'launchType': 3,
+          'launchTime': '2021-07-15 15:30:55'
+        }
+      }
+      parser: *parser
+      expected: *expected
 
 launchGoodsByTimer:
   dec: "主流程"
@@ -125,26 +339,27 @@ launchGoodsByTimer:
     -
       test_name: '定时上架商品-主流程'
       mode: 1
-      type: data
+      type: json
       methods: post
       url: /opservice/goods/launchGoodsByTimer
       data: {
-        'page': 1
+        'goodsIds': 74,
+        'timeOfOn': "2021-07-17 00:00:00"
       }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
+      parser: *parser
+      expected: *expected
 
 getGoodsProductById:
   dec: "主流程"
   parameters:
     -
       test_name: '根据商品id查详情-主流程'
-      mode: 1
-      type: data
-      methods: post
+      mode: 0
+      type: json
+      methods: get
       url: /opservice/goods/getGoodsProductById
       data: {
-        'page': 1
+        'id': 68
       }
-      parser:   {'code' :"['code']", 'msg': '["msg"]' }
-      expected:  { 'code': 1, 'msg': '成功' }
+      parser: *parser
+      expected: *expected

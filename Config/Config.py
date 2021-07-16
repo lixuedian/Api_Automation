@@ -153,6 +153,7 @@ class Config:
         Log.MyLog().info('写入配置文件成功，uuid ={}'.format(self.get_conf(parameter, 'uuid')))
 
     def header_json(self, TEXT):
+        """java项目登录信息"""
         token = self.get_conf(TEXT, 'token')
         uuid = self.get_conf(TEXT, 'uuid')
         header = {
@@ -164,6 +165,7 @@ class Config:
         return header
 
     def header_data(self, TEXT):
+        """综合后台登录信息"""
         token = self.get_conf(TEXT, 'token')
         uuid = self.get_conf(TEXT, 'uuid')
         header = {

@@ -55,33 +55,35 @@ class ReceiveApi(object):
         """添加招考单条信息"""
         api = '/admin-recruitexam/addRecruitExamOne'
         body = {
+            "recruitExamId": "",
             "recruitExamName": name,
             "type": num,
             "scale": 1,
             "period": 1,
-            "examProvince": "",
-            "examCity": "",
-            "examCounty": "",
-            "stageList": [{
-                "recruitStageKey": 1,
-                "recruitStageName": "公告",
-                "startTime": "2021-04-22",
-                "num": 2000,
-                "examContent": ""
-            },
+            "examProvince": "北京",
+            "examCity": "北京市",
+            "examCounty": "东城区",
+            "stageList": [
+                {
+                    "recruitStageKey": 1,
+                    "recruitStageName": "公告",
+                    "startTime": "",
+                    "num": 0,
+                    "examContent": []
+                },
                 {
                     "recruitStageKey": 2,
                     "recruitStageName": "笔试考试",
-                    "startTime": "2021-04-23",
-                    "num": 2000,
-                    "examContent": "1,3"
+                    "startTime": "",
+                    "num": 0,
+                    "examContent": []
                 },
                 {
                     "recruitStageKey": 3,
                     "recruitStageName": "面试考试",
-                    "startTime": "2021-04-24",
-                    "num": 3000,
-                    "examContent": "1,2,3"
+                    "startTime": "",
+                    "num": 0,
+                    "examContent": []
                 }
             ]
         }
@@ -89,6 +91,7 @@ class ReceiveApi(object):
                  format('添加招考单条信息', api, body, self.h))
         res = requests.post(url=self.url + api, headers=self.h, data=json.dumps(body))
         res = res.json()
+        log.info('响应结果：%s' % res)
         test.assert_text(res['code'], 1, '添加招考单条信息)')
         test.assert_text(res['msg'], '成功', '添加招考单条信息)')
 
@@ -111,37 +114,51 @@ class ReceiveApi(object):
         """修改招考单条信息"""
         api = '/admin-recruitexam/setRecruitExamOne'
         body = {
-            "recruitExamName": name,
-            'recruitExamId': ReceiveApi.recruitExamId,
-            "type": num,
-            "scale": 1,
-            "period": 1,
-            "examProvince": "河北省",
-            "examCity": "邢台市",
-            "examCounty": "清河县",
-            "stageList": [{
-                "recruitStageKey": 1,
-                "recruitStageName": "公告",
-                "startTime": "2021-04-22",
-                "num": 2000,
-                "examContent": ""
-            },
-                {
-                    "recruitStageKey": 2,
-                    "recruitStageName": "笔试考试",
-                    "startTime": "2021-04-23",
-                    "num": 2000,
-                    "examContent": "1,3"
-                },
-                {
-                    "recruitStageKey": 3,
-                    "recruitStageName": "面试考试",
-                    "startTime": "2021-04-24",
-                    "num": 3000,
-                    "examContent": "1,2,3"
-                }
-            ]
-        }
+                "examCity": "北京市",
+                "examCounty": "东城区",
+                "examProvince": "北京",
+                "period": 1,
+                "recruitExamId": ReceiveApi.recruitExamId,
+                "recruitExamName": name,
+                "scale": 1,
+                "stageList": [
+                    {
+                        "examContent": [],
+                        "num": 0,
+                        "recruitStageId": 922,
+                        "recruitStageKey": 1,
+                        "recruitStageName": "公告",
+                        "startTime": "2021-07-16"
+                    },
+                    {
+                        "examContent": [
+                            {
+                                "percentage": 0,
+                                "subjectCategory": 1
+                            }
+                        ],
+                        "num": 0,
+                        "recruitStageId": 923,
+                        "recruitStageKey": 2,
+                        "recruitStageName": "笔试考试",
+                        "startTime": "2021-07-16"
+                    },
+                    {
+                        "examContent": [
+                            {
+                                "percentage": 0,
+                                "subjectCategory": 7
+                            }
+                        ],
+                        "num": 0,
+                        "recruitStageId": 924,
+                        "recruitStageKey": 3,
+                        "recruitStageName": "面试考试",
+                        "startTime": "2021-07-16"
+                    }
+                ],
+                "type": num
+            }
         log.info('test_name={}, url={}, data={}'.
                  format('修改招考单条信息', api, body, self.h))
         res = requests.post(url=self.url + api, headers=self.h, data=json.dumps(body))

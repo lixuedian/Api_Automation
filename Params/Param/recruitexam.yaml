@@ -14,7 +14,7 @@ getRecruitExamList:
         'type': 1
       }
       header: &header {
-        'token' : &token 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOiIxODYyNTAiLCJhdXRoVGltZSI6MTYyMjAxMzQyMn0.wF8OCDto78xoY1qST_55GifkUwNAaTKkZtJENGsMMRk',
+        'token' :  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOiIxODYyNTAiLCJhdXRoVGltZSI6MTYyMjAxMzQyMn0.wF8OCDto78xoY1qST_55GifkUwNAaTKkZtJENGsMMRk',
         'AppFlag': '1',
         'TIMESTAMP': '16158593565001',
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -133,8 +133,8 @@ adGiveProduct:
       url: /order/adGiveProduct
       data: {
         'businessId': 1,
-        'adId': 20000,
-        'source': 133,
+        'adId': 2,
+        'source': 134,
         'deviceInfo': 'iPhone8'
       }
       header: *header

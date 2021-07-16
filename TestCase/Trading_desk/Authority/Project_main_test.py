@@ -141,6 +141,8 @@ class TestProperty(object):
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        mysql = "update test_common.property_field  set is_delete = 1  where filed_name = 'xuejian_字段'"
+        mysql_db(mysql)
         allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 

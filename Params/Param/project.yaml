@@ -134,6 +134,22 @@ edit_property:
       url: /opservice/property/edit
       data: {
         'id': 10,
+        'name': 'xuejian_属性002',
+        'projectId': 1,
+        'description': '测试',
+        'isMust': 0,
+        'isMulti': 0
+      }
+      parser:   *parser
+      expected:  *expected
+    -
+      test_name: '编辑动态属性-名称重复'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/property/edit
+      data: {
+        'id': 10,
         'name': 'xuejian_属性001',
         'projectId': 1,
         'description': '测试',
@@ -141,7 +157,7 @@ edit_property:
         'isMulti': 0
       }
       parser:   *parser
-      expected: *expected
+      expected:  { 'code': 10002, 'msg': '名称不可重复' }
 
 get_Search:
   dec: "主流程"
@@ -244,6 +260,19 @@ add_property_field:
       }
       parser:   *parser
       expected: *expected
+    -
+      test_name: '新增属性字段-名称重复'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/propertyfield/add
+      data: {
+        'propertyNameId': 10,
+        'description': '测试',
+        'filedName': '十五个字符0'
+      }
+      parser:   *parser
+      expected:  { 'code': 10002, 'msg': '名称不可重复' }
 
 edit_property_field:
   dec: "主流程"
@@ -258,7 +287,7 @@ edit_property_field:
         'id': 12,
         'propertyNameId': 10,
         'description': '测试',
-        'filedName': 'xuejian_字段'
+        'filedName': 'xuejian_字段001'
       }
       parser:   *parser
       expected: *expected

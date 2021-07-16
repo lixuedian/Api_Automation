@@ -21,16 +21,12 @@ class TestShiJuan(object):
     @allure.description('各个字典配置接口 (招考类型，范围, 周期 阶段)')
     @pytest.mark.parametrize('case', case_data)
     def test_sj_01(self, case):
-        TestShiJuan.test_sj_01.__doc__ = case['test_name']
-
         receive.get_recruit_exam_config_data()
         Consts.RESULT_LIST.append('True')
 
     @allure.description('后台招考列表')
     @pytest.mark.parametrize('case', case_data)
     def test_sj_02(self, case):
-        TestShiJuan.test_sj_02.__doc__ = case['test_name']
-
         """添加招考单条信息"""
         receive.add_recruit_exam_one('2021北京教师招聘考试', test)
 
