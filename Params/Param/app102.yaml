@@ -1,0 +1,101 @@
+catOne:
+  dec: "题库-app首页 题库分类一级"
+  parameters:
+    - test_name: '题库-app首页 题库分类一级-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/tiku/catOne
+      data: {
+          'examArea': 15,
+          'subject': '语文',
+          'examType': 12
+      }
+      parser: &parser { 'code': "['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1, 'msg': '请求成功' }
+
+addAnswer:
+  dec: "002-题库-提交答案"
+  parameters:
+    - test_name: '002-题库-提交答案-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url:  /v2/tiku/addAnswer
+      data: {
+          "datiNums": 5,
+          "examType": 22,
+          "resultData": {
+              "data":
+                  {
+                      "bigid2": 21,
+                      "right_or_wrong": 1,
+                      "bigid1": 2,
+                      "catid3": 226,
+                      "choice": "C",
+                      "getScore": 0,
+                      "type": 1,
+                      "catid2": 225,
+                      "part": 0,
+                      "catid1": 210,
+                      "tiid": 1142,
+                      "score": 0
+                  }
+          },
+          "spentTime": 0,
+          "brushRounds": 1,
+          "level": 2,
+          "title": "教育目的"
+      }
+      parser: *parser
+      expected: *expected
+
+catLists:
+    dec: "003-题库-app首页 题库分类"
+    parameters:
+        - test_name: '003-题库-app首页 题库分类'
+          mode: 1
+          type: data
+          methods: post
+          url:  /v2/tiku/catLists
+          data: {
+              'subject': '语文',
+              'examArea': 15,
+              'examType': 22,
+              'studyPhase': 2
+          }
+          parser: *parser
+          expected:  { 'code': 1, 'msg': '请求成功！' }
+
+getQuestion:
+    dec: "004-题库-app首页 抽题接口"
+    parameters:
+        - test_name: '004-题库-app首页 抽题接口'
+          mode: 1
+          type: data
+          methods: post
+          url:  /v2/tiku/getQuestion
+          data: {
+              'catId2': 1500,
+              'bigId2': 53,
+              'catId1': 1423,
+              'examType': 22
+          }
+          parser: *parser
+          expected:  *expected
+
+
+clearHistory:
+    dec: "004-题库-清空答题记录"
+    parameters:
+        - test_name: '004-题库-清空答题记录'
+          mode: 1
+          type: data
+          methods: post
+          url:  /v2/tiku/getQuestion
+          data: {
+              'examType': 22,
+              'bigId2': [53,54,55]
+          }
+          parser: *parser
+          expected:  *expected

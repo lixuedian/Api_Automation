@@ -7,19 +7,155 @@ order_list:
       methods: post
       url: /order/list
       data: {
+          'pageNum': 1,
+          'pageSize': 20
       }
       parser: &parser { 'code': "['code']", 'msg': '["msg"]' }
-      expected: &expected { 'code': 1000, 'msg': 'Success' }
+      expected: &expected { 'code': 1000, 'msg': '操作成功' }
+    -
+      test_name: '根据条件筛选订单信息-按项目查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'projectIdList': [1]
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件筛选订单信息-支付时间查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+          "pageNum": 1,
+          "pageSize": 20,
+          "beginTime": "2021-07-17 00:00:00",
+          "endTime": "2021-07-18 00:00:00"
+        }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件筛选订单信息-订单状态-待支付查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'orderStatus': 2
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件筛选订单信息-订单状态-已支付查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'orderStatus': 3
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件筛选订单信息-订单状态-已取消查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'orderStatus': 100
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件筛选订单信息-订单编号查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'orderNo': "110162639980056000000012"
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件筛选订单信息-用户id查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'userId': 12
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件筛选订单信息-用户手机号查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'userPhone': 17610772092
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件筛选订单信息-商品id查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'goodsId': 17
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件筛选订单信息-商品名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'goodsName': '商品名称'
+      }
+      parser: *parser
+      expected: *expected
 
 order_export:
   dec: "根据条件筛选订单信息"
   parameters:
-    - test_name: '根据条件筛选订单信息-主流程'
+    - test_name: '导出订单信息-主流程'
       mode: 1
       type: json
       methods: post
       url: /order/export
       data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'orderNo': "110162639980056000000012"
       }
       parser: *parser
       expected: *expected 
@@ -34,19 +170,182 @@ pay_list:
       methods: post
       url: /order/pay/list
       data: {
+        'pageNum': 1,
+        'pageSize': 20
       }
       parser: *parser
       expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-按项目查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'projectIdList': [1]
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-支付时间查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        "pageNum": 1,
+        "pageSize": 20,
+        "beginTime": "2021-07-17 00:00:00",
+        "endTime": "2021-07-18 00:00:00"
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-审核时间查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data:  {
+        "pageNum": 1,
+        "pageSize": 20,
+        "checkBeginTime": "2021-07-17 00:00:00",
+        "checkEndTime": "2021-07-18 00:00:00"
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-支付方式-微信'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'payChannelCode': 1
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-支付方式-支付宝'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'payChannelCode': 2
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-订单编号查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'orderNo': "110162639980056000000012"
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-用户id查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'userId': 12
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-用户手机号查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'userPhone': 17610772092
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-商品id查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'goodsId': 17
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-商品名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'goodsName': '商品名称'
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-三方支付流水号查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'thirdPartNo': '22522433453N'
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '根据条件获取订单流水列表-商户订单号查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/list
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'businessOrderNo': '2021071622001407011435070560'
+      }
+      parser: *parser
+      expected: *expected
+
 
 pay_get:
   dec: "根据orderPayId获取相应的支付单信息"
   parameters:
     - test_name: '根据orderPayId获取相应的支付单信息-主流程'
-      mode: 1
+      mode: 0
       type: json
-      methods: post
+      methods: get
       url: /order/pay/get
       data: {
+          'orderPayId': 46,
+          'orderPayNo': 30RA110162642141435000001126
       }
       parser: *parser
       expected: *expected
@@ -60,6 +359,9 @@ pay_saveNote:
       methods: post
       url: /order/pay/saveNote
       data: {
+        'orderPayId': 46,
+        'orderPayNo': 30RA110162642141435000001126,
+        'note': 'xuejian'
       }
       parser: *parser
       expected: *expected
@@ -73,6 +375,9 @@ pay_refused:
       methods: post
       url: /order/pay/refused
       data: {
+        'orderPayId': 46,
+        'orderPayNo': 30RA110162642141435000001126,
+        'note': 'xuejian'
       }
       parser: *parser
       expected: *expected
@@ -85,8 +390,7 @@ pay_refusedBatch:
       type: json
       methods: post
       url: /order/pay/refusedBatch
-      data: {
-      }
+      data: {"orderPayList":[70,69,67,48]}
       parser: *parser
       expected: *expected
 
@@ -99,6 +403,9 @@ pay_check:
       methods: post
       url: /order/pay/check
       data: {
+        'orderPayId': 46,
+        'orderPayNo': 30RA110162642141435000001126,
+        'note': 'xuejian'
       }
       parser: *parser
       expected: *expected
@@ -111,12 +418,11 @@ pay_checkBatch:
       type: json
       methods: post
       url: /order/pay/checkBatch
-      data: {
-      }
+      data: {"orderPayList":[70,69,67,48]}
       parser: *parser
       expected: *expected
 
-PayExport:
+pay_export:
   dec: "导出支付单信息"
   parameters:
     - test_name: '导出支付单信息-主流程'
@@ -125,9 +431,25 @@ PayExport:
       methods: post
       url: /order/pay/export
       data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'orderNo': "110162643348055000001126"
       }
       parser: *parser
       expected: *expected
+    -
+      test_name: '导出支付单信息-无数据'
+      mode: 1
+      type: json
+      methods: post
+      url: /order/pay/export
+      data: {
+        'pageNum': 1,
+        'pageSize': 20,
+        'orderNo': "110162639980056000000012"
+      }
+      parser: *parser
+      expected: {'code': 10000, 'msg': '没有检索到匹配的订单数据'}
 
 prePurchase:
   dec: "商品确认页面"
@@ -221,7 +543,7 @@ getOrders:
       parser: *parser
       expected: *expected
 
-CancelOrders:
+cancel_Order:
   dec: "取消订单"
   parameters:
     - test_name: '取消订单-主流程'

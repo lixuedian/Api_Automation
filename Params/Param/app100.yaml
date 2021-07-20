@@ -1,0 +1,612 @@
+abc:
+  dec: test
+  parameters:
+      -
+        test: &expected { 'code': 1, 'msg': '请求成功' }
+        test2: &expected_01 { 'code': 1, 'msg': '获取成功' }
+        test3: &expected_02 { 'code': 1, 'msg': '预约成功' }
+        test4: &expected_03 { 'code': 1, 'msg': '提交成功' }
+        test5: &expected_04 { 'code': 1, 'msg': '更新成功' }
+
+getRoomLiveUrl:
+  dec: "（001）001-课程相关-获取直播间链接"
+  parameters:
+    - test_name: '（001）001-课程相关-获取直播间链接-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getRoomLiveUrl
+      data: {
+              'vid': 21
+      }
+      parser: &parser { 'code': "['code']", 'msg': '["msg"]' }
+      expected: *expected_01
+
+getMyCourseList:
+  dec: "（002）002-课程相关-获取我的课程列表"
+  parameters:
+    - test_name: '（002）002-课程相关-获取我的课程列表-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getMyCourseList
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected
+
+myLiveCourse:
+  dec: "（004）004-课程相关-练习首页正在直播公开课和我的直播课程"
+  parameters:
+    - test_name: '（004）004-课程相关-练习首页正在直播公开课和我的直播课程-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng2/myLiveCourse
+      data: {
+          'examType': 21,
+          'examArea': 19
+      }
+      parser: *parser
+      expected: *expected
+
+newSendSms:
+  dec: "（005）005-课程相关-语音验证码"
+  parameters:
+    - test_name: '（005）005-课程相关-语音验证码'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/voice/newSendSms
+      data: {
+        'mobileno': '908b8e1a700ce3c51ae12e08742b98f9'
+      }
+      parser: *parser
+      expected: *expected
+
+
+returnMoneyShare:
+  dec: "（006）006-课程相关-获取推荐返现分享信息"
+  parameters:
+    - test_name: '（006）006-课程相关-获取推荐返现分享信息'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng2/returnMoneyShare
+      data: {
+        'cid': 710,
+        'classId': 4617
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+indexOpen:
+  dec: "（007）007-课程相关-首页最新公共课"
+  parameters:
+    - test_name: '（006）006-课程相关-获取推荐返现分享信息'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng2/indexOpen
+      data: {
+        'examType': 21,
+        'examArea': 19
+      }
+      parser: *parser
+      expected: *expected
+
+
+gradeList:
+  dec: "（008）008-课程相关-班级列表"
+  parameters:
+    - test_name: '（008）008-课程相关-班级列表'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng2/gradeList
+      data: {
+        'examType': 21,
+        'examArea': 19,
+        'catid3': 1
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+openList:
+  dec: "（009）009-课程相关-公开课"
+  parameters:
+    - test_name: '（009）009-课程相关-公开课'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng2/openList
+      data: {
+        'examType': 21,
+        'examArea': 19
+      }
+      parser: *parser
+      expected: *expected
+
+
+getVieDeoWechat:
+  dec: "（010）010-课程相关-视频播放页面，班主任微信接口"
+  parameters:
+    - test_name: '（010）010-课程相关-视频播放页面，班主任微信接口'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng2/getViedeoWechat
+      data: {
+        'classId': 973
+      }
+      parser: *parser
+      expected: *expected
+
+
+courseList:
+  dec: "（011）011-课程相关-推荐课程（首页）"
+  parameters:
+    - test_name: '（011）011-课程相关-推荐课程（首页）'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng2/courseList
+      data: {
+        'examType': 21
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+couponNum:
+  dec: "（012）012-课程相关-优惠券数量"
+  parameters:
+    - test_name: '（012）012-课程相关-优惠券数量'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng2/couponNum
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected
+
+
+YuYue:
+  dec: "（013）013-课程相关-课程预约"
+  parameters:
+    - test_name: '（013）013-课程相关-课程预约'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/yuyue
+      data: {
+          'examType': 21,
+          'subject': '语文',
+          'mobilestyle': '设备',
+          'vid': 2172,
+          'classId': 4622
+      }
+      parser: *parser
+      expected: *expected_02
+
+
+setPlayLog:
+  dec: "（015）015-课程相关-播放记录"
+  parameters:
+    - test_name: '（015）015-课程相关-播放记录'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/setPlayLog
+      data: {
+        'orderId': 89794,
+        'vt': 120,
+        'vid': 2172,
+        'mobilestyle': 'pc'
+      }
+      parser: *parser
+      expected: *expected_03
+
+updateToken:
+  dec: "（014）014-课程相关-我的课程-取得新的token"
+  parameters:
+    - test_name: '（014）014-课程相关-我的课程-取得新的token'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/updateToken
+      data: {
+
+      }
+      parser: *parser
+      expected: {'code': 100, 'msg': '您的账号在别的设备上登录了！'}
+
+
+setOrderTop:
+  dec: "（016）016-课程相关-课程置顶-删除/恢复"
+  parameters:
+    - test_name: '（016）016-课程相关-课程置顶-删除/恢复'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/setOrderTop
+      data: {
+          'orderId': 4561627
+      }
+      parser: { 'code': "['code']" }
+      expected: {'code': 1}
+
+
+setOfflinePlayLog:
+  dec: "（017）017-课程相关-视频观看日志记录"
+  parameters:
+    - test_name: '（017）017-课程相关-视频观看日志记录'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/setOfflinePlayLog
+      data: {
+        'mobilestyle': 'pc',
+        'vt_data': {}
+      }
+      parser: *parser
+      expected: *expected
+
+
+setDownLog:
+  dec: "（018）018-课程相关-下载次数记录"
+  parameters:
+    - test_name: '（018）018-课程相关-下载次数记录'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/setDownLog
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected
+
+setCourseDel:
+  dec: "（019）019-课程相关-订单删除/恢复"
+  parameters:
+    - test_name: '（019）019-课程相关-订单删除/恢复'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/setCourseDel
+      data: {
+          'orderId': 4561627
+      }
+      parser: { 'code': "['code']" }
+      expected: {'code': 1}
+
+KeChengOpen:
+  dec: "（020）020-课程相关-所有公共课"
+  parameters:
+    - test_name: '（020）020-课程相关-所有公共课'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/open
+      data: {
+        'examType': 21,
+        'examArea': 19
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '提交成功' }
+
+offlineInfo:
+  dec: "（021）021-课程相关-购买线下-信息完善"
+  parameters:
+    - test_name: '（021）021-课程相关-购买线下-信息完善'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/offlineInfo
+      data: {
+        'orderId': 4561627,
+        'realname': '宁宁',
+        'phone': 17710351984,
+        'province': 19,
+        'city': 37,
+        'area': 471,
+        'examType2': 5,
+        'subject': '语文'
+      }
+      parser: *parser
+      expected: *expected_03
+
+
+KenChengInfo:
+  dec: "（022）022-课程相关-班级课程详情"
+  parameters:
+    - test_name: '（022）022-课程相关-班级课程详情'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/info
+      data: {
+        'classId': 4625
+      }
+      parser: *parser
+      expected: *expected
+
+goldBuy:
+  dec: "（023）023-课程相关-金币购买课程"
+  parameters:
+    - test_name: '（023）023-课程相关-金币购买课程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/goldBuy
+      data: {
+        'cid': 710,
+        'classId': 4625,
+        'gold': 0.1,
+        'mobilestyle': 'pc'
+      }
+      parser: { 'code': "['code']"}
+      expected: { 'code': 1 }
+
+
+getSubject:
+  dec: "（024）024-课程相关-获取学科"
+  parameters:
+    - test_name: '（024）024-课程相关-获取学科'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getSubject
+      data: {
+        'examType2': 1
+      }
+      parser: *parser
+      expected: *expected
+
+
+getRoomEnterUrl:
+  dec: "（025）025-课程相关-进入教室"
+  parameters:
+    - test_name: '（025）025-课程相关-进入教室'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getRoomEnterUrl
+      data: {
+        'vid': 2174
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '获取成功' }
+
+
+getRecommend:
+  dec: "（027）027-课程相关-视频播放-课程推荐"
+  parameters:
+    - test_name: '（027）027-课程相关-视频播放-课程推荐'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getRecommend
+      data: {
+        'classId': 4211
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+getRoll:
+  dec: "（026）026-课程相关-获取滚动数据"
+  parameters:
+    - test_name: '（026）026-课程相关-获取滚动数据'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getRoll
+      data: {
+        'classId': 4211
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '请求成功' }
+
+
+getMyCourseInfo:
+  dec: "（028）028-课程相关-课程-视频列表"
+  parameters:
+    - test_name: '（028）028-课程相关-课程-视频列表'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getMyCourseInfo
+      data: {
+        'orderId': 4561627
+      }
+      parser: { 'code': "['code']"}
+      expected: { 'code': 1}
+
+
+getListOne:
+  dec: "（029）029-课程相关-班级列表"
+  parameters:
+    - test_name: '（029）029-课程相关-班级列表'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getListOne
+      data: {
+        'examType': 21,
+        'examArea': 19,
+        'catid3': 1
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '获取成功' }
+
+
+getList2:
+  dec: "（030）030-课程相关-课程目录"
+  parameters:
+    - test_name: '（030）030-课程相关-课程目录'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getList2
+      data: {
+        'catid2': 1,
+        'studyPhase': 4,
+        'subject': '语文',
+        'examType': 21,
+        'province': 19,
+        'classIds': [64,84,154],
+        'versionNo': '2.9.7'
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '获取成功' }
+
+getList1:
+  dec: "（031）031-课程相关-课程列表-新版"
+  parameters:
+    - test_name: '（031）031-课程相关-课程列表-新版'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getList1
+      data: {
+        'examType': 21,
+        'catid2': 1
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '获取成功' }
+
+
+getList0:
+  dec: "（032）032-课程相关-课程列表-新版1.7.0（推荐到首页）"
+  parameters:
+    - test_name: '（032）032-课程相关-课程列表-新版1.7.0（推荐到首页）'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getList0
+      data: {
+        'examType': 21
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '获取成功' }
+
+
+getCoupon:
+  dec: "（033）033-课程相关-获取优惠券数据"
+  parameters:
+    - test_name: '（033）033-课程相关-获取优惠券数据'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getCoupon
+      data: {
+        'classId': 4607,
+        'orderId': 89794
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '获取成功' }
+
+getExpDetail:
+  dec: "（034）034-课程相关-获取物流详情"
+  parameters:
+    - test_name: '（034）034-课程相关-获取物流详情'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/My/getExpDetail
+      data: {
+        'expno': 821835803530,
+        'exptype': 2
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '获取成功' }
+
+
+checkPay:
+  dec: "（035）035-课程相关-是否已经支付"
+  parameters:
+    - test_name: '（035）035-课程相关-是否已经支付'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/checkPay
+      data: {
+        'cid': 705,
+        'classId': 4607,
+        'mobilestyle': 'pc'
+      }
+      parser: *parser
+      expected: {'code': 1,'msg': '请先购买该课程'}
+
+
+getCharge:
+  dec: "（036）036-课程相关-ping++取得charge对象"
+  parameters:
+    - test_name: '（036）036-课程相关-ping++取得charge对象'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/getCharge
+      data: {
+        'cid': 440,
+        'classId': 4627,
+        'mobilestyle': 'pc',
+        'channel': 'alipay',
+        'price': 3,
+        'gold': '0.27'
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '获取成功' }
+
+
+taskList:
+  dec: "（037）037-课程相关-任务中心"
+  parameters:
+    - test_name: '（037）037-课程相关-任务中心'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng2/taskList
+      data: {
+        'examType': 21,
+        'examArea': 19
+      }
+      parser: *parser
+      expected: *expected
+
+
+setSchoolTime:
+  dec: "（040）003-用户相关-设置学校、毕业时间"
+  parameters:
+    - test_name: '（040）003-用户相关-设置学校、毕业时间'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/setSchoolTime
+      data: {
+        'school': '北京大学',
+        'graduateTime': '毕业时间'
+      }
+      parser: *parser
+      expected: { 'code': 1, 'msg': '提交成功' }
+
+My_order:
+  dec: "（041）004-用户相关-我的订单"
+  parameters:
+    - test_name: '（041）004-用户相关-我的订单'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/order
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected_01

@@ -1,0 +1,168 @@
+indexMokao:
+  dec: "001-模考相关V1版本-获取首页模考"
+  parameters:
+    - test_name: '001-模考相关V1版本-获取首页模考-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/mokao/indexMokao
+      data: {
+              'examArea': 32,
+              'examType': 21,
+              'mobilestyle': 'iOS_2.9.4_iPhone+XS',
+              'projectId': 1,
+              'source': 103,
+              'studyPhase': 2,
+              'versionType': 1
+      }
+      parser: &parser { 'code': "['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1, 'msg': '请求成功' }
+
+MoZhenTi:
+  dec: "001-模考相关V1版本-获取首页列表"
+  parameters:
+    - test_name: '001-模考相关V1版本-获取首页列表-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/mokao/zhenti
+      data: {
+        'bigid1': 5,
+        'examArea': 1,
+        'examCity': '%E5%8C%97%E4%BA%AC%E5%B8%82',
+        'examType': 12,
+        'mobilestyle': 'iOS_2.9.4_iPhone+XS',
+        'projectId': 1,
+        'source': 103,
+        'studyPhase': 1,
+        'subject': 2,
+        'uuid': 508023,
+        'isNewInterface': 1,
+        'abilityId': 55,
+        'catid1': 0,
+        'isPreview': 1
+      }
+      parser: *parser
+      expected: *expected
+
+subscribe:
+  dec: "001-模考相关V1版本-预约模考"
+  parameters:
+    - test_name: '001-模考相关V1版本-预约模考-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/mokao/subscribe
+      data: {
+        'examType': 1,
+        'shijuanid': 1552
+      }
+      parser:  { 'code': "['code']" }
+      expected:  { 'code': 1 }
+
+rankingNew:
+  dec: "001-模考相关V1版本-模考大赛详情"
+  parameters:
+    - test_name: '001-模考相关V1版本-模考大赛详情-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/mokao/rankingNew
+      data: {
+        'shijuanid': 1507,
+        'versionNo': 1,
+        'isnew_oss': 0
+      }
+      parser:  { 'code': "['code']" }
+      expected:  { 'code': 1 }
+
+rankingList:
+  dec: "001-模考相关V1版本-模考排行榜"
+  parameters:
+    - test_name: '001-模考相关V1版本-模考排行榜-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/mokao/rankingList
+      data: {
+        'shijuanid': 1552
+      }
+      parser: *parser
+      expected: *expected
+
+getZhenTiDataNew:
+  dec: "001-模考相关V1版本-获取真题数据"
+  parameters:
+    - test_name: '001-模考相关V1版本-获取真题数据-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/mokao/rankingList
+      data: {
+        'shijuanid': 1552,
+        'examType': 1
+      }
+      parser: *parser
+      expected: *expected
+
+getZhenTiCat:
+  dec: "001-真题相关V1版本-app首页 阶段类型-能力分类(用于切换)"
+  parameters:
+    - test_name: '001-真题相关V1版本-app首页 阶段类型-能力分类(用于切换)-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/zhenti/getZhentiCat
+      data: {
+        'examArea': 1,
+        'examType': 12,
+        'versionType': 1
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '001-真题相关V1版本-app首页真题分类接口tablestore版本-主流程'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/zhenti/getZhentiCat
+      data: {
+        'examArea': 17,
+        'examType': 3,
+        'versionType': 2
+      }
+      parser: *parser
+      expected: *expected
+
+ZhenTi:
+  dec: "001-真题相关V1版本-真题列表"
+  parameters:
+    - test_name: '001-真题相关V1版本-真题列表'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/zhenti/zhenti
+      data: {
+        'examArea': 1,
+        'examType': 12,
+        'versionType': 1,
+        'abilityId': 22,
+        'catid1': 0
+      }
+      parser: *parser
+      expected: *expected
+
+getZhenTiData:
+  dec: "001-真题相关V1版本-获取真题题目数据"
+  parameters:
+    - test_name: '001-真题相关V1版本-获取真题题目数据'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/zhenti/getZhentiData
+      data: {
+        'examType': 1,
+        'shijuanid': 747
+      }
+      parser: *parser
+      expected: *expected

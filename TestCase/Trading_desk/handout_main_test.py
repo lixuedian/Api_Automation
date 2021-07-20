@@ -124,7 +124,7 @@ class TestHandoutVideo(object):
     def test_handout_video_01(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
-        for i in range(1, 1):
+        for i in range(1, 2):
             result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
             log.info('响应结果：%s' % result)
             parser(result, case['test_name'], case['parser'], case['expected'])

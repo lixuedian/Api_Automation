@@ -184,3 +184,14 @@ class Config:
             'uuid': uuid
         }
         return header
+
+    def header_app(self, TEXT):
+        """教师登录token信息"""
+        token = self.get_conf(TEXT, 'token')
+        uuid = self.get_conf(TEXT, 'uuid')
+        header = {
+            'token': token,
+            'uuid': uuid,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        return header

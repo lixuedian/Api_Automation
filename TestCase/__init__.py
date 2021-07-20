@@ -14,9 +14,14 @@ test_sms_url = '%s%s' % ('http://', test_sms_url)
 test_user_url = config.test_user_url
 test_user_url = '%s%s' % ('http://', test_user_url)
 token = config.h_token
+test_app102 = '%s%s' % ('http://', config.get_conf('test_host', 'test_app102'))
+test_app300 = '%s%s' % ('http://', config.get_conf('test_host', 'test_app300'))
+test_app100 = '%s%s' % ('http://', config.get_conf('test_host', 'test_app100'))
+
 
 H_header = {
     'token': token
 }
 
 header_data = config.header_data('parameter')
+header_app = config.header_app('APP')

@@ -23,3 +23,11 @@ class LoginC:
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
+
+
+class LoginK:
+    """APP端用户登录"""
+    params = get_parameter('K_login')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])

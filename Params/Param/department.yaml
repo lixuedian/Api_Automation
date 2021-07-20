@@ -106,9 +106,7 @@ update:
         "id": 1099,
         "note": "测试",
         "status": 1,
-        "projectList": [
-            1
-        ]
+        "projectList": [1, 2, 3, 4, 5]
       }
       parser:   *parser
       expected:  *expected
@@ -137,9 +135,7 @@ update:
             "name": "教师"
           }
         ],
-        "projectList": [
-            1
-        ]
+        "projectList": [1, 2, 3, 4, 5]
       }
       parser:   *parser
       expected:  *expected
