@@ -1,160 +1,180 @@
-
 import allure
 import pytest
 from Common import Consts
 from Common.Parser import parser
 from Common.Methodes import notify, log
 import TestCase
-from Params.params_syllabus import GetTeacher, GetCourseTimesStatus, GetTeachTypeS, GetSyllabus, AddChapter, \
-    EditChapter, GetChapterById, GetAllChapter, GetCourseTimesById, AddCourseTimes, EditCourseTimes, GetTreeChapters, \
-    DeleteSyllabus
+from Common.Mysql_operate import mysql_db
+from Params.params_project import AddProject, AddProjectType, GetProjectTypes, GetProjectTypeByName, \
+    GetProjectListByCondition, SearchModule, GetSearch, AddProperty, EditProperty, GetOne, AddPropertyField, \
+    EditPropertyField, GetPropertyField, GetOnePropertyField
 
-header = TestCase.Trading_desk.header('Trading')
+header = TestCase.TradingDesk.zt_header
 BASE_PATH = TestCase.BASE_PATH
-url = TestCase.Trading_desk.url
+url = TestCase.TradingDesk.url
 
 
-class TestSyllabus(object):
-
-    @allure.description('获取上课老师下拉选项')
-    @pytest.mark.parametrize('case', GetTeacher().case_data)
-    def test_syllabus_01(self, case):
+class TestProject(object):
+    @allure.description('添加项目分类')
+    @pytest.mark.parametrize('case', AddProjectType().case_data)
+    def project_01(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('获取课次状态下拉选项')
-    @pytest.mark.parametrize('case', GetCourseTimesStatus().case_data)
-    def test_syllabus_02(self, case):
+    @allure.description('获取项目分类列表')
+    @pytest.mark.parametrize('case', GetProjectTypes().case_data)
+    def test_project_02(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('获取授课下拉选项')
-    @pytest.mark.parametrize('case', GetTeachTypeS().case_data)
-    def test_syllabus_03(self, case):
+    @allure.description('根据项目分类名称查询项目分类信息')
+    @pytest.mark.parametrize('case', GetProjectTypeByName().case_data)
+    def test_project_03(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('课程大纲列表查询')
-    @pytest.mark.parametrize('case', GetSyllabus().case_data)
-    def test_syllabus_04(self, case):
+    @allure.description('添加项目')
+    @pytest.mark.parametrize('case', AddProject().case_data)
+    def project_04(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('新增章节')
-    @pytest.mark.parametrize('case', AddChapter().case_data)
-    def test_syllabus_05(self, case):
+    @allure.description('根据项目分类id和名称获取项目列表')
+    @pytest.mark.parametrize('case', GetProjectListByCondition().case_data)
+    def test_project_05(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('修改章节信息')
-    @pytest.mark.parametrize('case', EditChapter().case_data)
-    def test_syllabus_06(self, case):
+
+class TestProperty(object):
+    @allure.description('字段设置列表')
+    @pytest.mark.parametrize('case', SearchModule().case_data)
+    def test_property_01(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('根据章节id获取章节信息')
-    @pytest.mark.parametrize('case', GetChapterById().case_data)
-    def test_syllabus_07(self, case):
+    @allure.description('自定义字段列表')
+    @pytest.mark.parametrize('case', GetSearch().case_data)
+    def test_property_02(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('获取所有章')
-    @pytest.mark.parametrize('case', GetAllChapter().case_data)
-    def test_syllabus_08(self, case):
+    @allure.description('新增动态属性')
+    @pytest.mark.parametrize('case', AddProperty().case_data)
+    def property_03(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        mysql = "delete  from test_common.property_name   where name like '%xuejian_属性%'"
+        mysql_db(mysql)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('根据课次id查询课次信息接口')
-    @pytest.mark.parametrize('case', GetCourseTimesById().case_data)
-    def test_syllabus_09(self, case):
+    @allure.description('编辑动态属性')
+    @pytest.mark.parametrize('case', EditProperty().case_data)
+    def property_04(self, case):
+
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('增加课次')
-    @pytest.mark.parametrize('case', AddCourseTimes().case_data)
-    def test_syllabus_10(self, case):
+    @allure.description('获取一条动态属性的基本信息')
+    @pytest.mark.parametrize('case', GetOne().case_data)
+    def test_property_05(self, case):
+        # mysql = "select id from test_mp_goods_center.goods_video where name = 'xuejian_组合'"
+        # mysql_select(mysql)
+        # data = videoId
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('编辑课次')
-    @pytest.mark.parametrize('case', EditCourseTimes().case_data)
-    def test_syllabus_11(self, case):
+    @allure.description('新增属性字段')
+    @pytest.mark.parametrize('case', AddPropertyField().case_data)
+    def property_06(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        mysql = "update test_common.property_field  set is_delete = 1  where filed_name = 'xuejian_字段'"
+        mysql_db(mysql)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('获取章节（树形结构）')
-    @pytest.mark.parametrize('case', GetTreeChapters().case_data)
-    def test_syllabus_12(self, case):
+    @allure.description('编辑属性字段')
+    @pytest.mark.parametrize('case', EditPropertyField().case_data)
+    def property_07(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('删除章节课次')
-    @pytest.mark.parametrize('case', DeleteSyllabus().case_data)
-    def test_syllabus_13(self, case):
+    @allure.description('查询属性字段')
+    @pytest.mark.parametrize('case', GetPropertyField().case_data)
+    def test_property_08(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        Consts.RESULT_LIST.append('True')
+
+    @allure.description('获取属性字段详情')
+    @pytest.mark.parametrize('case', GetOnePropertyField().case_data)
+    def test_property_09(self, case):
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
+        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        log.info('响应结果：%s' % result)
+        parser(result, case['test_name'], case['parser'], case['expected'])
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')

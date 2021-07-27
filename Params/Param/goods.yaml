@@ -44,6 +44,15 @@ goods_delete:
       type: json
       methods: post
       url: /opservice/goods/delete
+      data: {'id': 109}
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '删除商品-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/goods/delete
       data: {'id': 69}
       parser: *parser
       expected: *expected

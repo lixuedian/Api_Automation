@@ -133,7 +133,7 @@ edit_property:
       methods: post
       url: /opservice/property/edit
       data: {
-        'id': 10,
+        'id': &id 10,
         'name': 'xuejian_属性002',
         'projectId': 1,
         'description': '测试',
@@ -149,7 +149,7 @@ edit_property:
       methods: post
       url: /opservice/property/edit
       data: {
-        'id': 10,
+        'id': *id,
         'name': 'xuejian_属性001',
         'projectId': 1,
         'description': '测试',

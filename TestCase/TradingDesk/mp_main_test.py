@@ -11,8 +11,8 @@ from Params.params_mp import Role, PermissionS
 from Common.Mysql_operate import MysqlDb, mysql_conf
 
 
-url = TestCase.Trading_desk.url
-header = TestCase.Trading_desk.header('Trading')
+url = TestCase.TradingDesk.url
+header = TestCase.TradingDesk.zt_header
 BASE_PATH = TestCase.BASE_PATH
 
 

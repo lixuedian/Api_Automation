@@ -1,0 +1,184 @@
+findById:
+  dec: "按项目分类ID查询项目列表"
+  parameters:
+    -
+      test_name: '按项目分类ID查询项目列表-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/project/category/findById
+      data: {
+          'id': 3
+      }
+      parser: &parser { 'code': "['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1000, 'msg': 'Success' }
+
+findByProjectIdWithPage:
+  dec: "按项目ID查找商品列表"
+  parameters:
+    -
+      test_name: '按项目ID查找商品列表-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/goods/findByProjectIdWithPage
+      data: {
+          'projectId': 1,
+          'pageSize': 10,
+          'pageIndex': 1
+      }
+      parser: *parser
+      expected: *expected 
+
+getInfoByGoodsId:
+  dec: "按商品ID获取商品信息"
+  parameters:
+    -
+      test_name: '按商品ID获取商品信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/goods/getInfoByGoodsId
+      data: {
+        'goodsId': &goodsId 104
+      }
+      parser: *parser
+      expected: *expected
+
+getLecturersByIdsAndCategoryId:
+  dec: "获取授课讲师信息"
+  parameters:
+    -
+      test_name: '获取授课讲师信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/goods/getLecturersByIdsAndCategoryId
+      data: {
+        'projectCategoryId': 3,
+        'lecturerIds': 1
+      }
+      parser: *parser
+      expected: *expected
+
+getCourseContents:
+  dec: "按商品ID获取商品绑定的课程目录"
+  parameters:
+    -
+      test_name: '按商品ID获取商品绑定的课程目录-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/goods/getCourseContents
+      data: {
+        'courseIds': *goodsId
+      }
+      parser: *parser
+      expected: *expected
+
+getUserInfo:
+  dec: "获取个人信息"
+  parameters:
+    -
+      test_name: '获取个人信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/personal/getUserInfo
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected
+
+getCourses:
+  dec: "获取用户课程列表"
+  parameters:
+    -
+      test_name: '获取用户课程列表-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/personal/getCourses
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected
+
+
+topCourse:
+  dec: "课程置顶"
+  parameters:
+    -
+      test_name: '课程置顶-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /market-api/personal/topCourse
+      data: {
+        'id': 1
+      }
+      parser: *parser
+      expected: *expected
+
+cancelTopCourse:
+  dec: "课程取消置顶"
+  parameters:
+    -
+      test_name: '课程取消置顶-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /market-api/personal/cancelTopCourse
+      data: {
+        'id': 1
+      }
+      parser: *parser
+      expected: *expected
+
+my_getCourseContents:
+  dec: "按课程ID获取课程目录"
+  parameters:
+    -
+      test_name: '按课程ID获取课程目录-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/personal/getCourseContents
+      data: {
+        'id': *goodsId
+      }
+      parser: *parser
+      expected: *expected
+
+getPlayLink:
+  dec: "获取课程播放链接"
+  parameters:
+    -
+      test_name: '获取课程播放链接-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/personal/getPlayLink
+      data: {
+        'id': *goodsId,
+        'classroomId': 21072284058134
+      }
+      parser: *parser
+      expected: *expected
+
+getCourseHandouts:
+  dec: "按讲义ID获取讲义信息"
+  parameters:
+    -
+      test_name: '按讲义ID获取讲义信息-主流程'
+      mode: 0
+      type: json
+      methods: get
+      url: /market-api/personal/getCourseHandouts
+      data: {
+        'id': 38,
+      }
+      parser: *parser
+      expected: *expected

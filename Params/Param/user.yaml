@@ -59,3 +59,20 @@ getVerifyCode:
       #header: {'token': &token}
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': 'Success' }
+
+
+smsCode:
+  dec: "验证码发送接口"
+  parameters:
+    -
+      test_name: '验证码发送接口'
+      mode: 1
+      type: data
+      methods: post
+      url: /cucenter/user/account/smsCode
+      data: {
+          ''
+      }
+      #header: {'token': &token}
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': 'Success' }

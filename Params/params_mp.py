@@ -1,12 +1,13 @@
+from Config.Config import Config
 from Params.params_user import *
-import TestCase.Trading_desk
+import TestCase.TradingDesk
 from Common.Methodes import notify, log
 from Common.Parser import parser
 
 
 class Role(object):
-    url = TestCase.Trading_desk.url
-    header = TestCase.Trading_desk.header('Trading')
+    url = TestCase.TradingDesk.url
+    header = Config().header_json('Trading')
     roleId = ''
 
     def role_list(self):
@@ -99,8 +100,8 @@ class Role(object):
 
 
 class PermissionS(object):
-    url = TestCase.Trading_desk.url
-    header = TestCase.Trading_desk.header('Trading')
+    url = TestCase.TradingDesk.url
+    header = Config().header_json('Trading')
     permissionId = ''
 
     def permission_get(self):

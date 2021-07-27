@@ -1,3 +1,18 @@
+addChapter:
+  dec: "主流程"
+  parameters:
+    - test_name: '添加章节-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/course/syllabus/addChapter
+      data: {
+        'name': &name '测试章节01',
+        'courseId': &courseId 1
+      }
+      parser: &parser { 'code': "['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1000, 'msg': '成功' }
+
 findByCondition:
   dec: "主流程"
   parameters:
@@ -7,24 +22,72 @@ findByCondition:
       methods: post
       url: /opservice/course/syllabus/findByCondition
       data: {
-      }
-      parser: &parser { 'code': "['code']", 'msg': '["msg"]' }
-      expected: &expected { 'code': 1000, 'msg': 'Success' }
-
-delete_syllabus:
-  dec: "主流程"
-  parameters:
-    - test_name: '删除章节课次-主流程'
-      mode: 1
-      type: json
-      methods: post
-      url: /opservice/course/syllabus/delete
-      data: {
-              'nodeType': '',
-              'dataId': ''
+          'CourseId': *courseId
       }
       parser: *parser
       expected: *expected
+    -
+      test_name: '课程大纲查询-章节名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/course/syllabus/findByCondition
+      data: {
+        'CourseId': *courseId,
+        'chapterName': 'xuejian'
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '课程大纲查询-课次名称查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/course/syllabus/findByCondition
+      data: {
+        'CourseId': *courseId,
+        'CourseTimeName': 'xuejian'
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '课程大纲查询-上课老师查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/course/syllabus/findByCondition
+      data: {
+        'CourseId': *courseId,
+        'teacherId': 1
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '课程大纲查询-授课形式查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/course/syllabus/findByCondition
+      data: {
+        'CourseId': *courseId,
+        'teachType': 1
+      }
+      parser: *parser
+      expected: *expected
+    -
+      test_name: '课程大纲查询-课次状态查询'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/course/syllabus/findByCondition
+      data: {
+        'CourseId': *courseId,
+        'CourseTimeStatus': 1
+      }
+      parser: *parser
+      expected: *expected
+
+
 
 getTeachType_s:
   dec: "主流程"
@@ -65,21 +128,6 @@ getCourseTimesStatus:
       parser: *parser
       expected: *expected
 
-addChapter:
-  dec: "主流程"
-  parameters:
-    - test_name: '添加章节-主流程'
-      mode: 0
-      type: json
-      methods: get
-      url: /opservice/course/syllabus/addChapter
-      data: {
-              'name': '',
-              'parentId': ''
-      }
-      parser: *parser
-      expected: *expected
-
 getChapterById:
   dec: "主流程"
   parameters:
@@ -89,7 +137,7 @@ getChapterById:
       methods: get
       url: /opservice/course/syllabus/getChapterById
       data: {
-        'chapterId': ''
+        'chapterId': 1
       }
       parser: *parser
       expected: *expected
@@ -99,14 +147,13 @@ editChapter:
   dec: "主流程"
   parameters:
     - test_name: '修改章节信息-主流程'
-      mode: 0
+      mode: 1
       type: json
-      methods: get
+      methods: post
       url: /opservice/course/syllabus/editChapter
       data: {
-        'id': '',
-        'name': '',
-        'parentId': ''
+        'id': 1,
+        'name': '测试章节02'
       }
       parser: *parser
       expected: *expected
@@ -120,9 +167,62 @@ getAllChapter:
       methods: get
       url: /opservice/course/syllabus/getAllChapter
       data: {
+          'courseId': *courseId
       }
       parser: *parser
       expected: *expected
+
+
+addCourseTimes:
+  dec: "主流程"
+  parameters:
+    - test_name: '增加课次-主流程'
+      mode: 1
+      type: json
+      methods: get
+      url: /opservice/course/syllabus/addCourseTimes
+      data: {
+        "courseId": *courseId,
+        "teachType": 1,
+        "name": "xuejian_keci",
+        "videoId": "",
+        "startTime": "2021-07-22 00:00:00",
+        "duration": "100",
+        "teacherId": 1,
+        "chapterIds": [
+            1
+        ],
+        "handoutId": 38,
+        "teacherName": "叨叨老师"
+      }
+      parser: *parser
+      expected: { 'code': 10000, 'msg': '直播课开始时间距现在至少20分钟' }
+
+editCourseTimes:
+  dec: "主流程"
+  parameters:
+    - test_name: '编辑课次-主流程'
+      mode: 1
+      type: json
+      methods: get
+      url: /opservice/course/syllabus/editCourseTimes
+      data: {
+        'id': &id 6,
+        "courseId": *courseId,
+        "teachType": 1,
+        "name": "xuejian_keci001",
+        "videoId": "",
+        "startTime": "2021-07-22 00:00:00",
+        "duration": "100",
+        "teacherId": 1,
+        "chapterIds": [
+            1
+        ],
+        "handoutId": 38,
+        "teacherName": "叨叨老师"
+      }
+      parser: *parser
+      expected: { 'code': 10000, 'msg': '直播课开始时间距现在至少20分钟' }
 
 getCourseTimesById:
   dec: "主流程"
@@ -133,36 +233,7 @@ getCourseTimesById:
       methods: get
       url: /opservice/course/syllabus/getCourseTimesById
       data: {
-              'id': ''
-      }
-      parser: *parser
-      expected: *expected
-
-
-addCourseTimes:
-  dec: "主流程"
-  parameters:
-    - test_name: '增加课次-主流程'
-      mode: 0
-      type: json
-      methods: get
-      url: /opservice/course/syllabus/addCourseTimes
-      data: {
-        'id': ''
-      }
-      parser: *parser
-      expected: *expected
-
-editCourseTimes:
-  dec: "主流程"
-  parameters:
-    - test_name: '编辑课次-主流程'
-      mode: 0
-      type: json
-      methods: get
-      url: /opservice/course/syllabus/editCourseTimes
-      data: {
-        'id': ''
+        'id': *id
       }
       parser: *parser
       expected: *expected
@@ -176,7 +247,39 @@ getTreeChapters:
       methods: get
       url: /opservice/course/syllabus/getTreeChapters
       data: {
-        'id': ''
+        'courseId': *courseId
+      }
+      parser: *parser
+      expected: *expected
+
+getMaterial:
+  dec: "模糊查询讲义视频音频"
+  parameters:
+    - test_name: '模糊查询讲义视频音频-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/course/syllabus/findByCondition
+      data: {
+        'projectId': 1,
+        'searchContent': 'xuejian',
+        'type': 3
+      }
+      parser: *parser
+      expected: *expected
+
+
+delete_syllabus:
+  dec: "主流程"
+  parameters:
+    - test_name: '删除章节课次-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /opservice/course/syllabus/delete
+      data: {
+        'nodeType': 1,
+        'dataId': 2
       }
       parser: *parser
       expected: *expected

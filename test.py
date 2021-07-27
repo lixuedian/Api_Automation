@@ -35,7 +35,7 @@ import json
 # print(response.json())
 #
 #
-import TestCase.Trading_desk
+import TestCase.TradingDesk
 header = TestCase.Trading_desk.header('Trading')
 url = 'http://test-trade.ekeguan.com/api/opservice/propertyfield/search?propertyNameId=10&fieldName=xuejian'
 data = {

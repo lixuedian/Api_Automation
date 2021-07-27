@@ -231,3 +231,11 @@ class PrDelePermissionByRole:
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
+
+
+class SmsCode:
+    """根据角色修改对应的权限信息"""
+    params = get_parameter('smsCode')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])

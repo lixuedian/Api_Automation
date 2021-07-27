@@ -120,19 +120,19 @@ getZhenTiCat:
       }
       parser: *parser
       expected: *expected
-    -
-      test_name: '001-真题相关V1版本-app首页真题分类接口tablestore版本-主流程'
-      mode: 1
-      type: data
-      methods: post
-      url: /v1/zhenti/getZhentiCat
-      data: {
-        'examArea': 17,
-        'examType': 3,
-        'versionType': 2
-      }
-      parser: *parser
-      expected: *expected
+#    -
+#      test_name: '001-真题相关V1版本-app首页真题分类接口tablestore版本-主流程'
+#      mode: 1
+#      type: data
+#      methods: post
+#      url: /v1/zhenti/getZhentiCat
+#      data: {
+#        'examArea': 17,
+#        'examType': 3,
+#        'versionType': 2
+#      }
+#      parser: *parser
+#      expected: *expected
 
 ZhenTi:
   dec: "001-真题相关V1版本-真题列表"

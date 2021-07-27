@@ -17,9 +17,9 @@ class ZTLogin:
         case_data.append(params[i])
 
 
-class LoginC:
-    """C端用户登录"""
-    params = get_parameter('C_login')
+class MekLogin:
+    """营销M站登录"""
+    params = get_parameter('mkg_login')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])

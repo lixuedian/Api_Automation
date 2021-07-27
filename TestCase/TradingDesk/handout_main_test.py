@@ -8,9 +8,9 @@ from Common.Methodes import notify, log
 import TestCase
 from Params.params_video import *
 
-header = TestCase.Trading_desk.header('Trading')
+header = TestCase.TradingDesk.zt_header
 BASE_PATH = TestCase.BASE_PATH
-url = TestCase.Trading_desk.url
+url = TestCase.TradingDesk.url
 
 
 class TestHandout(object):

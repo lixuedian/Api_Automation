@@ -6,7 +6,7 @@ from Common.Methodes import notify, log
 import TestCase
 from Params.params_app100 import GetRoomLiveUrl, GetMyCourseList, MyLiveCourse,  ReturnMoneyShare, IndexOpen, \
     GradeList, OpenList, GetVieDeoWechat, CourseList, CouponNum, YuYue, SetPlayLog, UpdateToken, SetOrderTop, \
-     SetDownLog, SetCourseDel, KeChengOpen, OfflineInfo, KenChengInfo, GoldBuy, GetSubject, \
+    SetDownLog, SetCourseDel, KeChengOpen, OfflineInfo, KenChengInfo, GoldBuy, GetSubject, \
     GetRoomEnterUrl, GetRecommend, GetRoll, GetMyCourseInfo, GetListOne, GetList2, GetList1, GetList0, GetCoupon, \
     GetExpDetail, CheckPay, GetCharge, TaskList, SetSchoolTime, MyOrder
 

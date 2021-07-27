@@ -7,9 +7,9 @@ import TestCase
 from Params.params_order import OrderList, OrderExport, PayList, GetPay, PaySaveNote, PayRefused, Paycheck, \
     PayRefusedBatch, PaycheckBatch, PayExport
 
-header = TestCase.Trading_desk.header('Trading')
+header = TestCase.TradingDesk.zt_header
 BASE_PATH = TestCase.BASE_PATH
-url = TestCase.Trading_desk.url
+url = TestCase.TradingDesk.url
 
 
 class TestOrder(object):
@@ -122,4 +122,5 @@ class TestPay(object):
             parser(result, case['test_name'], case['parser'], case['expected'])
         allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
+
 

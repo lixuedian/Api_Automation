@@ -6,11 +6,11 @@ from Common import Consts
 from Params.params_department import *
 from Common.Parser import parser
 from Common.Methodes import notify, log
-import TestCase.ZT_token
+import TestCase
 
 
-url = TestCase.Trading_desk.url
-header = TestCase.Trading_desk.header('Trading')
+url = TestCase.TradingDesk.url
+header = TestCase.TradingDesk.zt_header
 BASE_PATH = TestCase.BASE_PATH
 
 

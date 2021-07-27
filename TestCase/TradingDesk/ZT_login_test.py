@@ -6,15 +6,15 @@ from Common import Request
 from Common import Consts
 from Config.Config import Config
 from Params.params import log
-from Params.params_login import ZTLogin, LoginC
+from Params.params_login import ZTLogin, MekLogin
 from Params.params_user import *
 from Common.Parser import parser
 from Common.Methodes import notify
 
-url = TestCase.Trading_desk.url
+url = TestCase.TradingDesk.url
 BASE_PATH = TestCase.BASE_PATH
-header = TestCase.Trading_desk.header('Trading')
-test_mp_url = TestCase.Trading_desk.test_mp_url
+header = TestCase.TradingDesk.zt_header
+test_mp_url = TestCase.TradingDesk.test_mkg_url
 
 
 class TestLogin(object):
@@ -34,7 +34,7 @@ class TestLogin(object):
         Consts.RESULT_LIST.append('True')
 
     @allure.description('C端用户登录')
-    @pytest.mark.parametrize('case', LoginC().case_data)
+    @pytest.mark.parametrize('case', MekLogin().case_data)
     def test_login_c_01(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
@@ -42,7 +42,7 @@ class TestLogin(object):
                                         case['header'], case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        # self.config.write_configuration('Trading', result['data']['token'], str(result['data']['id']))
+        self.config.write_configuration('mkg', result['data']['remember_token'], str(result['data']['id']))
         allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是：' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 

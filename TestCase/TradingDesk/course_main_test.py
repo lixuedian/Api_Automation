@@ -3,15 +3,15 @@ import allure
 import pytest
 from Common import Consts
 from Params.params_course import CourseList, GetDynamicFieldList, GetTeachTypeG, GetRegion, CourseAdd, \
-    CourseEdit, GetCourseBaseInfo, GetByIdAndProjectId, CourseOpenOrClose, CourseDelete, GetCourseType
+    CourseEdit, GetCourseBaseInfo, GetByIdAndProjectId, CourseOpenOrClose, CourseDelete, GetCourseType, GetCourseTag, \
+    StudentFindPage, GoodsFindPage
 from Common.Parser import parser
 from Common.Methodes import notify, log
 import TestCase
 
-
-header = TestCase.Trading_desk.header('Trading')
+header = TestCase.TradingDesk.zt_header
 BASE_PATH = TestCase.BASE_PATH
-url = TestCase.Trading_desk.url
+url = TestCase.TradingDesk.url
 
 
 class TestCourse(object):
@@ -126,9 +126,42 @@ class TestCourse(object):
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
+    @allure.description('获取课程标签，授课形式，授课老师')
+    @pytest.mark.parametrize('case', GetCourseTag().case_data)
+    def test_course_11(self, case):
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
+        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        log.info('响应结果：%s' % result)
+        parser(result, case['test_name'], case['parser'], case['expected'])
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        Consts.RESULT_LIST.append('True')
+
     @allure.description('删除课程')
     @pytest.mark.parametrize('case', CourseDelete().case_data)
-    def test_course_11(self, case):
+    def test_course_12(self, case):
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
+        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        log.info('响应结果：%s' % result)
+        parser(result, case['test_name'], case['parser'], case['expected'])
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        Consts.RESULT_LIST.append('True')
+
+    @allure.description('获取课程学生')
+    @pytest.mark.parametrize('case', StudentFindPage().case_data)
+    def test_course_13(self, case):
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
+        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        log.info('响应结果：%s' % result)
+        parser(result, case['test_name'], case['parser'], case['expected'])
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        Consts.RESULT_LIST.append('True')
+
+    @allure.description('获取课程商品')
+    @pytest.mark.parametrize('case', GoodsFindPage().case_data)
+    def test_course_14(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])

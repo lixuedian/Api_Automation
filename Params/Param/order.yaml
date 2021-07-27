@@ -155,7 +155,8 @@ order_export:
       data: {
         'pageNum': 1,
         'pageSize': 20,
-        'orderNo': "110162639980056000000012"
+        'projectIdList': [1, 2, 3, 4, 5],
+        'userPhone': 18600531753
       }
       parser: *parser
       expected: *expected 
@@ -433,7 +434,8 @@ pay_export:
       data: {
         'pageNum': 1,
         'pageSize': 20,
-        'orderNo': "110162643348055000001126"
+        'projectIdList': [1, 2, 3, 4, 5],
+        'userPhone': 18600531753
       }
       parser: *parser
       expected: *expected
@@ -460,26 +462,27 @@ prePurchase:
       methods: get
       url: /market-api/order/prePurchase
       data: {
+          'goodsId': &goodsId 109
       }
       parser: *parser
-      expected: *expected
+      expected: { 'code': 1000, 'msg': 'Success' }
 
 CreateOrder:
   dec: "创建商品订单"
   parameters:
     - test_name: '创建商品订单-主流程'
-      mode: 0
+      mode: 1
       type: json
-      methods: get
+      methods: post
       url: /market-api/order/create
       data: {
-              'projectId': 1,
-              'goodsId': 1,
-              'paidPrice': 1,
-              'paymentMethod': 1
+              'paidAmount': 0.01,
+              'goodsId': *goodsId,
+              'paymentMethod': 10,
+              'projectCategoryId': 1
       }
       parser: *parser
-      expected: *expected
+      expected: { 'code': 1000, 'msg': 'Success' }
 
 getPayment:
   dec: "获取支付信息"
@@ -490,18 +493,19 @@ getPayment:
       methods: get
       url: /market-api/pay/getPayment
       data: {
-        'orderId': 1
+        'orderId': 1,
+        'orderNo': 1
       }
       parser: *parser
-      expected: *expected
+      expected: { 'code': 1000, 'msg': 'Success' }
 
 repay_order:
   dec: "订单重新支付"
   parameters:
     - test_name: '订单重新支付-主流程'
-      mode: 0
+      mode: 1
       type: json
-      methods: get
+      methods: post
       url: /market-api/order/repay
       data: {
         'orderId': 1,
@@ -509,7 +513,7 @@ repay_order:
         'paymentMethod': ''
       }
       parser: *parser
-      expected: *expected
+      expected: { 'code': 1000, 'msg': 'Success' }
 
 getDetailByOrderId:
   dec: "查询订单详情"
@@ -525,7 +529,7 @@ getDetailByOrderId:
         'paymentMethod': ''
       }
       parser: *parser
-      expected: *expected
+      expected: { 'code': 1000, 'msg': 'Success' }
 
 getOrders:
   dec: "获取订单列表"
@@ -534,22 +538,27 @@ getOrders:
       mode: 0
       type: json
       methods: get
-      url: /market-api/order/getDetailByOrderId
+      url: /market-api/order/getOrders
       data: {
-        'orderId': 1,
-        'paidPrice': '',
-        'paymentMethod': ''
+        'projectCategoryId': 3,
+        'status': 1,
+        'pageSize': 10,
+        'pageIndex': 1,
+        'orderBy': '',
+        'orderDirection': '',
+        'groupBy': '',
+        'needTotalCount': 'true'
       }
       parser: *parser
-      expected: *expected
+      expected: { 'code': 1000, 'msg': 'Success' }
 
 cancel_Order:
   dec: "取消订单"
   parameters:
     - test_name: '取消订单-主流程'
-      mode: 0
+      mode: 1
       type: json
-      methods: get
+      methods: post
       url: /market-api/order/cancel
       data: {
         'orderId': 1,
@@ -557,7 +566,7 @@ cancel_Order:
         'paymentMethod': ''
       }
       parser: *parser
-      expected: *expected
+      expected: { 'code': 1000, 'msg': 'Success' }
 
 PayCallBack:
   dec: "支付回调（后端使用）"
@@ -573,4 +582,79 @@ PayCallBack:
         'paymentMethod': ''
       }
       parser: *parser
-      expected: *expected
+      expected: { 'code': 1000, 'msg': 'Success' }
+
+
+CreateOrder_1:
+  dec: "创建商品订单"
+  parameters:
+    -
+      test_name: '创建商品订单-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /market-api/order/create
+      data: {
+        'paidAmount': 0.01,
+        'goodsId': *goodsId,
+        'paymentMethod': 10,
+        'projectCategoryId': 1
+      }
+      parser: *parser
+      expected: { 'code': 1000, 'msg': 'Success' }
+    -
+      test_name: '创建商品订单-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /market-api/order/create
+      data: {
+        'paidAmount': 100,
+        'goodsId': *goodsId,
+        'paymentMethod': 10,
+        'projectCategoryId': 1
+      }
+      parser: *parser
+      expected: { 'code': 32006, 'msg': '商品价格已改变' }
+    -
+      test_name: '创建商品订单-限购'
+      mode: 1
+      type: json
+      methods: post
+      url: /market-api/order/create
+      data: {
+        'paidAmount': 0.01,
+        'goodsId': 115,
+        'paymentMethod': 10,
+        'projectCategoryId': 1
+      }
+      parser: *parser
+      expected: { 'code': 10000, 'msg': '您已达到商品购买数量上限' }
+    -
+      test_name: '创建商品订单-0元限购'
+      mode: 1
+      type: json
+      methods: post
+      url: /market-api/order/create
+      data: {
+        'paidAmount': 0,
+        'goodsId': 118,
+        'paymentMethod': 10,
+        'projectCategoryId': 1
+      }
+      parser: *parser
+      expected: { 'code': 10000, 'msg': '您已达到商品购买数量上限' }
+    -
+      test_name: '创建商品订单-商品未上架'
+      mode: 1
+      type: json
+      methods: post
+      url: /market-api/order/create
+      data: {
+        'paidAmount': 0.01,
+        'goodsId': 125,
+        'paymentMethod': 10,
+        'projectCategoryId': 1
+      }
+      parser: { 'code': "['code']"}
+      expected: { 'code': 32007}

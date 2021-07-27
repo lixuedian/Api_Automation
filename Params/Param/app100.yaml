@@ -6,7 +6,6 @@ abc:
         test2: &expected_01 { 'code': 1, 'msg': '获取成功' }
         test3: &expected_02 { 'code': 1, 'msg': '预约成功' }
         test4: &expected_03 { 'code': 1, 'msg': '提交成功' }
-        test5: &expected_04 { 'code': 1, 'msg': '更新成功' }
 
 getRoomLiveUrl:
   dec: "（001）001-课程相关-获取直播间链接"
@@ -204,7 +203,7 @@ setPlayLog:
       methods: post
       url: /v1/kecheng/setPlayLog
       data: {
-        'orderId': 89794,
+        'orderId': &orderId 4561682,
         'vt': 120,
         'vid': 2172,
         'mobilestyle': 'pc'
@@ -236,11 +235,21 @@ setOrderTop:
       methods: post
       url: /v1/kecheng/setOrderTop
       data: {
-          'orderId': 4561627
+          'orderId': *orderId
       }
       parser: { 'code': "['code']" }
       expected: {'code': 1}
-
+    -
+      test_name: '（016）016-课程相关-课程置顶-删除/恢复'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/setOrderTop
+      data: {
+        'orderId': *orderId
+      }
+      parser: { 'code': "['code']" }
+      expected: {'code': 1}
 
 setOfflinePlayLog:
   dec: "（017）017-课程相关-视频观看日志记录"
@@ -281,7 +290,18 @@ setCourseDel:
       methods: post
       url: /v1/kecheng/setCourseDel
       data: {
-          'orderId': 4561627
+          'orderId': *orderId
+      }
+      parser: { 'code': "['code']" }
+      expected: {'code': 1}
+    -
+      test_name: '（019）019-课程相关-订单删除/恢复'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/kecheng/setCourseDel
+      data: {
+        'orderId': *orderId
       }
       parser: { 'code': "['code']" }
       expected: {'code': 1}
@@ -310,7 +330,7 @@ offlineInfo:
       methods: post
       url: /v1/kecheng/offlineInfo
       data: {
-        'orderId': 4561627,
+        'orderId': *orderId,
         'realname': '宁宁',
         'phone': 17710351984,
         'province': 19,
@@ -424,7 +444,7 @@ getMyCourseInfo:
       methods: post
       url: /v1/kecheng/getMyCourseInfo
       data: {
-        'orderId': 4561627
+        'orderId': *orderId
       }
       parser: { 'code': "['code']"}
       expected: { 'code': 1}
@@ -508,7 +528,7 @@ getCoupon:
       url: /v1/kecheng/getCoupon
       data: {
         'classId': 4607,
-        'orderId': 89794
+        'orderId': *orderId
       }
       parser: *parser
       expected: { 'code': 1, 'msg': '获取成功' }
@@ -610,3 +630,305 @@ My_order:
       }
       parser: *parser
       expected: *expected_01
+
+
+My_live:
+  dec: "（042）005-用户相关-我的直播课（模考状态）"
+  parameters:
+    - test_name: '（042）005-用户相关-我的直播课（模考状态）'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/live
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected_01
+
+My_info:
+  dec: "（043）006-用户相关-我的信息"
+  parameters:
+    - test_name: '（043）006-用户相关-我的信息'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/info
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected_01
+
+my_getExpDetail:
+  dec: "（044）007-用户相关-获取物流详情"
+  parameters:
+    - test_name: '（044）007-用户相关-获取物流详情'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/getExpDetail
+      data: {
+          'expno': '821835803530',
+          'exptype': '申通'
+      }
+      parser: *parser
+      expected: *expected_01
+
+my_editSex:
+  dec: "（045）008-用户相关-性别修改"
+  parameters:
+    - test_name: '（045）008-用户相关-性别修改'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editSex
+      data: {
+        'gender': 1
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+my_editSchool:
+  dec: "（046）009-用户相关-修改学校"
+  parameters:
+    - test_name: '（046）009-用户相关-修改学校'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editSchool
+      data: {
+        'gender': 1
+      }
+      parser: *parser
+      expected: *expected_01
+
+my_editPwd:
+  dec: "（047）010-用户相关-修改密码"
+  parameters:
+    - test_name: '（047）010-用户相关-修改密码'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editPwd
+      data: {
+        'password': 123456,
+        'pwd1': 123456,
+        'pwd2': 123456
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+my_editOrderAddress:
+  dec: "（048）011-用户相关-修改订单-收货地址"
+  parameters:
+    - test_name: '（048）011-用户相关-修改订单-收货地址'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editOrderAddress
+      data: {
+        'orderId': *orderId,
+        'consignee': '刘邦',
+        'delivery_mobileno': 13525696568,
+        'province': '河南',
+        'city': '洛阳',
+        'area': '洛龙区',
+        'street': '唐宫东路213号'
+      }
+      parser: *parser
+      expected: *expected_01
+
+my_editNickname:
+  dec: "（049）012-用户相关-修改昵称"
+  parameters:
+    - test_name: '（049）012-用户相关-修改昵称'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editNickname
+      data: {
+        'nickname': 'mwp-test'
+      }
+      parser: *parser
+      expected: *expected_01
+
+my_editName:
+  dec: "（050）013-用户相关-修改姓名"
+  parameters:
+    - test_name: '（050）013-用户相关-修改姓名'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editName
+      data: {
+        'realname': 'name_test'
+      }
+      parser: *parser
+      expected: *expected_01
+
+my_editGraduateTime:
+  dec: "（051）014-用户相关-修改毕业时间"
+  parameters:
+    - test_name: '（051）014-用户相关-修改毕业时间'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editName
+      data: {
+        'graduateTime': '2020-06'
+      }
+      parser: *parser
+      expected: *expected_01
+
+my_editExamInfo:
+  dec: "（052）015-用户相关-完善信息（报考信息）"
+  parameters:
+    - test_name: '（052）015-用户相关-完善信息（报考信息）'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editExamInfo
+      data: {
+        'examType': 1,
+        'studyPhase': 2,
+        'examArea': '河南',
+        'examCity': '洛阳市',
+        'subject': '语文',
+        'mobilestyle': 'V2.9.5_Xiaomi_MI 6_28'
+      }
+      parser: *parser
+      expected: *expected_01
+
+my_editDeliveryAddress:
+  dec: "（053）016-用户相关-修改收货地址"
+  parameters:
+    - test_name: '（053）016-用户相关-修改收货地址'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editDeliveryAddress
+      data: {
+        'consignee': '刘邦',
+        'delivery_mobileno': 13525696568,
+        'province': '河南',
+        'city': '洛阳',
+        'area': '洛龙区',
+        'street': '唐宫东路213号'
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+my_editBindPwd:
+  dec: "（054）017-用户相关-绑定密码"
+  parameters:
+    - test_name: '（054）017-用户相关-绑定密码'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/editDeliveryAddress
+      data: {
+        'pwd1': 123456,
+        'pwd2': 123456
+      }
+      parser: *parser
+      expected: *expected_01
+
+my_download:
+  dec: "（055）018-用户相关-我的资料下载"
+  parameters:
+    - test_name: '（055）018-用户相关-我的资料下载'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/download
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+my_coupon:
+  dec: "（（056）019-用户相关-我的优惠券"
+  parameters:
+    - test_name: '（056）019-用户相关-我的优惠券'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/my/coupon
+      data: {
+
+      }
+      parser: *parser
+      expected: *expected_01
+
+distribute:
+  dec: "（058）021-用户相关-发布设置信息"
+  parameters:
+    - test_name: '（058）021-用户相关-发布设置信息'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/collect/distribute
+      data: {
+          'projectId': 1,
+          'source': 103,
+          'mobilestyle': 'V2.9.5_Xiaomi_MI 6_28',
+          'idfa': 863254037624904,
+          'isAndroid': 1,
+          'appStore': 1
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+newLogin:
+  dec: "（060）023-用户相关-登录-新版"
+  parameters:
+    - test_name: '（060）023-用户相关-登录-新版'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/account/newLogin
+      data: {
+        'mobileno': 599c593ba9264471371580b6b7d5e926,
+        'password': 123456
+      }
+      parser: *parser
+      expected: *expected_01
+
+
+new_logout:
+  dec: "（061）024-用户相关-登出"
+  parameters:
+    - test_name: '（061）024-用户相关-登出'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/account/newLogin
+      data: {
+        'mobileno': 599c593ba9264471371580b6b7d5e926,
+        'password': 123456
+      }
+      parser: *parser
+      expected: *expected_01
+
+login:
+  dec: "（061）024-用户相关-登出"
+  parameters:
+    - test_name: '（061）024-用户相关-登出'
+      mode: 1
+      type: data
+      methods: post
+      url: /v1/account/newLogin
+      data: {
+        'mobileno': 599c593ba9264471371580b6b7d5e926,
+        'password': 123456
+      }
+      parser: *parser
+      expected: *expected_01
+

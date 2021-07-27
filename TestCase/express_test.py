@@ -22,7 +22,6 @@ class TestExpress(object):
     @allure.description('获取订单物流列表')
     @pytest.mark.parametrize('case', GetExpressList().case_data)
     def test_express_01(self, case):
-        TestExpress.test_express_01.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法
@@ -35,7 +34,6 @@ class TestExpress(object):
     @allure.description('获取物流进度')
     @pytest.mark.parametrize('case', GetExpressTracesOne().case_data)
     def test_express_02(self, case):
-        TestExpress.test_express_02.__doc__ = case['test_name']
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         # 判断请求方法

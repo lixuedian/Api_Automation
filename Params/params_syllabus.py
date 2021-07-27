@@ -103,3 +103,11 @@ class GetTreeChapters:
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
+
+
+class FindByCondition:
+    """模糊查询讲义视频音频"""
+    params = get_parameter('findByCondition')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])

@@ -303,3 +303,147 @@ class MyOrder:
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
+
+
+class MyLive:
+    """（042）005-用户相关-我的直播课（模考状态）"""
+    params = get_parameter('My_live')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyInfo:
+    """（043）006-用户相关-我的信息"""
+    params = get_parameter('My_info')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyGetExpDetail:
+    """（044）007-用户相关-获取物流详情"""
+    params = get_parameter('my_getExpDetail')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditSex:
+    """（045）008-用户相关-性别修改"""
+    params = get_parameter('my_editSex')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditSchool:
+    """（046）009-用户相关-修改学校"""
+    params = get_parameter('my_editSchool')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditPwd:
+    """（047）010-用户相关-修改密码"""
+    params = get_parameter('my_editPwd')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditOrderAddress:
+    """（048）011-用户相关-修改订单-收货地址"""
+    params = get_parameter('my_editOrderAddress')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditNickname:
+    """（049）012-用户相关-修改昵称"""
+    params = get_parameter('my_editNickname')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditName:
+    """（050）013-用户相关-修改姓名"""
+    params = get_parameter('my_editName')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditGraduateTime:
+    """（051）014-用户相关-修改毕业时间"""
+    params = get_parameter('my_editGraduateTime')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditExamInfo:
+    """（052）015-用户相关-完善信息（报考信息）"""
+    params = get_parameter('my_editExamInfo')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditDeliveryAddress:
+    """（053）016-用户相关-修改收货地址"""
+    params = get_parameter('my_editDeliveryAddress')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyEditBindPwd:
+    """（054）017-用户相关-绑定密码"""
+    params = get_parameter('my_editBindPwd')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyDownload:
+    """（055）018-用户相关-我的资料下载"""
+    params = get_parameter('my_download')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class MyCoupon:
+    """（056）019-用户相关-我的优惠券"""
+    params = get_parameter('my_coupon')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class Distribute:
+    """（058）021-用户相关-发布设置信息"""
+    params = get_parameter('distribute')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class NewLogin:
+    """（060）023-用户相关-登录-新版"""
+    params = get_parameter('newLogin')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class NewLogout:
+    """（061）024-用户相关-登出"""
+    params = get_parameter('new_logout')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])

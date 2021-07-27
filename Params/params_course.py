@@ -87,3 +87,27 @@ class GetByIdAndProjectId:
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])
+
+
+class GetCourseTag:
+    """获取课程标签，授课形式，授课老师"""
+    params = get_parameter('getCourseTag')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class StudentFindPage:
+    """获取课程学生"""
+    params = get_parameter('student_findPage')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class GoodsFindPage:
+    """获取课程商品"""
+    params = get_parameter('goods_findPage')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])

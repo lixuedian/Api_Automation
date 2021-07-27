@@ -97,6 +97,14 @@ class CreateOrder:
         case_data.append(params[i])
 
 
+class CreateOrder1:
+    """创建商品订单"""
+    params = get_parameter('CreateOrder_1')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
 class GetPayment:
     """获取支付信息"""
     params = get_parameter('getPayment')
@@ -106,7 +114,7 @@ class GetPayment:
 
 
 class RepayOrder:
-    """获取支付信息"""
+    """订单重新支付"""
     params = get_parameter('repay_order')
     case_data = []
     for i in range(0, len(params)):
