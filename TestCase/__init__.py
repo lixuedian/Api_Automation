@@ -25,3 +25,10 @@ H_header = {
 
 header_data = config.header_data('parameter')
 header_app = config.header_app('APP')
+
+test_trade_url = '%s%s' % ('http://', config.get_conf('Trading', 'url'))
+
+test_mp_url = '%s%s' % ('http://', config.get_conf('Trading', 'c_url'))
+test_mkg_url = '%s%s' % ('http://', config.get_conf('Trading', 'm_url'))
+mkg_header = config.header_json('mkg')
+zt_header = config.header_json('Trading')

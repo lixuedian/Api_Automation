@@ -9,15 +9,18 @@
 
 import pytest
 
-from Common import Log, GToken as Gt
+from Common import Log, GToken
 from Common import Shell
 from Common.Email import get_report_file
 from Config import Config
 from Common import Email
+from Log import delete_log
 
 if __name__ == '__main__':
-    Gt._init()
+    delete_log()
+    GToken.init()
     conf = Config.Config()
+    conf.delete_file()
     log = Log.MyLog()
     log.info('初始化配置文件, path=' + conf.conf_path)
     report_path = conf.path_dir+'/Report'

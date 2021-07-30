@@ -479,7 +479,7 @@ CreateOrder:
               'paidAmount': 0.01,
               'goodsId': *goodsId,
               'paymentMethod': 10,
-              'projectCategoryId': 1
+              'projectCategoryId': &projectCategoryId 3
       }
       parser: *parser
       expected: { 'code': 1000, 'msg': 'Success' }
@@ -540,7 +540,7 @@ getOrders:
       methods: get
       url: /market-api/order/getOrders
       data: {
-        'projectCategoryId': 3,
+        'projectCategoryId': *projectCategoryId,
         'status': 1,
         'pageSize': 10,
         'pageIndex': 1,
@@ -598,12 +598,12 @@ CreateOrder_1:
         'paidAmount': 0.01,
         'goodsId': *goodsId,
         'paymentMethod': 10,
-        'projectCategoryId': 1
+        'projectCategoryId': *projectCategoryId
       }
       parser: *parser
       expected: { 'code': 1000, 'msg': 'Success' }
     -
-      test_name: '创建商品订单-主流程'
+      test_name: '创建商品订单-商品价格已改变'
       mode: 1
       type: json
       methods: post
@@ -612,10 +612,10 @@ CreateOrder_1:
         'paidAmount': 100,
         'goodsId': *goodsId,
         'paymentMethod': 10,
-        'projectCategoryId': 1
+        'projectCategoryId': *projectCategoryId
       }
       parser: *parser
-      expected: { 'code': 32006, 'msg': '商品价格已改变' }
+      expected: { 'code': 9003, 'msg': '商品价格已改变' }
     -
       test_name: '创建商品订单-限购'
       mode: 1
@@ -629,7 +629,7 @@ CreateOrder_1:
         'projectCategoryId': 1
       }
       parser: *parser
-      expected: { 'code': 10000, 'msg': '您已达到商品购买数量上限' }
+      expected: { 'code': 9002, 'msg': '您已达到商品购买数量上限' }
     -
       test_name: '创建商品订单-0元限购'
       mode: 1
@@ -640,10 +640,10 @@ CreateOrder_1:
         'paidAmount': 0,
         'goodsId': 118,
         'paymentMethod': 10,
-        'projectCategoryId': 1
+        'projectCategoryId': *projectCategoryId
       }
       parser: *parser
-      expected: { 'code': 10000, 'msg': '您已达到商品购买数量上限' }
+      expected: { 'code': 9002, 'msg': '您已达到商品购买数量上限' }
     -
       test_name: '创建商品订单-商品未上架'
       mode: 1
@@ -654,7 +654,7 @@ CreateOrder_1:
         'paidAmount': 0.01,
         'goodsId': 125,
         'paymentMethod': 10,
-        'projectCategoryId': 1
+        'projectCategoryId': *projectCategoryId
       }
       parser: { 'code': "['code']"}
       expected: { 'code': 32007}

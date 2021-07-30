@@ -9,10 +9,9 @@ from Params.params_syllabus import GetTeacher, GetCourseTimesStatus, GetTeachTyp
     EditChapter, GetChapterById, GetAllChapter, GetCourseTimesById, AddCourseTimes, EditCourseTimes, GetTreeChapters, \
     DeleteSyllabus, FindByCondition
 
-header = TestCase.TradingDesk.zt_header
+url = TestCase.test_trade_url
+header = TestCase.zt_header
 BASE_PATH = TestCase.BASE_PATH
-url = TestCase.TradingDesk.url
-
 
 class TestSyllabus(object):
 

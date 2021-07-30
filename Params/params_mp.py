@@ -1,12 +1,12 @@
 from Config.Config import Config
 from Params.params_user import *
-import TestCase.TradingDesk
+import TestCase
 from Common.Methodes import notify, log
 from Common.Parser import parser
 
 
 class Role(object):
-    url = TestCase.TradingDesk.url
+    url = TestCase.test_trade_url
     header = Config().header_json('Trading')
     roleId = ''
 
@@ -100,7 +100,7 @@ class Role(object):
 
 
 class PermissionS(object):
-    url = TestCase.TradingDesk.url
+    url = TestCase.test_trade_url
     header = Config().header_json('Trading')
     permissionId = ''
 

@@ -10,9 +10,9 @@ from Params.params_mkg import FindByProjectIdWithPage, GetInfoByGoodsId, GetLect
 from Params.params_order import OrderPrePurchase, CreateOrder, GetPayment, RepayOrder, CancelOrders, GetDetailByOrderId, \
     GetOrders, CreateOrder1
 
-header = TestCase.TradingDesk.mkg_header
+header = TestCase.mkg_header
 BASE_PATH = TestCase.BASE_PATH
-url = TestCase.TradingDesk.test_mkg_url
+url = TestCase.test_mkg_url
 
 
 class TestCreateOrder(object):
@@ -92,7 +92,7 @@ class TestMkg(object):
             'orderId': orderId,
             'orderNo': orderNo,
             'paymentMethod': 10,
-            'projectCategoryId': 1
+            'projectCategoryId': 3
         }
         for i in range(1, 2):
             result = notify().notify_result(case[0]['mode'], url + case[0]['url'], data, header, case[0]['type'])
@@ -254,10 +254,13 @@ class TestMkg(object):
     def test_mkg_14(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
+        playLink = ''
         for i in range(1, 2):
             result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
             log.info('响应结果：%s' % result)
             parser(result, case['test_name'], case['parser'], case['expected'])
+            playLink = result['data']['playLink']
+        log.info("打印直播间链接：%s" % playLink)
         allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 

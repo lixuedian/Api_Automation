@@ -7,6 +7,8 @@ from configparser import ConfigParser
 from Common import Log, GToken as Gt
 import os
 
+from Common.Delete import deletes_file
+
 TITLE_TOKEN = 'parameter'
 
 
@@ -196,3 +198,8 @@ class Config:
             'Content-Type': 'application/x-www-form-urlencoded'
         }
         return header
+
+    def delete_file(self):
+        # 清空allure文件
+        deletes_file(self.xml_report_path)
+        deletes_file(self.html_report_path)

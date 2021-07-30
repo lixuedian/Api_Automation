@@ -15,6 +15,8 @@ path_dir = str(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir
 
 
 def get_parameter(name):
+    log.info('读取配置参数中请稍等')
+    print('读取配置参数中请稍等')
     data = tools.GetPages().get_page_list()
     param = data[name]
     return param

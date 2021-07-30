@@ -11,10 +11,10 @@ from Params.params_user import *
 from Common.Parser import parser
 from Common.Methodes import notify
 
-url = TestCase.TradingDesk.url
+url = TestCase.test_trade_url
 BASE_PATH = TestCase.BASE_PATH
-header = TestCase.TradingDesk.zt_header
-test_mp_url = TestCase.TradingDesk.test_mkg_url
+header = TestCase.zt_header
+test_mp_url = TestCase.test_mkg_url
 
 
 class TestLogin(object):

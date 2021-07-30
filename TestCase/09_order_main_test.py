@@ -7,9 +7,9 @@ import TestCase
 from Params.params_order import OrderList, OrderExport, PayList, GetPay, PaySaveNote, PayRefused, Paycheck, \
     PayRefusedBatch, PaycheckBatch, PayExport
 
-header = TestCase.TradingDesk.zt_header
+url = TestCase.test_trade_url
+header = TestCase.zt_header
 BASE_PATH = TestCase.BASE_PATH
-url = TestCase.TradingDesk.url
 
 
 class TestOrder(object):

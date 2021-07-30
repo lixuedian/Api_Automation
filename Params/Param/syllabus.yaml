@@ -222,7 +222,7 @@ editCourseTimes:
         "teacherName": "叨叨老师"
       }
       parser: *parser
-      expected: { 'code': 10000, 'msg': '直播课开始时间距现在至少20分钟' }
+      expected: { 'code': 1000, 'msg': '成功' }
 
 getCourseTimesById:
   dec: "主流程"

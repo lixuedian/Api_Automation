@@ -9,9 +9,9 @@ from Params.params_project import AddProject, AddProjectType, GetProjectTypes, G
     GetProjectListByCondition, SearchModule, GetSearch, AddProperty, EditProperty, GetOne, AddPropertyField, \
     EditPropertyField, GetPropertyField, GetOnePropertyField
 
-header = TestCase.TradingDesk.zt_header
+url = TestCase.test_trade_url
+header = TestCase.zt_header
 BASE_PATH = TestCase.BASE_PATH
-url = TestCase.TradingDesk.url
 
 
 class TestProject(object):

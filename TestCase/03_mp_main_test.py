@@ -11,8 +11,8 @@ from Params.params_mp import Role, PermissionS
 from Common.Mysql_operate import MysqlDb, mysql_conf
 
 
-url = TestCase.TradingDesk.url
-header = TestCase.TradingDesk.zt_header
+url = TestCase.test_trade_url
+header = TestCase.zt_header
 BASE_PATH = TestCase.BASE_PATH
 
 
@@ -119,7 +119,7 @@ class TestDepartment(object):
 
     @allure.description('给部门添加角色')
     @pytest.mark.parametrize('case', AddDepartment().case_data)
-    def test_department_10(self, case):
+    def department_10(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
@@ -130,7 +130,7 @@ class TestDepartment(object):
 
     @allure.description('禁用、启用用户角色')
     @pytest.mark.parametrize('case', Status().case_data)
-    def test_department_11(self, case):
+    def department_11(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
@@ -141,7 +141,7 @@ class TestDepartment(object):
 
     @allure.description('从部门下删除角色')
     @pytest.mark.parametrize('case', DelRoleDepartment().case_data)
-    def test_department_12(self, case):
+    def department_12(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
@@ -220,7 +220,7 @@ class TestPermission(object):
 
     @allure.description('添加菜单权限')
     @pytest.mark.parametrize('case', MenuAdd().case_data)
-    def test_permission_10(self, case):
+    def permission_10(self, case):
         DB_CONF = mysql_conf('mysql')
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))

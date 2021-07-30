@@ -162,8 +162,8 @@ getPlayLink:
       methods: get
       url: /market-api/personal/getPlayLink
       data: {
-        'id': *goodsId,
-        'classroomId': 21072284058134
+        'id': 54,
+        'classroomId': 21072754504654
       }
       parser: *parser
       expected: *expected

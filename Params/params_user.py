@@ -234,8 +234,48 @@ class PrDelePermissionByRole:
 
 
 class SmsCode:
-    """根据角色修改对应的权限信息"""
+    """c端验证码发送接口"""
     params = get_parameter('smsCode')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class UserSso:
+    """c端鉴权接口"""
+    params = get_parameter('user_sso')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class UserCaptcha:
+    """c端图形验证码"""
+    params = get_parameter('user_captcha')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class GetTeacherByProjectCategoryId:
+    """获取现后台该业务线下所有的老师列表"""
+    params = get_parameter('getTeacherByProjectCategoryId')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class GetTeacherByIdAndCategoryId:
+    """获取该业务线下的老师"""
+    params = get_parameter('getTeacherByIdAndCategoryId')
+    case_data = []
+    for i in range(0, len(params)):
+        case_data.append(params[i])
+
+
+class GetTeacherByMobileAndCategoryId:
+    """通过手机号获取该业务线下的老师"""
+    params = get_parameter('getTeacherByMobileAndCategoryId')
     case_data = []
     for i in range(0, len(params)):
         case_data.append(params[i])

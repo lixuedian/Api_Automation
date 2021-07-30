@@ -67,11 +67,94 @@ smsCode:
     -
       test_name: '验证码发送接口'
       mode: 1
-      type: data
+      type: json
       methods: post
       url: /cucenter/user/account/smsCode
       data: {
-          ''
+          'mobile': 18600531753,
+          'sms_type': 'login'
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 200, 'msg': '操作成功' }
+
+user_sso:
+  dec: "鉴权接口"
+  parameters:
+    -
+      test_name: '鉴权接口'
+      mode: 0
+      type: json
+      methods: get
+      url: /cucenter/user/account/sso
+      data: {
+        'mobile': 18600531753,
+        'sms_type': 'login'
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': 'Success' }
+
+user_captcha:
+  dec: "图形验证码"
+  parameters:
+    -
+      test_name: '图形验证码'
+      mode: 0
+      type: json
+      methods: get
+      url: /cucenter/user/account/captcha
+      data: {
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 200, 'msg': '操作成功' }
+
+
+
+getTeacherByProjectCategoryId:
+  dec: "获取现后台该业务线下所有的老师列表"
+  parameters:
+    -
+      test_name: '获取现后台该业务线下所有的老师列表'
+      mode: 0
+      type: data
+      methods: get
+      url: /opuser/teacher/getTeacherByProjectCategoryId
+      data: {
+          'categoryId': 3
+      }
+      #header: {'token': &token}
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': 'Success' }
+
+
+getTeacherByIdAndCategoryId:
+  dec: "获取该业务线下的老师"
+  parameters:
+    -
+      test_name: '获取该业务线下的老师'
+      mode: 0
+      type: data
+      methods: get
+      url: /opuser/teacher/getTeacherByIdAndCategoryId
+      data: {
+        'categoryId': 3,
+        'ids': [1]
+      }
+      #header: {'token': &token}
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': 'Success' }
+
+getTeacherByMobileAndCategoryId:
+  dec: "获取该业务线下的老师"
+  parameters:
+    -
+      test_name: '获取该业务线下的老师'
+      mode: 0
+      type: data
+      methods: get
+      url: /opuser/teacher/getTeacherByMobileAndCategoryId
+      data: {
+        'categoryId': 3,
+        'mobile': 18332797057
       }
       #header: {'token': &token}
       parser:   {'code' :"['code']", 'msg': '["msg"]' }

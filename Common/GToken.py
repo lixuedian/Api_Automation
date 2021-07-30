@@ -6,7 +6,7 @@
 _global_dict = {}
 
 
-def _init():
+def init():
     global _global_dict
     _global_dict = {}
 

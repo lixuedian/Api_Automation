@@ -1,25 +1,51 @@
+import json
 
 import allure
 import pytest
-
-import TestCase
 from Common import Consts
-from Common.Methodes import notify, log
-from Common.Mysql_operate import mysql_db
+from Params.params_department import *
 from Common.Parser import parser
-from Params.params_goods import GetAllProductType, GetAllGoodsStatus, GetAllGoodsSort, GetGoodsListByCondition, \
-    AddGoods, EditGoods, EnableLaunch, GetGoodsProductById, DeleteGoods
+from Common.Methodes import notify, log
+import TestCase
+from Params.params_user import GetTeacherByProjectCategoryId, GetTeacherByIdAndCategoryId, \
+    GetTeacherByMobileAndCategoryId, SmsCode, UserSso, UserCaptcha
 
-header = TestCase.TradingDesk.zt_header
+url = TestCase.test_trade_url
+header = TestCase.zt_header
 BASE_PATH = TestCase.BASE_PATH
-url = TestCase.TradingDesk.url
+test_mp_url = TestCase.test_mkg_url
 
 
-class TestGoods(object):
+class TestPassword(object):
+    @allure.description('管理员重置密码')
+    @pytest.mark.parametrize('case', ResetPassword().case_data)
+    def test_reset_password_01(self, case):
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
+        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        log.info('响应结果：%s' % result)
+        parser(result, case['test_name'], case['parser'], case['expected'])
+        # TestCase.token.zt_token()
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        Consts.RESULT_LIST.append('True')
 
-    @allure.description('获取产品类型下拉选项')
-    @pytest.mark.parametrize('case', GetAllProductType().case_data)
-    def test_goods_01(self, case):
+    @allure.description('用户修改密码')
+    @pytest.mark.parametrize('case', ChangePassword().case_data)
+    def test_change_password_01(self, case):
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case['test_name']))
+        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        log.info('响应结果：%s' % result)
+        parser(result, case['test_name'], case['parser'], case['expected'])
+        # TestCase.token.zt_token()
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        Consts.RESULT_LIST.append('True')
+
+
+class TestTeacher(object):
+    @allure.description('获取现后台该业务线下所有的老师列表')
+    @pytest.mark.parametrize('case', GetTeacherByProjectCategoryId().case_data)
+    def test_teacher_01(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
@@ -28,9 +54,9 @@ class TestGoods(object):
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('获取商品状态下拉选项')
-    @pytest.mark.parametrize('case', GetAllGoodsStatus().case_data)
-    def test_goods_02(self, case):
+    @allure.description('获取现后台该业务线下所有的老师列表')
+    @pytest.mark.parametrize('case', GetTeacherByIdAndCategoryId().case_data)
+    def test_teacher_02(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
@@ -39,9 +65,9 @@ class TestGoods(object):
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('获取商品排序集合')
-    @pytest.mark.parametrize('case', GetAllGoodsSort().case_data)
-    def test_goods_03(self, case):
+    @allure.description('获取现后台该业务线下所有的老师列表')
+    @pytest.mark.parametrize('case', GetTeacherByMobileAndCategoryId().case_data)
+    def test_teacher_03(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
@@ -50,72 +76,43 @@ class TestGoods(object):
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('根据筛选条件分页获取商品列表')
-    @pytest.mark.parametrize('case', GetGoodsListByCondition().case_data)
-    def test_goods_04(self, case):
+
+class TestUserMkg(object):
+    @allure.description('c端验证码发送接口')
+    @pytest.mark.parametrize('case', SmsCode().case_data)
+    def test_user_msg_01(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        result = notify().notify_result(case['mode'], test_mp_url + case['url'], case['data'],
+                                        TestCase.mkg_header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是：' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('新增商品')
-    @pytest.mark.parametrize('case', AddGoods().case_data)
-    def test_goods_05(self, case):
+    @allure.description('c端鉴权接口')
+    @pytest.mark.parametrize('case', UserSso().case_data)
+    def test_user_msg_02(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        data = {
+            'token': TestCase.config.get_conf('mkg', 'token')
+        }
+        result = notify().notify_result(case['mode'], test_mp_url + case['url'], data,
+                                        TestCase.mkg_header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是：' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('修改商品')
-    @pytest.mark.parametrize('case', EditGoods().case_data)
-    def test_goods_06(self, case):
+    @allure.description('c端图形验证码')
+    @pytest.mark.parametrize('case', UserCaptcha().case_data)
+    def test_user_msg_03(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        result = notify().notify_result(case['mode'], test_mp_url + case['url'], case['data'],
+                                        TestCase.mkg_header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是：' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
-
-    @allure.description('上下架商品')
-    @pytest.mark.parametrize('case', EnableLaunch().case_data)
-    def test_goods_07(self, case):
-        mysql = 'update test_mp_goods_center.goods_info set status = 3 where id = 68'
-        mysql_db(mysql)
-        log.info("*************** 开始执行用例 ***************")
-        log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
-        log.info('响应结果：%s' % result)
-        parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
-        Consts.RESULT_LIST.append('True')
-
-    @allure.description('根据商品id查详情')
-    @pytest.mark.parametrize('case', GetGoodsProductById().case_data)
-    def test_goods_09(self, case):
-        log.info("*************** 开始执行用例 ***************")
-        log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
-        log.info('响应结果：%s' % result)
-        parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
-        Consts.RESULT_LIST.append('True')
-
-    @allure.description('删除商品')
-    @pytest.mark.parametrize('case', DeleteGoods().case_data)
-    def test_goods_10(self, case):
-        log.info("*************** 开始执行用例 ***************")
-        log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
-        log.info('响应结果：%s' % result)
-        # parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
-        Consts.RESULT_LIST.append('True')
-
-
