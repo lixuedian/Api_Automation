@@ -6,10 +6,11 @@
 from configparser import ConfigParser
 from Common import Log, GToken as Gt
 import os
-
+import Common.Read_data
 from Common.Delete import deletes_file
 
 TITLE_TOKEN = 'parameter'
+config_ini = 'config_test.ini'
 
 
 def get_token():
@@ -62,7 +63,7 @@ class Config:
         """
         self.config = ConfigParser()
         self.log = Log.MyLog()
-        self.conf_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.ini')
+        self.conf_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), config_ini)
         self.xml_report_path = Config.path_dir+'/Report/xml'
         self.html_report_path = Config.path_dir+'/Report/html'
 
@@ -203,3 +204,15 @@ class Config:
         # 清空allure文件
         deletes_file(self.xml_report_path)
         deletes_file(self.html_report_path)
+
+    # 读取配置参数
+    def mysql_conf(self, conf):
+        data = Common.Read_data.data.load_ini(self.conf_path)[f'{conf}']
+        DB_CONF = {
+            "host": data["mysql_host"],
+            "port": int(data["mysql_port"]),
+            "user": data["mysql_user"],
+            "password": data["mysql_passwd"],
+            "db": data["mysql_db"]
+        }
+        return DB_CONF

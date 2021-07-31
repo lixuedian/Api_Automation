@@ -5,7 +5,7 @@
 # 开发工具 ： PyCharm
 import pymysql
 import os
-import Common.Read_data
+from Config.Config import Config
 from Common.Log import logger
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -50,23 +50,23 @@ class MysqlDb(object):
             self.conn.rollback()
 
 
-# 读取配置参数
-def mysql_conf(conf):
-    data_file_path = os.path.join(BASE_PATH, "config", "Config.ini")
-    data = Common.Read_data.data.load_ini(data_file_path)[f'{conf}']
-    DB_CONF = {
-        "host": data["mysql_host"],
-        "port": int(data["mysql_port"]),
-        "user": data["mysql_user"],
-        "password": data["mysql_passwd"],
-        "db": data["mysql_db"]
-    }
-    return DB_CONF
+# # 读取配置参数
+# def mysql_conf(conf):
+#     data_file_path = os.path.join(BASE_PATH, "config", "Config_test.ini")
+#     data = Common.Read_data.data.load_ini(data_file_path)[f'{conf}']
+#     DB_CONF = {
+#         "host": data["mysql_host"],
+#         "port": int(data["mysql_port"]),
+#         "user": data["mysql_user"],
+#         "password": data["mysql_passwd"],
+#         "db": data["mysql_db"]
+#     }
+#     return DB_CONF
 
 
 # 获取多个id列表
 def mysql_id(mysql):
-    DB_CONF = mysql_conf('mysql')
+    DB_CONF = Config().mysql_conf('mysql')
     # mysql = "select id from test_mp_goods_center.goods_handout where name = '测试_xuejian01'"
     Ids = MysqlDb(DB_CONF).select_db(mysql)
     a = []
@@ -78,10 +78,14 @@ def mysql_id(mysql):
 
 # 测试库
 def mysql_select(mysql):
-    DB_CONF = mysql_conf('mysql')
+    DB_CONF = Config().mysql_conf('mysql')
     return MysqlDb(DB_CONF).select_db(mysql)
 
 
 def mysql_db(mysql):
-    DB_CONF = mysql_conf('mysql')
+    DB_CONF = Config().mysql_conf('mysql')
     return MysqlDb(DB_CONF).execute_db(mysql)
+
+
+# mysql = "select id from test_mp_goods_center.goods_handout where name = '测试_xuejian01'"
+# print(mysql_id(mysql))
