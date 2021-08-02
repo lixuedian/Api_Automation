@@ -5,13 +5,14 @@ from Common import Consts
 from Common.Parser import parser
 from Common.Methodes import notify, log
 import TestCase
-from Params.params_syllabus import GetTeacher, GetCourseTimesStatus, GetTeachTypeS, GetSyllabus, AddChapter, \
+from Params.params_syllabus import GetCourseTimesStatus, GetSyllabus, AddChapter, \
     EditChapter, GetChapterById, GetAllChapter, GetCourseTimesById, AddCourseTimes, EditCourseTimes, GetTreeChapters, \
     DeleteSyllabus, FindByCondition
 
 url = TestCase.test_trade_url
 header = TestCase.zt_header
 BASE_PATH = TestCase.BASE_PATH
+
 
 class TestSyllabus(object):
 

@@ -101,7 +101,7 @@ getCourses:
       methods: get
       url: /market-api/personal/getCourses
       data: {
-
+        'projectCategoryId': 3
       }
       parser: *parser
       expected: *expected
@@ -117,7 +117,8 @@ topCourse:
       methods: post
       url: /market-api/personal/topCourse
       data: {
-        'id': 1
+        'id': 1,
+        'projectCategoryId': 3
       }
       parser: *parser
       expected: *expected
@@ -132,7 +133,8 @@ cancelTopCourse:
       methods: post
       url: /market-api/personal/cancelTopCourse
       data: {
-        'id': 1
+        'id': 1,
+        'projectCategoryId': 3
       }
       parser: *parser
       expected: *expected

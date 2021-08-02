@@ -626,7 +626,7 @@ CreateOrder_1:
         'paidAmount': 0.01,
         'goodsId': 115,
         'paymentMethod': 10,
-        'projectCategoryId': 1
+        'projectCategoryId': 3
       }
       parser: *parser
       expected: { 'code': 9002, 'msg': '您已达到商品购买数量上限' }

@@ -1,5 +1,3 @@
-import json
-
 import allure
 import pytest
 from Common import Consts

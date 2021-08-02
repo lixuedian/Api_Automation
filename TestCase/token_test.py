@@ -65,5 +65,3 @@ class TestBasic(object):
         self.config.set_conf('APP', 'uuid', result['data']['uuid'])
         allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是：' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
-
-

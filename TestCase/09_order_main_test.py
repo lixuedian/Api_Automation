@@ -4,7 +4,7 @@ from Common import Consts
 from Common.Parser import parser
 from Common.Methodes import notify, log
 import TestCase
-from Params.params_order import OrderList, OrderExport, PayList, GetPay, PaySaveNote, PayRefused, Paycheck, \
+from Params.params_order import OrderList, OrderExport, PayList, PaySaveNote, PayRefused, Paycheck, \
     PayRefusedBatch, PaycheckBatch, PayExport
 
 url = TestCase.test_trade_url
@@ -122,5 +122,3 @@ class TestPay(object):
             parser(result, case['test_name'], case['parser'], case['expected'])
         allure.attach.file(BASE_PATH + '/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
-
-

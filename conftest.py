@@ -5,6 +5,7 @@
 # 开发工具 ： PyCharm
 import pytest
 from py.xml import html
+from selenium import webdriver
 
 
 def pytest_html_report_title(report):
@@ -50,7 +51,8 @@ def pytest_runtest_makereport(item):
     #         file_name = report.nodeid.replace("::", "_") + ".png"
     #         screen_img = capture_screenshot()
     #         if file_name:
-    #             html = '<div><img src="data:image/png;base64,%s" alt="screenshot" style="width:600px;height:300px;" ' \
+    #             html = '<div><img src="data:image/png;base64,%s" alt="screenshot"
+    #             style="width:600px;height:300px;" ' \
     #                    'onclick="window.open(this.src)" align="right"/></div>' % screen_img
     #             extra.append(pytest_html.extras.html(html))
     #     report.extra = extra
@@ -60,9 +62,10 @@ def pytest_runtest_makereport(item):
     report.nodeid = report.nodeid.encode("utf-8").decode("unicode_escape")  # 解决乱码
 
 
-# def capture_screenshot():
-#     '''截图保存为base64'''
-#     return driver.get_screenshot_as_base64()
+def capture_screenshot():
+    """截图保存为base64"""
+    driver = webdriver.Chrome()
+    return driver.get_screenshot_as_base64()
 
 
 def pytest_collection_modifyitems(session, items):

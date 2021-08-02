@@ -8,7 +8,7 @@ from Common.Parser import parser
 from Common.Methodes import notify, log
 import TestCase
 from Params.params_mp import Role, PermissionS
-from Common.Mysql_operate import MysqlDb, mysql_conf
+from Common.Mysql_operate import MysqlDb
 
 
 url = TestCase.test_trade_url
@@ -156,7 +156,7 @@ class TestRole(object):
     @allure.description('添加角色')
     @pytest.mark.parametrize('case', RoleAdd().case_data)
     def test_role_01(self, case):
-        DB_CONF = mysql_conf('mysql')
+        DB_CONF = TestCase.config.mysql_conf('mysql')
         mysql = "update test_mp_oauth_center.role_info set is_deleted=1 where role_name = '测试角色001'"
         MysqlDb(DB_CONF).execute_db(mysql)
         log.info("*************** 开始执行用例 ***************")
@@ -221,7 +221,7 @@ class TestPermission(object):
     @allure.description('添加菜单权限')
     @pytest.mark.parametrize('case', MenuAdd().case_data)
     def permission_10(self, case):
-        DB_CONF = mysql_conf('mysql')
+        DB_CONF = TestCase.config.mysql_conf('mysql')
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])

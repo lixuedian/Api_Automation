@@ -4,7 +4,8 @@ from Common import Consts
 from Common.Parser import parser
 from Common.Methodes import notify, log
 import TestCase
-from Params.params_app300 import IndexMoKao, ZhenTi, Subscribe, RankingNew, RankingList, GetZhenTiDataNew, GetZhenTiCat, \
+from Params.params_app300 import IndexMoKao, ZhenTi, Subscribe, RankingNew, RankingList, GetZhenTiDataNew, \
+    GetZhenTiCat, \
     MoZhenTi, GetZhenTiData
 
 header = TestCase.header_app

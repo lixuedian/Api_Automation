@@ -7,7 +7,8 @@ import TestCase
 from Params.params_mkg import FindByProjectIdWithPage, GetInfoByGoodsId, GetLecturersByIdsAndCategoryId, \
     GetCourseContents, GetUserInfo, GetCourses, TopCourse, CancelTopCourse, MyGetCourseContents, GetPlayLink, \
     GetCourseHandouts, FindById
-from Params.params_order import OrderPrePurchase, CreateOrder, GetPayment, RepayOrder, CancelOrders, GetDetailByOrderId, \
+from Params.params_order import OrderPrePurchase, CreateOrder, GetPayment, RepayOrder, CancelOrders, \
+    GetDetailByOrderId, \
     GetOrders, CreateOrder1
 
 header = TestCase.mkg_header

@@ -57,6 +57,6 @@ class Session:
             self.log.error('get cookies error, please checkout!!!')
 
 
-# if __name__ == '__main__':
-#     ss = Session()
-#     ss.get_session('debug')
+if __name__ == '__main__':
+    ss = Session()
+    ss.get_session('debug')
