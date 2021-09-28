@@ -6,3 +6,4 @@ requests_toolbelt==0.9.1
 requests==2.23.0
 pycryptodome==3.9.9
 PyYAML==5.3.1
+selenium==3.141.0

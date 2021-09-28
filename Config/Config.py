@@ -10,7 +10,7 @@ import Common.Read_data
 from Common.Delete import deletes_file
 
 TITLE_TOKEN = 'parameter'
-config_ini = 'config_test.ini'
+config_ini = 'config_test.ini'  # 指定环境配置文件
 
 
 def get_token():

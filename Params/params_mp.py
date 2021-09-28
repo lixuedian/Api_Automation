@@ -89,7 +89,7 @@ class Role(object):
         """根据角色修改对应的权限信息"""
         data = {
             "roleId": Role.roleId,
-            "permissionIds": "181,182,183,184,192,41,42,43"
+            "permissionIds": "41,42,43"
         }
         case = PrDelePermissionByRole().case_data
         log.info("*************** 开始执行用例 ***************")

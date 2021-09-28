@@ -112,7 +112,7 @@ K_login:
   dec: "客户端账号登录"
   parameters:
     -
-      test_name: '银行用户登录'
+      test_name: '教师用户登录'
       mode: 1
       method: post
       type: data
@@ -126,5 +126,22 @@ K_login:
         'password': '123456'
       }
       header: {'Content-Type': 'application/x-www-form-urlencoded' }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': '1', 'msg': '登录成功' }
+    -
+      test_name: '银行用户登录'
+      mode: 1
+      method: post
+      type: data
+      url: /v1/account/login
+      data: {
+        'projectId': 2,
+        'mobilestyle': 'android_V2.9.0_HUAWEI_EML-AL00_Android_29',
+        'source': 103,
+        'areaCode': 86,
+        'mobileno': c8f79a8ac10090f02fe57bd8ea8ae13b,
+        'password': '000000'
+      }
+      header: { 'Content-Type': 'application/x-www-form-urlencoded' }
       parser: { 'code': "['code']", 'msg': '["msg"]' }
       expected: { 'code': '1', 'msg': '登录成功' }

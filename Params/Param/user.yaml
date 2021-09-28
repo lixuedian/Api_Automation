@@ -159,3 +159,37 @@ getTeacherByMobileAndCategoryId:
       #header: {'token': &token}
       parser:   {'code' :"['code']", 'msg': '["msg"]' }
       expected:  { 'code': 1000, 'msg': 'Success' }
+
+
+password_reset:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '管理员重置密码'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/account/password/reset
+      data: {
+        'userId': 1153,
+        'newWord': 123456
+      }
+      parser:   &parser {'code' :"['code']", 'msg': '["msg"]' }
+      expected: &expected { 'code': 1000, 'msg': 'Success' }
+
+password_change:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '用户修改密码'
+      mode: 1
+      type: json
+      methods: post
+      url: /opuser/account/password/change
+      data: {
+        'userId': 1153,
+        'oldWord': 123456,
+        'newWord': 123456
+      }
+      parser:   *parser
+      expected:  *expected

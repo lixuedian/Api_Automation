@@ -17,6 +17,7 @@ BASE_PATH = TestCase.BASE_PATH
 
 
 class TestDepartment(object):
+    departmentId = 336
 
     @allure.description('获取部门的树状结构')
     @pytest.mark.parametrize('case', DepartmentList().case_data)
@@ -24,7 +25,7 @@ class TestDepartment(object):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
-        log.info('响应结果：%s' % result)
+        # log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
@@ -114,17 +115,31 @@ class TestDepartment(object):
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
+        roleId = result['data'][0]['id']
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('给部门添加角色')
-    @pytest.mark.parametrize('case', AddDepartment().case_data)
-    def department_10(self, case):
+        """给部门添加角色"""
+        case = AddDepartment().case_data
+        data = {
+                  'departmentId': TestDepartment.departmentId,
+                  'roleId': roleId
+        }
         log.info("*************** 开始执行用例 ***************")
-        log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
+        log.info("用例名称  ==>> {}".format(case[0]['test_name']))
+        result = notify().notify_result(case[0]['mode'], url + case[0]['url'], data, header, case[0]['type'])
         log.info('响应结果：%s' % result)
-        parser(result, case['test_name'], case['parser'], case['expected'])
+        parser(result, case[0]['test_name'], case[0]['parser'], case[0]['expected'])
+        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
+        Consts.RESULT_LIST.append('True')
+
+        """从部门下删除角色"""
+        case = DelRoleDepartment().case_data
+        log.info("*************** 开始执行用例 ***************")
+        log.info("用例名称  ==>> {}".format(case[0]['test_name']))
+        result = notify().notify_result(case[0]['mode'], url + case[0]['url'], data, header, case[0]['type'])
+        log.info('响应结果：%s' % result)
+        parser(result, case[0]['test_name'], case[0]['parser'], case[0]['expected'])
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
@@ -139,33 +154,22 @@ class TestDepartment(object):
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
 
-    @allure.description('从部门下删除角色')
-    @pytest.mark.parametrize('case', DelRoleDepartment().case_data)
-    def department_12(self, case):
-        log.info("*************** 开始执行用例 ***************")
-        log.info("用例名称  ==>> {}".format(case['test_name']))
-        result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
-        log.info('响应结果：%s' % result)
-        parser(result, case['test_name'], case['parser'], case['expected'])
-        allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
-        Consts.RESULT_LIST.append('True')
-
 
 class TestRole(object):
 
     @allure.description('添加角色')
     @pytest.mark.parametrize('case', RoleAdd().case_data)
     def test_role_01(self, case):
-        DB_CONF = TestCase.config.mysql_conf('mysql')
-        mysql = "update test_mp_oauth_center.role_info set is_deleted=1 where role_name = '测试角色001'"
-        MysqlDb(DB_CONF).execute_db(mysql)
+        # DB_CONF = TestCase.config.mysql_conf('mysql')
+        # mysql = "update test_mp_oauth_center.role_info set is_deleted=1 where role_name = '测试角色001'"
+        # MysqlDb(DB_CONF).execute_db(mysql)
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
         log.info('响应结果：%s' % result)
         parser(result, case['test_name'], case['parser'], case['expected'])
 
-        Role().role_main()
+        Role().role_main()  # 添加删除角色主流程
 
         allure.attach.file(BASE_PATH+'/Log/log.log', '附件内容是： ' + '调试日志', '我是附件名', allure.attachment_type.TEXT)
         Consts.RESULT_LIST.append('True')
@@ -283,7 +287,7 @@ class TestUserRole(object):
 
     @allure.description('给用户添加自定义角色')
     @pytest.mark.parametrize('case', UserRoleAdd().case_data)
-    def test_user_role_19(self, case):
+    def user_role_19(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])
@@ -338,7 +342,7 @@ class TestUserRole(object):
 
     @allure.description('删除用户自定义角色')
     @pytest.mark.parametrize('case', UserRoleDelete().case_data)
-    def test_user_role_25(self, case):
+    def user_role_25(self, case):
         log.info("*************** 开始执行用例 ***************")
         log.info("用例名称  ==>> {}".format(case['test_name']))
         result = notify().notify_result(case['mode'], url + case['url'], case['data'], header, case['type'])

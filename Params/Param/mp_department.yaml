@@ -22,7 +22,7 @@ department_update:
       methods: post
       url: /opuser/department/update
       data: {
-              'id': 1,
+              'id': &id 336,
               'note': '总公司001'
       }
       parser:   *parser
@@ -38,7 +38,7 @@ departmentUser:
       methods: get
       url: /opuser/user/departmentUser
       data: {
-        'departmentId': 432,
+        'departmentId': *id,
         'pageSize': 10,
         'pageNum': 1
       }
@@ -60,7 +60,8 @@ getUser:
       parser:   *parser
       expected:  *expected
 
-    - test_name: '通过各种查询条件查询用户，单条-工号查询'
+    -
+      test_name: '通过各种查询条件查询用户，单条-工号查询'
       mode: 1
       type: json
       methods: post
@@ -70,7 +71,8 @@ getUser:
       }
       parser:    {'jobId': "['data']['jobId']"}
       expected:  { 'jobId': '2007'}
-    - test_name: '通过各种查询条件查询用户，单条-手机号码搜索'
+    -
+      test_name: '通过各种查询条件查询用户，单条-手机号码搜索'
       mode: 1
       type: json
       methods: post
@@ -81,7 +83,8 @@ getUser:
       }
       parser: { 'jobId': "['data']['jobId']" }
       expected: { 'jobId': '2007' }
-    - test_name: '通过各种查询条件查询用户，单条-手机号码不存在'
+    -
+      test_name: '通过各种查询条件查询用户，单条-手机号码不存在'
       mode: 1
       type: json
       methods: post
@@ -103,7 +106,7 @@ update:
       methods: post
       url: /opuser/user/update
       data: {
-        "id": 1099,
+        "id": &userid 1018,
         "note": "测试",
         "status": 1,
         "projectList": [1, 2, 3, 4, 5]
@@ -117,25 +120,46 @@ update:
       methods: post
       url: /opuser/user/update
       data: {
-        "id": 1099,
+        "id": *userid,
         "phoneId": 18600531753,
         "name": "李雪殿",
-        "jobId": 2007,
+        "jobId": "2007",
         "title": "测试工程师",
         "status": 0,
         "isLeave": 0,
         "entryTime": "2020-08-10T16:00:00.000+00:00",
-        "note": "222",
         "pageNum": 1,
         "pageSize": 10,
         "departmentList": "支持组",
         "defaultProjectList": [
           {
             "projectId": 1,
-            "name": "教师"
+            "name": "国考"
+          },
+          {
+            "projectId": 2,
+            "name": "执业药师"
+          },
+          {
+            "projectId": 3,
+            "name": "护士资格"
+          },
+          {
+            "projectId": 4,
+            "name": "中医健康管理师"
+          },
+          {
+            "projectId": 5,
+            "name": "健康管理师"
           }
         ],
-        "projectList": [1, 2, 3, 4, 5]
+        "projectList": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
       }
       parser:   *parser
       expected:  *expected
@@ -152,7 +176,7 @@ getUserList:
       url: /opuser/user/getUserList
       data: {
         'jobId': 2007,
-        departmentId: 338
+        departmentId: *id
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
       expected:  { 'jobId': '2007'}
@@ -163,8 +187,8 @@ getUserList:
       methods: post
       url: /opuser/user/getUserList
       data: {
-        'id': 1099,
-        departmentId: 338
+        'id': *userid,
+        departmentId: *id
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
       expected: { 'jobId': '2007' }
@@ -176,7 +200,7 @@ getUserList:
       url: /opuser/user/getUserList
       data: {
         'phoneId': 18600531753,
-        departmentId: 338
+        departmentId: *id
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
       expected: { 'jobId': '2007' }
@@ -188,7 +212,7 @@ getUserList:
       url: /opuser/user/getUserList
       data: {
         'name': '李雪殿',
-        departmentId: 338
+        departmentId: *id
       }
       parser:    {'jobId': "['data']['list'][0]['jobId']"}
       expected: { 'jobId': '2007' }
@@ -199,7 +223,7 @@ getUserList:
       methods: post
       url: /opuser/user/getUserList
       data: {
-        'departmentId': 338,
+        'departmentId': *id,
         'status': 0
       }
       parser:   *parser
@@ -211,7 +235,7 @@ getUserList:
       methods: post
       url: /opuser/user/getUserList
       data: {
-        'departmentId': 338,
+        'departmentId': *id,
         'status': 1
       }
       parser:   *parser
@@ -223,7 +247,7 @@ getUserList:
       methods: post
       url: /opuser/user/getUserList
       data: {
-        departmentId: 338,
+        departmentId: *id,
           'status': 2
       }
       parser:   *parser
@@ -245,35 +269,99 @@ isBussinessInUse:
       expected:  *expected
 
 
-password_reset:
+role_list:
   dec: "主流程"
   parameters:
     -
-      test_name: '管理员重置密码'
-      mode: 1
-      type: json
-      methods: post
-      url: /opuser/account/password/reset
+      test_name: '根据部门获取已绑定相关角色-主流程'
+      mode: 0
+      type:
+      methods: get
+      url: /oauth/department/role/list
       data: {
-        'userId': 1153,
-        'newWord': 123456
+        'departmentId': *id,
+        'roleName': ''
       }
-      parser:   *parser
-      expected:  *expected
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
 
-password_change:
+
+getUsableRole:
   dec: "主流程"
   parameters:
     -
-      test_name: '用户修改密码'
+      test_name: '获取部门下可添加的角色-主流程'
+      mode: 0
+      type:
+      methods: get
+      url: /oauth/department/role/getUsableRole
+      data: {
+        'departmentId': *id
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+
+department_add:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '给部门添加角色-主流程'
+      mode: 1
+      type: json
+      methods: POST
+      url: /oauth/department/role/add
+      data: {
+        'departmentId': *id,
+        'roleId': &roleId 79
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+status:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '禁用用户角色-主流程'
       mode: 1
       type: json
       methods: post
-      url: /opuser/account/password/change
+      url: /oauth/user/role/status
       data: {
-        'userId': 1153,
-        'oldWord': 123456,
-        'newWord': 123456
+        "userId": *userid,
+        "roleId": *roleId,
+        "departmentId": *id,
+        "status": 0
       }
-      parser:   *parser
-      expected:  *expected
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }
+
+    - test_name: '启用用户角色-主流程'
+      mode: 1
+      type: json
+      methods: post
+      url: /oauth/user/role/status
+      data: {
+        "userId": *userid,
+        "roleId": *roleId,
+        "departmentId": *id,
+        "status": 0
+      }
+      parser: { 'code': "['code']", 'msg': '["msg"]' }
+      expected: { 'code': 1000, 'msg': '操作成功' }
+
+department_delRole:
+  dec: "主流程"
+  parameters:
+    -
+      test_name: '从部门下删除角色-主流程'
+      mode: 1
+      type: json
+      methods: POST
+      url: /oauth/department/role/delRole
+      data: {
+        'departmentId': *id,
+        'roleId': *roleId
+      }
+      parser:   {'code' :"['code']", 'msg': '["msg"]' }
+      expected:  { 'code': 1000, 'msg': '操作成功' }

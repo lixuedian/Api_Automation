@@ -3,7 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/Common/Mysql_operate.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/TestCase/03_mp_main_test.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/TestCase/sms_test.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/TestCase/27_sms_test.py" dialect="GenericSQL" />
     <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>
